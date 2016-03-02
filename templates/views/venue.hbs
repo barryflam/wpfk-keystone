@@ -1,0 +1,93 @@
+<div class="container">
+	<h1>Venue</h1>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-md-6">
+			{{#if venueSubmitted}}
+			<h3>Thanks for submitting a venue, please submit another!</h3>
+			{{/if}}
+			<form method="post">
+				<input type="hidden" name="action" value="venue">
+				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
+					<label>Venue Name</label>
+					<input type="text" name="venueName" class="form-control" value="{{formData.venueName}}">
+				</div>
+                <div class="form-group {{#if validationErrors.type}}has-error{{/if}}">
+					<label>Venue Type</label>
+					<select name="venueType" class="form-control">
+						<option value="">(select one)</option>
+						{{#each venueType}}
+						<option value="{{value}}">{{label}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="form-group {{#if validationErrors.address1}}has-error{{/if}}">
+					<label>Address (Line 1)</label>
+					<input type="text" name="address1" class="form-control" value="{{formData.address1}}">
+				</div>
+                <div class="form-group {{#if validationErrors.address2}}has-error{{/if}}">
+					<label>Address (Line 2)</label>
+					<input type="text" name="address2" class="form-control" value="{{formData.address2}}">
+				</div>
+                <div class="form-group {{#if validationErrors.townCity}}has-error{{/if}}">
+					<label>Town/City</label>
+					<input type="text" name="townCity" class="form-control" value="{{formData.townCity}}">
+				</div>
+                <div class="form-group {{#if validationErrors.postcode}}has-error{{/if}}">
+					<label>Postcode</label>
+					<input type="text" name="postcode" class="form-control" value="{{formData.postcode}}">
+				</div>
+                <div class="form-group {{#if validationErrors.description}}has-error{{/if}}">
+					<label>Description</label>
+					<textarea name="message" placeholder="Description of venue" rows="4" class="form-control">{{formData.description}}</textarea>
+				</div>
+                <div class="form-group {{#if validationErrors.rating}}has-error{{/if}}">
+					<label>Rating</label>
+					<input type="radio" name="rating" id="rating0" value="0" {{#if formData.rating == 0}}checked="checked"{{/if}} /> <label for="rating0">0</label> 
+                    <input type="radio" name="rating" id="rating1" value="1" {{#if formData.rating == 1}}checked="checked"{{/if}} /> <label for="rating1">1</label> 
+                    <input type="radio" name="rating" id="rating2" value="2" {{#if formData.rating == 2}}checked="checked"{{/if}} /> <label for="rating2">2</label> 
+                    <input type="radio" name="rating" id="rating3" value="3" {{#if formData.rating == 3}}checked="checked"{{/if}} /> <label for="rating3">3</label> 
+                    <input type="radio" name="rating" id="rating4" value="4" {{#if formData.rating == 4}}checked="checked"{{/if}} /> <label for="rating4">4</label> 
+                    <input type="radio" name="rating" id="rating5" value="5" {{#if formData.rating == 5}}checked="checked"{{/if}} /> <label for="rating5">5</label> 
+				</div>
+                <div class="form-group {{#if validationErrors.ageGroups}}has-error{{/if}}">
+					<label>Suitable for age groups</label>
+					<input type="checkbox" name="to6M" id="to6M" {{#if formData.to6M}}checked="checked"{{/if}} /> <label for="to6M">0 - 6 months</label>
+                    <input type="checkbox" name="from6Mto1Y" id="from6Mto1Y" {{#if formData.from6Mto1Y}}checked="checked"{{/if}} /> <label for="from6Mto1Y">6 months - 1 year
+                    <input type="checkbox" name="from1Yto2Y" id="from1Yto2Y" {{#if formData.from1Yto2Y}}checked="checked"{{/if}} /> <label for="from1Yto2Y">1 - 2 years
+                    <input type="checkbox" name="from2Yto3Y" id="from2Yto3Y" {{#if formData.from2Yto3Y}}checked="checked"{{/if}} /> <label for="from2Yto3Y">2 - 3 years
+                    <input type="checkbox" name="from3Yto4Y" id="from3Yto4Y" {{#if formData.from3Yto4Y}}checked="checked"{{/if}} /> <label for="from3Yto4Y">3 - 4 years
+                    <input type="checkbox" name="from4Yto5Y" id="from4Yto5Y" {{#if formData.from4Yto5Y}}checked="checked"{{/if}} /> <label for="from4Yto5Y">4 - 5 years
+                    <input type="checkbox" name="from5Yto6Y" id="from5Yto6Y" {{#if formData.from5Yto6Y}}checked="checked"{{/if}} /> <label for="from5Yto6Y">5 - 6 years
+                    <input type="checkbox" name="from6Yto7Y" id="from6Yto7Y" {{#if formData.from6Yto7Y}}checked="checked"{{/if}} /> <label for="from6Yto7Y">6 - 7 years
+                    <input type="checkbox" name="from7Yto8Y" id="from7Yto8Y" {{#if formData.from7Yto8Y}}checked="checked"{{/if}} /> <label for="from7Yto8Y">7 - 8 years
+                    <input type="checkbox" name="from8Yto9Y" id="from8Yto9Y" {{#if formData.from8Yto9Y}}checked="checked"{{/if}} /> <label for="from8Yto9Y">8 - 9 years
+                    <input type="checkbox" name="from9Yto10Y" id="from9Yto10Y" {{#if formData.from9Yto10Y}}checked="checked"{{/if}} /> <label for="from9Yto10Y">9 - 10 years
+                    <input type="checkbox" name="from10Yto12Y" id="from10Yto12Y" {{#if formData.from10Yto12Y}}checked="checked"{{/if}} /> <label for="from10Yto12Y">10 - 12 years
+                    <input type="checkbox" name="from12Y" id="from12Y" {{#if formData.from12Y}}checked="checked"{{/if}} /> 12 years+
+				</div>
+                <div class="form-group {{#if validationErrors.bookingRequired}}has-error{{/if}}">
+					<label for="bookingRequired">Booking required?</label>
+					<input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} />
+				</div>
+                <div class="form-group {{#if validationErrors.services}}has-error{{/if}}">
+					<label>Services</label>
+					<input type="checkbox" name="babyChanging" id="babyChanging" {{#if formData.babyChanging}}checked="checked"{{/if}} /> <label for="babyChanging">Baby changing</label>
+                    <input type="checkbox" name="childrensMenu" id="childrensMenu" {{#if formData.childrensMenu}}checked="checked"{{/if}} /> <label for="childrensMenu">Childrens menu</label>
+                    <input type="checkbox" name="wheelAccessible" id="wheelAccessible" {{#if formData.wheelAccessible}}checked="checked"{{/if}} /> <label for="wheelAccessible">Pram/wheelchair accessible</label>
+				</div>
+                <div class="form-group {{#if validationErrors.prices}}has-error{{/if}}">
+					<label>Prices</label>
+					<input type="text" name="adult" id="adult" {{#if formData.adult}}checked="checked"{{/if}} /> <label for="adult">Adult price</label>
+                    <input type="text" name="child" id="child" {{#if formData.child}}checked="checked"{{/if}} /> <label for="child">Child price</label>
+                    <input type="text" name="infant" id="infant" {{#if formData.infant}}checked="checked"{{/if}} /> <label for="infant">Infant price</label>
+                    <input type="text" name="other" id="other" {{#if formData.other}}checked="checked"{{/if}} /> <label for="other">Other price</label>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Send</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
