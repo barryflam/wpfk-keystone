@@ -34,8 +34,8 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-    'google api key': 'AIzaSyBU_vWF7XXJSqWpUrGp_twq8kyh62X8Oo8',
-    'google server api key': 'AIzaSyD7dYVlbuLReW2IO1Y_RzusGCksasgbIXQ',
+    'google api key': process.env.GOOGLE_API_KEY,
+    'google server api key': process.env.GOOGLE_SERVER_API_KEY,
     'default region': 'gb' 
 });
 
