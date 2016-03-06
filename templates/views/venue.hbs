@@ -13,11 +13,11 @@
 					<label>Venue Name</label>
 					<input type="text" name="venueName" class="form-control" value="{{formData.venueName}}">
 				</div>
-                <div class="form-group {{#if validationErrors.type}}has-error{{/if}}">
+                <div class="form-group {{#if validationErrors.venueType}}has-error{{/if}}">
 					<label>Venue Type</label>
 					<select name="venueType" class="form-control">
 						<option value="">(select one)</option>
-						{{#each venueType}}
+						{{#each venueTypes}}
 						<option value="{{value}}">{{label}}</option>
 						{{/each}}
 					</select>
@@ -40,32 +40,36 @@
 				</div>
                 <div class="form-group {{#if validationErrors.description}}has-error{{/if}}">
 					<label>Description</label>
-					<textarea name="message" placeholder="Description of venue" rows="4" class="form-control">{{formData.description}}</textarea>
+					<textarea name="message" placeholder="I love this place because..." rows="4" class="form-control">{{formData.description}}</textarea>
 				</div>
                 <div class="form-group {{#if validationErrors.rating}}has-error{{/if}}">
 					<label>Rating</label>
-					<input type="radio" name="rating" id="rating0" value="0" {{#if formData.rating == 0}}checked="checked"{{/if}} /> <label for="rating0">0</label> 
-                    <input type="radio" name="rating" id="rating1" value="1" {{#if formData.rating == 1}}checked="checked"{{/if}} /> <label for="rating1">1</label> 
-                    <input type="radio" name="rating" id="rating2" value="2" {{#if formData.rating == 2}}checked="checked"{{/if}} /> <label for="rating2">2</label> 
-                    <input type="radio" name="rating" id="rating3" value="3" {{#if formData.rating == 3}}checked="checked"{{/if}} /> <label for="rating3">3</label> 
-                    <input type="radio" name="rating" id="rating4" value="4" {{#if formData.rating == 4}}checked="checked"{{/if}} /> <label for="rating4">4</label> 
-                    <input type="radio" name="rating" id="rating5" value="5" {{#if formData.rating == 5}}checked="checked"{{/if}} /> <label for="rating5">5</label> 
+                    <ul>
+                        <li><input type="radio" name="rating" id="rating0" value="0" {{#ifeq formData.rating 0}}checked="checked"{{/ifeq}} /> <label for="rating0">0</label></li>
+                        <li><input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label></li>
+                        <li><input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label></li>
+                        <li><input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label></li>
+                        <li><input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label></li> 
+                        <li><input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label></li>
+                    </ul> 
 				</div>
                 <div class="form-group {{#if validationErrors.ageGroups}}has-error{{/if}}">
 					<label>Suitable for age groups</label>
-					<input type="checkbox" name="to6M" id="to6M" {{#if formData.to6M}}checked="checked"{{/if}} /> <label for="to6M">0 - 6 months</label>
-                    <input type="checkbox" name="from6Mto1Y" id="from6Mto1Y" {{#if formData.from6Mto1Y}}checked="checked"{{/if}} /> <label for="from6Mto1Y">6 months - 1 year
-                    <input type="checkbox" name="from1Yto2Y" id="from1Yto2Y" {{#if formData.from1Yto2Y}}checked="checked"{{/if}} /> <label for="from1Yto2Y">1 - 2 years
-                    <input type="checkbox" name="from2Yto3Y" id="from2Yto3Y" {{#if formData.from2Yto3Y}}checked="checked"{{/if}} /> <label for="from2Yto3Y">2 - 3 years
-                    <input type="checkbox" name="from3Yto4Y" id="from3Yto4Y" {{#if formData.from3Yto4Y}}checked="checked"{{/if}} /> <label for="from3Yto4Y">3 - 4 years
-                    <input type="checkbox" name="from4Yto5Y" id="from4Yto5Y" {{#if formData.from4Yto5Y}}checked="checked"{{/if}} /> <label for="from4Yto5Y">4 - 5 years
-                    <input type="checkbox" name="from5Yto6Y" id="from5Yto6Y" {{#if formData.from5Yto6Y}}checked="checked"{{/if}} /> <label for="from5Yto6Y">5 - 6 years
-                    <input type="checkbox" name="from6Yto7Y" id="from6Yto7Y" {{#if formData.from6Yto7Y}}checked="checked"{{/if}} /> <label for="from6Yto7Y">6 - 7 years
-                    <input type="checkbox" name="from7Yto8Y" id="from7Yto8Y" {{#if formData.from7Yto8Y}}checked="checked"{{/if}} /> <label for="from7Yto8Y">7 - 8 years
-                    <input type="checkbox" name="from8Yto9Y" id="from8Yto9Y" {{#if formData.from8Yto9Y}}checked="checked"{{/if}} /> <label for="from8Yto9Y">8 - 9 years
-                    <input type="checkbox" name="from9Yto10Y" id="from9Yto10Y" {{#if formData.from9Yto10Y}}checked="checked"{{/if}} /> <label for="from9Yto10Y">9 - 10 years
-                    <input type="checkbox" name="from10Yto12Y" id="from10Yto12Y" {{#if formData.from10Yto12Y}}checked="checked"{{/if}} /> <label for="from10Yto12Y">10 - 12 years
-                    <input type="checkbox" name="from12Y" id="from12Y" {{#if formData.from12Y}}checked="checked"{{/if}} /> 12 years+
+					<ul>
+                        <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
+                        <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
+                        <li><input type="checkbox" name="suitableForAges.from1Yto2Y" id="suitableForAgesfrom1Yto2Y" {{#if formData.suitableForAges.from1Yto2Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom1Yto2Y">1 - 2 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from2Yto3Y" id="suitableForAgesfrom2Yto3Y" {{#if formData.suitableForAges.from2Yto3Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom2Yto3Y">2 - 3 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from3Yto4Y" id="suitableForAgesfrom3Yto4Y" {{#if formData.suitableForAges.from3Yto4Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom3Yto4Y">3 - 4 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from4Yto5Y" id="suitableForAgesfrom4Yto5Y" {{#if formData.suitableForAges.from4Yto5Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom4Yto5Y">4 - 5 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from5Yto6Y" id="suitableForAgesfrom5Yto6Y" {{#if formData.suitableForAges.from5Yto6Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom5Yto6Y">5 - 6 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from6Yto7Y" id="suitableForAgesfrom6Yto7Y" {{#if formData.suitableForAges.from6Yto7Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Yto7Y">6 - 7 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from7Yto8Y" id="suitableForAgesfrom7Yto8Y" {{#if formData.suitableForAges.from7Yto8Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom7Yto8Y">7 - 8 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from8Yto9Y" id="suitableForAgesfrom8Yto9Y" {{#if formData.suitableForAges.from8Yto9Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom8Yto9Y">8 - 9 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from9Yto10Y" id="suitableForAgesfrom9Yto10Y" {{#if formData.suitableForAges.from9Yto10Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom9Yto10Y">9 - 10 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from10Yto12Y" id="suitableForAgesfrom10Yto12Y" {{#if formData.suitableForAges.from10Yto12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom10Yto12Y">10 - 12 years</li>
+                        <li><input type="checkbox" name="suitableForAges.from12Y" id="suitableForAgesfrom12Y" {{#if formData.suitableForAges.from12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom12Y">12 years+</label></li>
+                    </ul>
 				</div>
                 <div class="form-group {{#if validationErrors.bookingRequired}}has-error{{/if}}">
 					<label for="bookingRequired">Booking required?</label>
@@ -73,16 +77,96 @@
 				</div>
                 <div class="form-group {{#if validationErrors.services}}has-error{{/if}}">
 					<label>Services</label>
-					<input type="checkbox" name="babyChanging" id="babyChanging" {{#if formData.babyChanging}}checked="checked"{{/if}} /> <label for="babyChanging">Baby changing</label>
-                    <input type="checkbox" name="childrensMenu" id="childrensMenu" {{#if formData.childrensMenu}}checked="checked"{{/if}} /> <label for="childrensMenu">Childrens menu</label>
-                    <input type="checkbox" name="wheelAccessible" id="wheelAccessible" {{#if formData.wheelAccessible}}checked="checked"{{/if}} /> <label for="wheelAccessible">Pram/wheelchair accessible</label>
+                    <ul>
+					   <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
+					   <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
+					   <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
+                    </ul>
 				</div>
                 <div class="form-group {{#if validationErrors.prices}}has-error{{/if}}">
 					<label>Prices</label>
-					<input type="text" name="adult" id="adult" {{#if formData.adult}}checked="checked"{{/if}} /> <label for="adult">Adult price</label>
-                    <input type="text" name="child" id="child" {{#if formData.child}}checked="checked"{{/if}} /> <label for="child">Child price</label>
-                    <input type="text" name="infant" id="infant" {{#if formData.infant}}checked="checked"{{/if}} /> <label for="infant">Infant price</label>
-                    <input type="text" name="other" id="other" {{#if formData.other}}checked="checked"{{/if}} /> <label for="other">Other price</label>
+					<ul>
+					   <li><input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" /> <label for="pricesadult">Adult price</label>
+                       <li><input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" /> <label for="priceschild">Child price</label>
+                       <li><input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" /> <label for="pricesinfant">Infant price</label>
+                       <li><input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /> <label for="pricesotherDescription">Other prices</label>
+                    </ul>
+				</div>
+                <div class="form-group">
+					<label>Opening hours</label>
+                    <div class="form-group {{#if validationErrors.openingHours.monday}}has-error{{/if}}">
+                        <label>Monday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.monday.isOpen" id="openingHoursMondayIsOpen" {{#if openingHours.monday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursMondayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.monday.open.from" id="openingHoursMondayOpenFrom" value="{{openingHours.monday.open.from}}" /> <label for="openingHoursMondayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.monday.open.to" id="openingHoursMondayOpenTo" value="{{openingHours.monday.open.to}}" /> <label for="openingHoursMondayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.tuesday}}has-error{{/if}}">
+                        <label>Tuesday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.tuesday.isOpen" id="openingHoursTuedayIsOpen" {{#if openingHours.tuesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursTuedayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.tuesday.open.from" id="openingHoursTuesdayOpenFrom" value="{{openingHours.tuesday.open.from}}" /> <label for="openingHoursTuesdayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.tuesday.open.to" id="openingHoursTuesdayOpenTo" value="{{openingHours.tuesday.open.to}}" /> <label for="openingHoursTuesdayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.wednesday}}has-error{{/if}}">
+                        <label>Wednesday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.wednesday.isOpen" id="openingHoursWednesdayIsOpen" {{#if openingHours.wednesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursWednesdayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.wednesday.open.from" id="openingHoursWednesdayOpenFrom" value="{{openingHours.wednesday.open.from}}" /> <label for="openingHoursWednesdayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.wednesday.open.to" id="openingHoursWednesdayOpenTo" value="{{openingHours.wednesday.open.to}}" /> <label for="openingHoursWednesdayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.thursday}}has-error{{/if}}">
+                        <label>Thursday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.thursday.isOpen" id="openingHoursThursdayIsOpen" {{#if openingHours.thursday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursThursdayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.thursday.open.from" id="openingHoursThursdayOpenFrom" value="{{openingHours.thursday.open.from}}" /> <label for="openingHoursThursdayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.thursday.open.to" id="openingHoursThursdayOpenTo" value="{{openingHours.thursday.open.to}}" /> <label for="openingHoursThursdayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.friday}}has-error{{/if}}">
+                        <label>Friday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.friday.isOpen" id="openingHoursFridayIsOpen" {{#if openingHours.friday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursFridayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.friday.open.from" id="openingHoursFridayOpenFrom" value="{{openingHours.friday.open.from}}" /> <label for="openingHoursFridayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.friday.open.to" id="openingHoursFridayOpenTo" value="{{openingHours.friday.open.to}}" /> <label for="openingHoursFridayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.saturday}}has-error{{/if}}">
+                        <label>Saturday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.saturday.isOpen" id="openingHoursSaturdayIsOpen" {{#if openingHours.saturday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursMondayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.saturday.open.from" id="openingHoursSaturdayOpenFrom" value="{{openingHours.saturday.open.from}}" /> <label for="openingHoursSaturdayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.saturday.open.to" id="openingHoursSaturdayOpenTo" value="{{openingHours.saturday.open.to}}" /> <label for="openingHoursSaturdayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+                    <div class="form-group {{#if validationErrors.openingHours.sunday}}has-error{{/if}}">
+                        <label>Sunday</label>
+                        <ul>
+                            <li><input type="checkbox" name="openingHours.sunday.isOpen" id="openingHoursSundayIsOpen" {{#if openingHours.sunday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSundayIsOpen">Is open?</label></li>
+                            <li><input type="number" name="openingHours.sunday.open.from" id="openingHoursSundayOpenFrom" value="{{openingHours.sunday.open.from}}" /> <label for="openingHoursSundayOpenFrom">Open From</label></li>
+                            <li><input type="number" name="openingHours.sunday.open.to" id="openingHoursSundayOpenTo" value="{{openingHours.sunday.open.to}}" /> <label for="openingHoursSundayOpenTo">Open To</label></li>
+                        </ul>
+                    </div>
+				</div>
+                <div class="form-group {{#if validationErrors.image}}has-error{{/if}}">
+                    <label for="image">Image</label>
+                    <input id="image" name="image" type="file" accept="image/*" />
+                </div>
+                <div class="form-group {{#if validationErrors.image}}has-error{{/if}}">
+                    <label>User</label>
+                    <ul>
+                        <li><input type="text" name="user.yourName" id="useryourName" value="{{formData.user.yourName}}" /> <label for="useryourName">Your name</label>
+                        <li><input type="text" name="user.childName" id="userchildName" value="{{formData.user.childName}}" /> <label for="userchildName">Child's name</label>
+                        <li><input type="number" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" /> <label for="userchildAge">Child's age</label>
+                        <li><input type="email" name="user.email" id="useremail" value="{{formData.user.email}}" /> <label for="useremail">Your email address</label>
+                    </ul>  
+                </div>
+                <div class="form-group {{#if validationErrors.user.agreement}}has-error{{/if}}">
+					<label for="userAgreement">Please tick to get future updates from WPFK</label>
+					<input type="checkbox" name="user.agreement" id="userAgreement" {{#if formData.user.agreement}}checked="checked"{{/if}} />
 				</div>
 				<div class="form-actions">
 					<button type="submit" class="btn btn-primary">Send</button>

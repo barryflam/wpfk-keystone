@@ -9,8 +9,22 @@ var Venue = new keystone.List('Venue', {
  
 Venue.add({
     venueState: { type: Types.Select, options: 'Not opened, Open, Closed', default: 'Open' },
-    venueName: { type: String, required: true, label: 'Venue Name', index: true },
-    type: { type: Types.Select, options: 'softplay, gardens', required: true, default: 'softplay', index: true },
+    venueName: { type: String, label: 'Venue Name', index: true },
+    venueType: { type: Types.Select, options: [
+        { value: "Softplay", label: "Softplay" },
+        { value: "Activities", label: "Activities" },
+        { value: "Restaurants and food", label: "Food" },
+        { value: "Pubs with gardens/ play facilities", label: "Pubs" },
+        { value: "Hotels", label: "Hotels" },
+        { value: "Toddler groups", label: "Groups" },
+        { value: "Baby classes", label: "Classes" },
+        { value: "Swimming/Splash parks", label: "Swimming" },
+        { value: "Parks/Walks/Outdoor fun", label: "Outdoors" },
+        { value: "Open Farms/Safari/Zoo", label: "Animals" },
+        { value: "Museums/ Cultural activites", label: "Culture" },
+        { value: "Libraries", label: "Libraries" },
+        { value: "Sports", label: "Sports" }
+	], required: true, default: 'softplay', index: true },
     address: { type: Types.Location, defaults: { country: 'United Kingdom' }, index: true },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     rating: { type: Types.Select, numeric: true, options: [
@@ -46,8 +60,7 @@ Venue.add({
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
         child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
         infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
-        otherDescription: { type: String, label: 'Other price description', currency: 'en-gb' },
-        other: { type: Types.Money, label: 'Other price amount (£)', currency: 'en-gb' }
+        otherDescription: { type: String, label: 'Other price description', currency: 'en-gb' }
     },
     openingHours: {
         monday: {
@@ -106,7 +119,8 @@ Venue.add({
         yourName: { type: String, label: "Your name" },
         childName: { type: String, label: "Your child's name" },
         childAge: { type: Number, label: "Your child's age" },
-        email: { type: Types.Email, label: "Email" } 
+        email: { type: Types.Email, label: "Email" },
+        agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
     },
     addedOn: { type: Date, default: Date.now }
 });
