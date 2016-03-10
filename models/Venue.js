@@ -2,30 +2,30 @@ var keystone = require('keystone'),
     Types = keystone.Field.Types;
  
 var Venue = new keystone.List('Venue', {
-    autokey: { path: 'slug', from: 'name', unique: true },
-    map: { name: 'name' },
-    defaultSort: 'name'
+    autokey: { path: 'slug', from: 'venueName', unique: true },
+    map: { name: 'venueName' },
+    defaultSort: 'venueName'
 });
  
 Venue.add({
     venueState: { type: Types.Select, options: 'Not opened, Open, Closed', default: 'Open' },
     venueName: { type: String, label: 'Venue Name', index: true },
-    venueType: { type: Types.Select, options: [
-        { value: "Softplay", label: "Softplay" },
-        { value: "Activities", label: "Activities" },
-        { value: "Restaurants and food", label: "Food" },
-        { value: "Pubs with gardens/ play facilities", label: "Pubs" },
-        { value: "Hotels", label: "Hotels" },
-        { value: "Toddler groups", label: "Groups" },
-        { value: "Baby classes", label: "Classes" },
-        { value: "Swimming/Splash parks", label: "Swimming" },
-        { value: "Parks/Walks/Outdoor fun", label: "Outdoors" },
-        { value: "Open Farms/Safari/Zoo", label: "Animals" },
-        { value: "Museums/ Cultural activites", label: "Culture" },
-        { value: "Libraries", label: "Libraries" },
-        { value: "Sports", label: "Sports" }
-	], required: true, default: 'softplay', index: true },
-    address: { type: Types.Location, defaults: { country: 'United Kingdom' }, index: true },
+    venueType: {
+	softplay: { type: Boolean, label: 'Softplay', index: true },
+	activities: { type: Boolean, label: 'Activities', index: true },
+	food: { type: Boolean, label: 'Restaurants and food', index: true },
+	pubs: { type: Boolean, label: 'Pubs with gardens/ play facilities', index: true },
+	hotels: { type: Boolean, label: 'Hotels', index: true },
+	groups: { type: Boolean, label: 'Toddler groups', index: true },
+	classes: { type: Boolean, label: 'Baby classes', index: true },
+	swimming: { type: Boolean, label: 'Swimming/Splash parks', index: true },
+	outdoors: { type: Boolean, label: 'Parks/Walks/Outdoor fun', index: true },
+	animals: { type: Boolean, label: 'Open Farms/Safari/Zoo', index: true },
+	culture: { type: Boolean, label: 'Museums/ Cultural activites', index: true },
+	libraries: { type: Boolean, label: 'Libraries', index: true },
+	sports: { type: Boolean, label: 'Sports', index: true }
+    },
+    address: { type: Types.Textarea },
     description: { type: Types.Html, wysiwyg: true, height: 150 },
     rating: { type: Types.Select, numeric: true, options: [
         { value: 0, label: '0' },

@@ -5,8 +5,8 @@
 	<div class="row">
 		<div class="col-sm-8 col-md-6">
 			{{#if venueSubmitted}}
-			<h3>Thanks for submitting a venue, please submit another!</h3>
-			{{/if}}
+			<h3>Thanks for submitting a venue, please <a href="/venues">submit another</a>!</h3>
+			{{else}}
 			<form method="post">
 				<input type="hidden" name="action" value="venue">
 				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
@@ -14,33 +14,30 @@
 					<input type="text" name="venueName" class="form-control" value="{{formData.venueName}}">
 				</div>
                 <div class="form-group {{#if validationErrors.venueType}}has-error{{/if}}">
-					<label>Venue Type</label>
-					<select name="venueType" class="form-control">
-						<option value="">(select one)</option>
-						{{#each venueTypes}}
-						<option value="{{value}}">{{label}}</option>
-						{{/each}}
-					</select>
-				</div>
+                    <label>Venue type (check all that apply)</label>
+                    <ul>
+                        <li><input type="checkbox" name="venueType.softplay" id="venueTypesoftplay" {{#if formData.venueType.softplay}}checked="checked"{{/if}} /> <label for="venueTypesoftplay">Softplay</label></li>
+                        <li><input type="checkbox" name="venueType.activities" id="venueTypeactivities" {{#if formData.venueType.activities}}checked="checked"{{/if}} /> <label for="venueTypeactivities">Activities</label></li>
+                        <li><input type="checkbox" name="venueType.food" id="venueTypefood" {{#if formData.venueType.food}}checked="checked"{{/if}} /> <label for="venueTypefood">Restaurants and food</label></li>
+                        <li><input type="checkbox" name="venueType.pubs" id="venueTypepubs" {{#if formData.venueType.pubs}}checked="checked"{{/if}} /> <label for="venueTypepubs">Pubs with gardens/ play facilities</label></li>
+                        <li><input type="checkbox" name="venueType.hotels" id="venueTypehotels" {{#if formData.venueType.hotels}}checked="checked"{{/if}} /> <label for="venueTypehotels">Hotels</label></li>
+                        <li><input type="checkbox" name="venueType.groups" id="venueTypegroups" {{#if formData.venueType.groups}}checked="checked"{{/if}} /> <label for="venueTypegroups">Toddler groups</label></li>
+                        <li><input type="checkbox" name="venueType.classes" id="venueTypeclasses" {{#if formData.venueType.classes}}checked="checked"{{/if}} /> <label for="venueTypeclasses">Baby classes</label></li>
+                        <li><input type="checkbox" name="venueType.swimming" id="venueTypeswimming" {{#if formData.venueType.swimming}}checked="checked"{{/if}} /> <label for="venueTypeswimming">Swimming/Splash parks</label></li>
+                        <li><input type="checkbox" name="venueType.outdoors" id="venueTypeoutdoors" {{#if formData.venueType.outdoors}}checked="checked"{{/if}} /> <label for="venueTypeoutdoors">Parks/Walks/Outdoor fun</label></li>
+                        <li><input type="checkbox" name="venueType.animals" id="venueTypeanimals" {{#if formData.venueType.animals}}checked="checked"{{/if}} /> <label for="venueTypeanimals">Open Farms/Safari/Zoo</label></li>
+                        <li><input type="checkbox" name="venueType.culture" id="venueTypeculture" {{#if formData.venueType.culture}}checked="checked"{{/if}} /> <label for="venueTypeculture">Museums/ Cultural activites</label></li>
+                        <li><input type="checkbox" name="venueType.libraries" id="venueTypelibraries" {{#if formData.venueType.libraries}}checked="checked"{{/if}} /> <label for="venueTypelibraries">Libraries</label></li>
+                        <li><input type="checkbox" name="venueType.sports" id="venueTypesports" {{#if formData.venueType.sports}}checked="checked"{{/if}} /> <label for="venueTypesports">Sports</label></li>
+                    </ul>
+                </div>
 				<div class="form-group {{#if validationErrors.address1}}has-error{{/if}}">
-					<label>Address (Line 1)</label>
-					<input type="text" name="address1" class="form-control" value="{{formData.address1}}">
-				</div>
-                <div class="form-group {{#if validationErrors.address2}}has-error{{/if}}">
-					<label>Address (Line 2)</label>
-					<input type="text" name="address2" class="form-control" value="{{formData.address2}}">
-				</div>
-                <div class="form-group {{#if validationErrors.townCity}}has-error{{/if}}">
-					<label>Town/City</label>
-					<input type="text" name="townCity" class="form-control" value="{{formData.townCity}}">
-				</div>
-                <div class="form-group {{#if validationErrors.postcode}}has-error{{/if}}">
-					<label>Postcode</label>
-					<input type="text" name="postcode" class="form-control" value="{{formData.postcode}}">
+					<label>Address</label>
+					<textarea name="address" placeholder="Venue address" rows="4" class="form-control">{{formData.address1}}</textarea>
 				</div>
                 <div class="form-group {{#if validationErrors.description}}has-error{{/if}}">
 					<label>Description</label>
-					<textarea name="message" placeholder="I love this place because..." rows="4" class="form-control">{{formData.description}}</textarea>
+					<textarea name="description" placeholder="I love this place because..." rows="4" class="form-control">{{formData.description}}</textarea>
 				</div>
                 <div class="form-group {{#if validationErrors.rating}}has-error{{/if}}">
 					<label>Rating</label>
@@ -172,6 +169,7 @@
 					<button type="submit" class="btn btn-primary">Send</button>
 				</div>
 			</form>
+		{{/if}}
 		</div>
 	</div>
 </div>

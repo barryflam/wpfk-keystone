@@ -8,7 +8,6 @@ exports = module.exports = function(req, res) {
 	
 	// Set locals
 	locals.section = 'venue';
-    locals.venueTypes = Venue.fields.venueType.ops;
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
@@ -24,7 +23,19 @@ exports = module.exports = function(req, res) {
 			fields: [
                 'venueState',
                 'venueName',
-                'venueType',
+'venueType.softplay',
+'venueType.activities',
+'venueType.food',
+'venueType.pubs',
+'venueType.hotels',
+'venueType.groups',
+'venueType.classes',
+'venueType.swimming',
+'venueType.outdoors',
+'venueType.animals',
+'venueType.culture',
+'venueType.libraries',
+'venueType.sports',
                 'address',
                 'description',
                 'rating',
@@ -74,7 +85,8 @@ exports = module.exports = function(req, res) {
                 'user.yourName',
                 'user.childName',
                 'user.childAge',
-                'user.email'
+                'user.email',
+		'user.agreement'
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
 		}, function(err) {

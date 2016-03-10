@@ -13,13 +13,13 @@ var handlebars = require('express-handlebars');
 keystone.init({
 	'name': 'WPFK',
 	'brand': 'WPFK',
-	
+	'cookie secret': process.env.COOKIE_SECRET,
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'hbs',
-	
+	'cloudinary config': process.env.CLOUDINARY_URL,
 	'custom engine': handlebars.create({
 		layoutsDir: 'templates/views/layouts',
 		partialsDir: 'templates/views/partials',
