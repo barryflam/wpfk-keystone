@@ -1,11 +1,13 @@
-<h1>Please submit your Wiki place</h1>
-<p>TBC content</p>
 {{#if venueSubmitted}}
-<h2>Thanks for adding your Wiki Place for Kids!</h2>
+<h1>Thanks for adding your Wiki Place for Kids!</h1>
 <p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
 <p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
-<p><a href="/recommend">Recommend Another WPFK</a></p>
+<section class="wpfk--form-actions">
+    <a href="/venues" class="wpfk--form__submit-button">Recommend Another WPFK</a>
+</section>
 {{else}}
+<h1>Please submit your Wiki place</h1>
+<p>TBC content</p>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
     <h2>Venue information</h2>
     <input aria-label="Venue name" placeholder="Venue name" type="text" name="venueName" value="{{formData.venueName}}">
@@ -85,7 +87,81 @@
             <li><label for="pricesinfant">Infant</label> <input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" placeholder="0" /></li>
             <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /></li>
         </ul>
-    </div>
+    </fieldset>
+    <fieldset>
+        <legend>Opening hours</legend>
+        <ul class="wpfk--form__opening-container">
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.monday.isOpen" id="openingHoursMondayIsOpen" {{#if openingHours.monday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursMondayIsOpen">Monday</label></li>
+                    <li><input type="number" name="openingHours.monday.open.from" id="openingHoursMondayOpenFrom" value="{{openingHours.monday.open.from}}" aria-label="Monday Open From" /></li>
+                    <li><input type="number" name="openingHours.monday.open.to" id="openingHoursMondayOpenTo" value="{{openingHours.monday.open.to}}" aria-label="Monday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.tuesday.isOpen" id="openingHoursTuedayIsOpen" {{#if openingHours.tuesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursTuedayIsOpen">Tuesday</label></li>
+                    <li><input type="number" name="openingHours.tuesday.open.from" id="openingHoursTuesdayOpenFrom" value="{{openingHours.tuesday.open.from}}" aria-label="Tuesday Open From" /></li>
+                    <li><input type="number" name="openingHours.tuesday.open.to" id="openingHoursTuesdayOpenTo" value="{{openingHours.tuesday.open.to}}" aria-label="Tuesday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.wednesday.isOpen" id="openingHoursWednesdayIsOpen" {{#if openingHours.wednesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursWednesdayIsOpen">Wednesday</label></li>
+                    <li><input type="number" name="openingHours.wednesday.open.from" id="openingHoursWednesdayOpenFrom" value="{{openingHours.wednesday.open.from}}" aria-label="Wednesday Open From" /></li>
+                    <li><input type="number" name="openingHours.wednesday.open.to" id="openingHoursWednesdayOpenTo" value="{{openingHours.wednesday.open.to}}" aria-label="Wednesday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.thursday.isOpen" id="openingHoursThursdayIsOpen" {{#if openingHours.thursday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursThursdayIsOpen">Thursday</label></li>
+                    <li><input type="number" name="openingHours.thursday.open.from" id="openingHoursThursdayOpenFrom" value="{{openingHours.thursday.open.from}}" aria-label="Thursday Open From" /></li>
+                    <li><input type="number" name="openingHours.thursday.open.to" id="openingHoursThursdayOpenTo" value="{{openingHours.thursday.open.to}}" aria-label="Thursday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.friday.isOpen" id="openingHoursFridayIsOpen" {{#if openingHours.friday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursFridayIsOpen">Friday</label></li>
+                    <li><input type="number" name="openingHours.friday.open.from" id="openingHoursFridayOpenFrom" value="{{openingHours.friday.open.from}}" aria-label="Friday Open From" /></li>
+                    <li><input type="number" name="openingHours.friday.open.to" id="openingHoursFridayOpenTo" value="{{openingHours.friday.open.to}}" aria-label="Friday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.saturday.isOpen" id="openingHoursSaturdayIsOpen" {{#if openingHours.saturday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSaturdayIsOpen">Saturday</label></li>
+                    <li><input type="number" name="openingHours.saturday.open.from" id="openingHoursSaturdayOpenFrom" value="{{openingHours.saturday.open.from}}" aria-label="Saturday Open From" /></li>
+                    <li><input type="number" name="openingHours.saturday.open.to" id="openingHoursSaturdayOpenTo" value="{{openingHours.saturday.open.to}}" aria-label="Saturday Open To" /></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="wpfk--form__opening-day-container">
+                    <li><input type="checkbox" name="openingHours.sunday.isOpen" id="openingHoursSundayIsOpen" {{#if openingHours.sunday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSundayIsOpen">Sunday</label></li>
+                    <li><input type="number" name="openingHours.sunday.open.from" id="openingHoursSundayOpenFrom" value="{{openingHours.sunday.open.from}}" aria-label="Sunday Open From" /></li>
+                    <li><input type="number" name="openingHours.sunday.open.to" id="openingHoursSundayOpenTo" value="{{openingHours.sunday.open.to}}" aria-label="Sunday Open To" /></li>
+                </ul>
+            </li>
+        </ul>
+    </fieldset>
+    <section>
+        <h3 id="imageUpload">Image</label>
+        <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
+    </section>
+    <section>
+        <input type="text" name="user.yourName" id="useryourName" value="{{formData.user.yourName}}" placeholder="Your name" aria-label="Your name" />
+        <input type="text" name="user.childName" id="userchildName" value="{{formData.user.childName}}" placeholder="Child's name" aria-label="Child's name" />
+        <input type="number" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" placeholder="Child's age" aria-label="Child's age" />
+        <input type="email" name="user.email" id="useremail" value="{{formData.user.email}}" placeholder="Your email address" aria-label="Your email address" />  
+    </section>
+    <fieldset>
+        <legend>Future updates</legend>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="user.agreement" id="userAgreement" {{#if formData.user.agreement}}checked="checked"{{/if}} /> <label for="userAgreement">Please tick to get future updates from WPFK</label></li>
+        </ul>
+    </fieldset>
+    <section class="wpfk--form-actions">
+        <input type="hidden" name="action" value="venue">
+        <button type="submit" class="wpfk--form__submit-button">Submit your wiki place</button>
+    </section>
 </form>
 {{/if}}
     <!--
