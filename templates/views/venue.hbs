@@ -1,14 +1,103 @@
-<div class="container">
-	<h1>Venue</h1>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-sm-8 col-md-6">
-			{{#if venueSubmitted}}
-			<h3>Thanks for submitting a venue, please <a href="/venues">submit another</a>!</h3>
-			{{else}}
+<h1>Please submit your Wiki place</h1>
+<p>TBC content</p>
+{{#if venueSubmitted}}
+<h2>Thanks for adding your Wiki Place for Kids!</h2>
+<p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
+<p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
+<p><a href="/recommend">Recommend Another WPFK</a></p>
+{{else}}
+<form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
+    <h2>Venue information</h2>
+    <input aria-label="Venue name" placeholder="Venue name" type="text" name="venueName" value="{{formData.venueName}}">
+    <fieldset>
+        <legend>Venue type (check all that apply)</legend>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="venueType.softplay" id="venueTypesoftplay" {{#if formData.venueType.softplay}}checked="checked"{{/if}} /> <label for="venueTypesoftplay">Softplay</label></li>
+            <li><input type="checkbox" name="venueType.activities" id="venueTypeactivities" {{#if formData.venueType.activities}}checked="checked"{{/if}} /> <label for="venueTypeactivities">Activities</label></li>
+            <li><input type="checkbox" name="venueType.food" id="venueTypefood" {{#if formData.venueType.food}}checked="checked"{{/if}} /> <label for="venueTypefood">Restaurants and food</label></li>
+            <li><input type="checkbox" name="venueType.pubs" id="venueTypepubs" {{#if formData.venueType.pubs}}checked="checked"{{/if}} /> <label for="venueTypepubs">Pubs with gardens/play facilities</label></li>
+            <li><input type="checkbox" name="venueType.hotels" id="venueTypehotels" {{#if formData.venueType.hotels}}checked="checked"{{/if}} /> <label for="venueTypehotels">Hotels</label></li>
+            <li><input type="checkbox" name="venueType.groups" id="venueTypegroups" {{#if formData.venueType.groups}}checked="checked"{{/if}} /> <label for="venueTypegroups">Toddler groups</label></li>
+            <li><input type="checkbox" name="venueType.classes" id="venueTypeclasses" {{#if formData.venueType.classes}}checked="checked"{{/if}} /> <label for="venueTypeclasses">Baby classes</label></li>
+            <li><input type="checkbox" name="venueType.swimming" id="venueTypeswimming" {{#if formData.venueType.swimming}}checked="checked"{{/if}} /> <label for="venueTypeswimming">Swimming/Splash parks</label></li>
+            <li><input type="checkbox" name="venueType.outdoors" id="venueTypeoutdoors" {{#if formData.venueType.outdoors}}checked="checked"{{/if}} /> <label for="venueTypeoutdoors">Parks/Walks/Outdoor fun</label></li>
+            <li><input type="checkbox" name="venueType.animals" id="venueTypeanimals" {{#if formData.venueType.animals}}checked="checked"{{/if}} /> <label for="venueTypeanimals">Open Farms/Safari/Zoo</label></li>
+            <li><input type="checkbox" name="venueType.culture" id="venueTypeculture" {{#if formData.venueType.culture}}checked="checked"{{/if}} /> <label for="venueTypeculture">Museums/Cultural activites</label></li>
+            <li><input type="checkbox" name="venueType.libraries" id="venueTypelibraries" {{#if formData.venueType.libraries}}checked="checked"{{/if}} /> <label for="venueTypelibraries">Libraries</label></li>
+            <li><input type="checkbox" name="venueType.sports" id="venueTypesports" {{#if formData.venueType.sports}}checked="checked"{{/if}} /> <label for="venueTypesports">Sports</label></li>
+        </ul>
+    </fieldset>
+    <section class="wpfk--form__description">
+        <h3 id="venueAddress">Venue Address</h3>
+        <textarea aria-labelledby="venueAddress" name="address" placeholder="Venue address" rows="4">{{formData.address}}</textarea>
+    </section>
+    <section class="wpfk--form__description">
+        <h3 id="venueDescription">Venue Description</h3>
+        <textarea aria-labelledby="venueDescription" name="description" placeholder="I love this place because..." rows="4">{{formData.description}}</textarea>
+    </section>
+    <section class="wpfk--form__rating">
+        <label>Rating</label>
+        <div class="wpfk--form__rating-container">
+            <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
+            <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label> 
+            <input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label>
+            <input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label>
+            <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
+        </div> 
+    </section>
+    <fieldset>
+        <legend>Suitable for age groups</label>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
+            <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
+            <li><input type="checkbox" name="suitableForAges.from1Yto2Y" id="suitableForAgesfrom1Yto2Y" {{#if formData.suitableForAges.from1Yto2Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom1Yto2Y">1 - 2 years</li>
+            <li><input type="checkbox" name="suitableForAges.from2Yto3Y" id="suitableForAgesfrom2Yto3Y" {{#if formData.suitableForAges.from2Yto3Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom2Yto3Y">2 - 3 years</li>
+            <li><input type="checkbox" name="suitableForAges.from3Yto4Y" id="suitableForAgesfrom3Yto4Y" {{#if formData.suitableForAges.from3Yto4Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom3Yto4Y">3 - 4 years</li>
+            <li><input type="checkbox" name="suitableForAges.from4Yto5Y" id="suitableForAgesfrom4Yto5Y" {{#if formData.suitableForAges.from4Yto5Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom4Yto5Y">4 - 5 years</li>
+            <li><input type="checkbox" name="suitableForAges.from5Yto6Y" id="suitableForAgesfrom5Yto6Y" {{#if formData.suitableForAges.from5Yto6Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom5Yto6Y">5 - 6 years</li>
+            <li><input type="checkbox" name="suitableForAges.from6Yto7Y" id="suitableForAgesfrom6Yto7Y" {{#if formData.suitableForAges.from6Yto7Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Yto7Y">6 - 7 years</li>
+            <li><input type="checkbox" name="suitableForAges.from7Yto8Y" id="suitableForAgesfrom7Yto8Y" {{#if formData.suitableForAges.from7Yto8Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom7Yto8Y">7 - 8 years</li>
+            <li><input type="checkbox" name="suitableForAges.from8Yto9Y" id="suitableForAgesfrom8Yto9Y" {{#if formData.suitableForAges.from8Yto9Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom8Yto9Y">8 - 9 years</li>
+            <li><input type="checkbox" name="suitableForAges.from9Yto10Y" id="suitableForAgesfrom9Yto10Y" {{#if formData.suitableForAges.from9Yto10Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom9Yto10Y">9 - 10 years</li>
+            <li><input type="checkbox" name="suitableForAges.from10Yto12Y" id="suitableForAgesfrom10Yto12Y" {{#if formData.suitableForAges.from10Yto12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom10Yto12Y">10 - 12 years</li>
+            <li><input type="checkbox" name="suitableForAges.from12Y" id="suitableForAgesfrom12Y" {{#if formData.suitableForAges.from12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom12Y">12 years+</label></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>Booking required?</legend>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label for="bookingRequired">Yes</label></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>Services</legend>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
+            <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
+            <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <legend>Prices</legend>
+        <ul class="wpfk--form__prices-container">
+            <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li> 
+            <li><label for="priceschild">Child</label> <input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" placeholder="0" /></li>
+            <li><label for="pricesinfant">Infant</label> <input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" placeholder="0" /></li>
+            <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /></li>
+        </ul>
+    </div>
+</form>
+{{/if}}
+    <!--
+    
+    <div class="form-group {{#if validationErrors.address1}}has-error{{/if}}">
+					<label>Address</label>
+					<textarea name="address" placeholder="Venue address" rows="4" class="form-control">{{formData.address1}}</textarea>
+				</div>
+    <input type="hidden" name="action" value="venue">
+</form>
 			<form method="post">
-				<input type="hidden" name="action" value="venue">
+				
 				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
 					<label>Venue Name</label>
 					<input type="text" name="venueName" class="form-control" value="{{formData.venueName}}">
@@ -169,7 +258,7 @@
 					<button type="submit" class="btn btn-primary">Send</button>
 				</div>
 			</form>
-		{{/if}}
 		</div>
 	</div>
 </div>
+-->

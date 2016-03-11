@@ -1,0 +1,243 @@
+$brand-purple: #c63e8a;
+$brand-orange: #e29f00;
+$brand-light-blue: #008dcd;
+$brand-dark-blue: #002655;
+$brand-turqoise: #009b95;
+
+$page-background-color: #f5f5f5;
+$content-background-color: #fff;
+
+$max-page-width: 1200px;
+$max-content-width: 820px;
+$grids: 12;
+$gutter: 10px;
+
+$base-font-size-px: 16;
+
+$heading-font-size-px: 36;
+
+$subheading-font-size-px: 24;
+$subheading-font-colour: #454545;
+
+@function em-calc($pixel-size, $base: $base-font-size-px) {
+    @return #{$pixel-size/$base}em;
+}
+
+@font-face {
+    font-family: LatoBold;
+    src:
+        url('/fonts/LatoLatin-Bold.woff2') format('woff2'),
+        url('/fonts/LatoLatin-Bold.woff') format('woff')
+}
+
+@font-face {
+    font-family: LatoRegular;
+    src:
+        url('/fonts/LatoLatin-Regular.woff2') format('woff2'),
+        url('/fonts/LatoLatin-Regular.woff') format('woff')
+}
+
+html, body {
+    background: $page-background-color;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body {
+    font-size: #{$base-font-size-px + 'px'};
+    font-family: LatoRegular, Helvetica, Arial, sans-serif;
+}
+
+.container {
+    max-width: $max-content-width;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.wpfk--content-box {
+    background: $content-background-color;
+    padding: 40px;
+    box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+h1 {
+    font-family: LatoBold, Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: em-calc($heading-font-size-px);
+    color: $brand-turqoise;
+}
+
+h2 {
+    font-family: LatoBold, Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-size: em-calc($subheading-font-size-px);
+    color: $subheading-font-colour;
+}
+
+textarea,
+input[type='text'] {
+    background: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 15px 20px; 
+    font-family: LatoRegular, Helvetica, Arial, sans-serif;
+    font-size: em-calc(16);
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.wpfk--form__checkbox-container {
+    display : flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+        margin: 15px 0;
+        padding: 0;
+        flex: 1 0 33%;
+        min-width: 33%;          
+        list-style: none;
+    }
+    
+    input[type='checkbox'] {
+        display: none;
+
+        & + label {
+            font-size: em-calc(14);
+            cursor: pointer;
+            color: #999;
+            white-space: nowrap;
+            
+            &::selection,
+            &::moz-selection {
+                color: #999;
+                background: transparent;
+            }
+        }
+
+        & + label::before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            width: 25px;
+            height: 25px;
+            background: #f5f5f5 url(/images/tick-white.svg) no-repeat 50% 50%;
+            background-size: 10px 10px;
+            border: 0 none;
+            padding: 0;
+            margin: 0 15px 0 0;
+            box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        &:checked + label::before {
+            background: #c63e8a url(/images/tick-white.svg) no-repeat 50% 50%;
+            background-size: 10px 10px;
+        }
+    }
+}
+
+.starRating:not(old){
+  display        : inline-block;
+  width          : 7.5em;
+  height         : 1.5em;
+  overflow       : hidden;
+  vertical-align : bottom;
+}
+
+.wpfk--form__rating-container:not(old) {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    height: 25px;
+    overflow: hidden;
+    
+    & > input[type='radio'] {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+    }
+
+    & > label {
+        display: block;
+        flex: 0 0 25px;
+        margin: 0 8px;
+        background: url('/images/star-outline.svg');
+        background-size: contain;
+        cursor: pointer;
+        
+        &:before {
+            content: "";
+            display: block;
+            width: 25px;
+            height: 25px;
+            background: url('/images/star-filled.svg');
+            background-size: contain;
+            opacity: 0;
+            transition: opacity 0.2s linear;
+        }
+    }
+    
+    & > label:hover:before,
+    & > label:hover ~ label:before,
+    & > :checked ~ label:before{
+        opacity : 1;
+    }
+}
+
+.wpfk--form__prices-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+        margin: 15px 5%;
+        padding: 0;
+        flex: 0 0 20%;          
+        list-style: none;
+    }
+    
+    .wpfk--form__price-wide {
+        flex: 0 0 80%;
+    }
+    
+    label {
+        font-family: LatoBold, Helvetica, Arial, Sans-serif;
+        font-size: em-calc(14);
+        display: block;
+    }
+    
+    input[type='number'] {
+        background: #f5f5f5;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 15px 20px; 
+        font-family: LatoRegular, Helvetica, Arial, sans-serif;
+        font-size: em-calc(16);
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        -moz-appearance: textfield;
+    }
+    
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+    }
+}

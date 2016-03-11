@@ -1,0 +1,169 @@
+@font-face {
+  font-family: LatoBold;
+  src: url("/fonts/LatoLatin-Bold.woff2") format("woff2"), url("/fonts/LatoLatin-Bold.woff") format("woff"); }
+
+@font-face {
+  font-family: LatoRegular;
+  src: url("/fonts/LatoLatin-Regular.woff2") format("woff2"), url("/fonts/LatoLatin-Regular.woff") format("woff"); }
+
+html, body {
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+
+body {
+  font-size: 16px;
+  font-family: LatoRegular, Helvetica, Arial, sans-serif; }
+
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center; }
+
+.wpfk--content-box {
+  background: #fff;
+  padding: 40px;
+  box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
+  text-align: left; }
+
+h1 {
+  font-family: LatoBold, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 2.25em;
+  color: #009b95; }
+
+h2 {
+  font-family: LatoBold, Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1.5em;
+  color: #454545; }
+
+textarea,
+input[type='text'] {
+  background: #f5f5f5;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  font-family: LatoRegular, Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  display: block;
+  box-sizing: border-box;
+  width: 100%; }
+
+fieldset {
+  border: 0 none;
+  margin: 0;
+  padding: 0;
+  display: block; }
+
+.wpfk--form__checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0; }
+  .wpfk--form__checkbox-container li {
+    display: block;
+    margin: 15px 0;
+    padding: 0;
+    flex: 1 0 33%;
+    min-width: 33%;
+    list-style: none; }
+  .wpfk--form__checkbox-container input[type='checkbox'] {
+    display: none; }
+    .wpfk--form__checkbox-container input[type='checkbox'] + label {
+      font-size: 0.875em;
+      cursor: pointer;
+      color: #999;
+      white-space: nowrap; }
+      .wpfk--form__checkbox-container input[type='checkbox'] + label::selection, .wpfk--form__checkbox-container input[type='checkbox'] + label::moz-selection {
+        color: #999;
+        background: transparent; }
+    .wpfk--form__checkbox-container input[type='checkbox'] + label::before {
+      content: " ";
+      display: inline-block;
+      vertical-align: middle;
+      width: 25px;
+      height: 25px;
+      background: #f5f5f5 url(/images/tick-white.svg) no-repeat 50% 50%;
+      background-size: 10px 10px;
+      border: 0 none;
+      padding: 0;
+      margin: 0 15px 0 0;
+      box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24); }
+    .wpfk--form__checkbox-container input[type='checkbox']:checked + label::before {
+      background: #c63e8a url(/images/tick-white.svg) no-repeat 50% 50%;
+      background-size: 10px 10px; }
+
+.starRating:not(old) {
+  display: inline-block;
+  width: 7.5em;
+  height: 1.5em;
+  overflow: hidden;
+  vertical-align: bottom; }
+
+.wpfk--form__rating-container:not(old) {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  height: 25px;
+  overflow: hidden; }
+  .wpfk--form__rating-container:not(old) > input[type='radio'] {
+    position: absolute;
+    left: -9999px;
+    opacity: 0; }
+  .wpfk--form__rating-container:not(old) > label {
+    display: block;
+    flex: 0 0 25px;
+    margin: 0 8px;
+    background: url("/images/star-outline.svg");
+    background-size: contain;
+    cursor: pointer; }
+    .wpfk--form__rating-container:not(old) > label:before {
+      content: "";
+      display: block;
+      width: 25px;
+      height: 25px;
+      background: url("/images/star-filled.svg");
+      background-size: contain;
+      opacity: 0;
+      transition: opacity 0.2s linear; }
+  .wpfk--form__rating-container:not(old) > label:hover:before,
+  .wpfk--form__rating-container:not(old) > label:hover ~ label:before,
+  .wpfk--form__rating-container:not(old) > :checked ~ label:before {
+    opacity: 1; }
+
+.wpfk--form__prices-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0; }
+  .wpfk--form__prices-container li {
+    display: block;
+    margin: 15px 5%;
+    padding: 0;
+    flex: 0 0 20%;
+    list-style: none; }
+  .wpfk--form__prices-container .wpfk--form__price-wide {
+    flex: 0 0 80%; }
+  .wpfk--form__prices-container label {
+    font-family: LatoBold, Helvetica, Arial, Sans-serif;
+    font-size: 0.875em;
+    display: block; }
+  .wpfk--form__prices-container input[type='number'] {
+    background: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    font-family: LatoRegular, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    -moz-appearance: textfield; }
+  .wpfk--form__prices-container input[type=number]::-webkit-inner-spin-button,
+  .wpfk--form__prices-container input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
