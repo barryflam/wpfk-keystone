@@ -7,13 +7,13 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 	
 	// Set locals
-	locals.section = 'venue';
+	locals.section = 'recommend';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
 	
 	// On POST requests, add the Enquiry item to the database
-	view.on('post', { action: 'venue' }, function(next) {
+	view.on('post', { action: 'recommend' }, function(next) {
 		
 		var newVenue = new Venue.model(),
 			updater = newVenue.getUpdateHandler(req);
@@ -23,20 +23,23 @@ exports = module.exports = function(req, res) {
 			fields: [
                 'venueState',
                 'venueName',
-'venueType.softplay',
-'venueType.activities',
-'venueType.food',
-'venueType.pubs',
-'venueType.hotels',
-'venueType.groups',
-'venueType.classes',
-'venueType.swimming',
-'venueType.outdoors',
-'venueType.animals',
-'venueType.culture',
-'venueType.libraries',
-'venueType.sports',
-                'address',
+                'venueType.softplay',
+                'venueType.activities',
+                'venueType.food',
+                'venueType.pubs',
+                'venueType.hotels',
+                'venueType.groups',
+                'venueType.classes',
+                'venueType.swimming',
+                'venueType.outdoors',
+                'venueType.animals',
+                'venueType.culture',
+                'venueType.libraries',
+                'venueType.sports',
+                'address1',
+                'address2',
+                'townCity',
+                'postcode',
                 'description',
                 'rating',
                 'suitableForAges.to6M',
@@ -86,7 +89,7 @@ exports = module.exports = function(req, res) {
                 'user.childName',
                 'user.childAge',
                 'user.email',
-		'user.agreement'
+		        'user.agreement'
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
 		}, function(err) {
@@ -100,6 +103,6 @@ exports = module.exports = function(req, res) {
 		
 	});
 	
-	view.render('venue');
+	view.render('recommend');
 	
 };
