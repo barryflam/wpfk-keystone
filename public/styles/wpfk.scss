@@ -37,6 +37,13 @@ $subheading-font-colour: #454545;
         url('/fonts/LatoLatin-Regular.woff') format('woff')
 }
 
+@font-face {
+    font-family: FabFeltBold;
+    src:
+        url('/fonts/fabfeltscript-bold.woff2') format('woff2'),
+        url('/fonts/fabfeltscript-bold.woff') format('woff')
+}
+
 html, body {
     background: $page-background-color;
     margin: 0;
@@ -53,7 +60,7 @@ input[type='number'] {
     background: #f5f5f5;
     border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 15px 20px; 
+    padding: 15px 20px;
     font-family: LatoRegular, Helvetica, Arial, sans-serif;
     font-size: em-calc(16);
     display: block;
@@ -61,11 +68,11 @@ input[type='number'] {
     width: 100%;
     -moz-appearance: textfield;
 }
-    
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none; 
-    margin: 0; 
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .container {
@@ -104,11 +111,12 @@ p {
 textarea,
 input[type='text'],
 input[type='email'],
+input[type='number'],
 input[type='url'] {
     background: #f5f5f5;
     border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 15px 20px; 
+    padding: 15px 20px;
     font-family: LatoRegular, Helvetica, Arial, sans-serif;
     font-size: em-calc(16);
     display: block;
@@ -123,9 +131,17 @@ fieldset {
     display: block;
 }
 
-.wpfk--intro {
+.wpfk--form-intro {
     width: 580px;
     margin: 0 auto;
+}
+
+.wpfk--form-thank-you {
+    
+    h1 {
+        font-size: em-calc(30);
+        color: #454545;
+    }
 }
 
 .wpfk--form__checkbox-container {
@@ -140,10 +156,10 @@ fieldset {
         margin: 15px 0;
         padding: 0;
         flex: 1 0 33%;
-        min-width: 33%;          
+        min-width: 33%;
         list-style: none;
     }
-    
+
     input[type='checkbox'] {
         display: none;
 
@@ -152,7 +168,7 @@ fieldset {
             cursor: pointer;
             color: #999;
             white-space: nowrap;
-            
+
             &::selection,
             &::moz-selection {
                 color: #999;
@@ -195,7 +211,7 @@ fieldset {
     justify-content: center;
     height: 25px;
     overflow: hidden;
-    
+
     & > input[type='radio'] {
         position: absolute;
         left: -9999px;
@@ -209,7 +225,7 @@ fieldset {
         background: url('/images/star-outline.svg');
         background-size: contain;
         cursor: pointer;
-        
+
         &:before {
             content: "";
             display: block;
@@ -221,7 +237,7 @@ fieldset {
             transition: opacity 0.2s linear;
         }
     }
-    
+
     & > label:hover:before,
     & > label:hover ~ label:before,
     & > :checked ~ label:before{
@@ -240,14 +256,14 @@ fieldset {
         display: block;
         margin: 15px 5%;
         padding: 0;
-        flex: 0 0 20%;          
+        flex: 0 0 20%;
         list-style: none;
     }
-    
+
     .wpfk--form__price-wide {
         flex: 0 0 80%;
     }
-    
+
     label {
         font-family: LatoBold, Helvetica, Arial, Sans-serif;
         font-size: em-calc(14);
@@ -262,19 +278,19 @@ fieldset {
         justify-content: center;
         margin: 0;
         padding: 0;
-        
+
         li {
             flex: 0 0 20%;
         }
     }
-    
+
     li {
         display: block;
         margin: 15px 5%;
-        padding: 0;          
+        padding: 0;
         list-style: none;
     }
-    
+
     input[type='checkbox'] {
         display: none;
 
@@ -283,7 +299,7 @@ fieldset {
             cursor: pointer;
             color: #999;
             white-space: nowrap;
-            
+
             &::selection,
             &::moz-selection {
                 color: #999;
@@ -312,9 +328,51 @@ fieldset {
     }
 }
 
+.wpfk--form__your-details {
+    width: 720px;
+    margin: 0 auto;
+    background: #f5f5f5;
+
+    h2 {
+        font-family: FabFeltBold;
+        font-weight: normal;
+        font-size: em-calc(34);
+        color: $brand-purple;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    input[type='text'],
+    input[type='number'],
+    input[type='email'] {
+        margin: 15px auto;
+        background: #fff;
+        width: 360px;
+    }
+
+    .wpfk--form-input--child {
+        display: flex;
+        margin: 0 auto;
+        width: 360px;
+
+        input {
+            margin-top: 0;
+            flex: 0 0 48%;
+
+            & + input {
+                margin-left: 4%;
+            }
+        }
+    }
+
+    .wpfk--form-agree {
+        width: 450px;
+        margin: 0 auto;
+    }
+}
+
 .wpfk--form-actions {
-    display: inline-block;
-    vertical-align: middle;
+    display: block;
 }
 
 .wpfk--form__submit-button {
@@ -323,8 +381,14 @@ fieldset {
     color: #fff;
     background: $brand-purple;
     padding: 20px 40px;
-    vertical-align: middle;
+    margin: 15px auto;
+    display: block;
     border: 1px solid $brand-purple;
     border-radius: 5px;
     cursor: pointer;
+}
+
+a.wpfk--form__submit-button {
+    display: inline-block;
+    text-decoration: none;
 }

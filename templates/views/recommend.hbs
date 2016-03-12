@@ -1,14 +1,14 @@
 {{#if venueSubmitted}}
-<section class="wpfk--intro">
+<section class="wpfk--form-intro wpfk--form-thank-you">
     <h1>Thanks for adding your Wiki Place for Kids!</h1>
     <p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
     <p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
     <section class="wpfk--form-actions">
-        <a href="/reommend" class="wpfk--form__submit-button">Recommend Another WPFK</a>
+        <a href="/recommend" class="wpfk--form__submit-button">Recommend Another WPFK</a>
     </section>
 </section>
 {{else}}
-<section class="wpfk--intro">
+<section class="wpfk--form-intro">
     <h1>Please submit your Wiki place</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque arcu sapien, luctus sit amet pretium id, rutrum sed tortor.</p>
 </section>
@@ -154,18 +154,22 @@
         <h3 id="imageUpload">Image</label>
         <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
     </section>
-    <section>
-        <input type="text" name="user.yourName" id="useryourName" value="{{formData.user.yourName}}" placeholder="Your name" aria-label="Your name" />
-        <input type="text" name="user.childName" id="userchildName" value="{{formData.user.childName}}" placeholder="Child's name" aria-label="Child's name" />
-        <input type="number" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" placeholder="Child's age" aria-label="Child's age" />
-        <input type="email" name="user.email" id="useremail" value="{{formData.user.email}}" placeholder="Your email address" aria-label="Your email address" />  
+    <section class="wpfk--form__your-details">
+        <h2>your details</h2>
+        <section>
+            <input type="text" name="user.yourName" id="useryourName" value="{{formData.user.yourName}}" placeholder="Your name" aria-label="Your name" />
+            <input type="text" name="user.childName" id="userchildName" value="{{formData.user.childName}}" placeholder="Child's name" aria-label="Child's name" />
+            <section class="wpfk--form-input--child">
+                <input type="number" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" placeholder="Child's age" aria-label="Child's age" />
+                <input type="email" name="user.email" id="useremail" value="{{formData.user.email}}" placeholder="Your email address" aria-label="Your email address" />
+            </section>  
+        </section>
+        <section class="wpfk--form-agree">
+            <ul class="wpfk--form__checkbox-container">
+                <li><input type="checkbox" name="user.agreement" id="userAgreement" {{#if formData.user.agreement}}checked="checked"{{/if}} /> <label for="userAgreement">Please tick to recieve future updates from Wiki Places for Kids.</label></li>
+            </ul>
+        </section>
     </section>
-    <fieldset>
-        <legend>Future updates</legend>
-        <ul class="wpfk--form__checkbox-container">
-            <li><input type="checkbox" name="user.agreement" id="userAgreement" {{#if formData.user.agreement}}checked="checked"{{/if}} /> <label for="userAgreement">Please tick to get future updates from WPFK</label></li>
-        </ul>
-    </fieldset>
     <section class="wpfk--form-actions">
         <input type="hidden" name="action" value="recommend">
         <button type="submit" class="wpfk--form__submit-button">Submit your wiki place</button>
