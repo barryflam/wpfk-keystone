@@ -36,6 +36,7 @@ exports = module.exports = function(req, res) {
                 'venueType.culture',
                 'venueType.libraries',
                 'venueType.sports',
+                'website',
                 'address1',
                 'address2',
                 'townCity',

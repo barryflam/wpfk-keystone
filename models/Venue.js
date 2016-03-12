@@ -25,6 +25,7 @@ Venue.add({
         libraries: { type: Boolean, label: 'Libraries', index: true },
         sports: { type: Boolean, label: 'Sports', index: true }
     },
+    website: { type: Types.Url },
     address1: { type: String },
     address2: { type: String },
     townCity: { type: String },

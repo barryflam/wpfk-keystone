@@ -33,13 +33,14 @@
         <h3 id="venueDescription">Venue Description</h3>
         <textarea aria-labelledby="venueDescription" name="description" placeholder="I love this place because..." rows="4">{{formData.description}}</textarea>
     </section>
-    <section class="wpfk--form__description">
-        <h3 id="venueAddress">Venue Address</h3>
+    <fieldset class="wpfk--form__description">
+        <legend>Venue Address</legend>
         <input aria-label="Address Line 1" placeholder="Address Line 1" type="text" name="address1" value="{{formData.address1}}">
         <input aria-label="Address Line 2" placeholder="Address Line 2" type="text" name="address2" value="{{formData.address2}}">
         <input aria-label="Town/City" placeholder="Town/City" type="text" name="townCity" value="{{formData.townCity}}">
         <input aria-label="Postcode" placeholder="Postcode" type="text" name="postcode" value="{{formData.postcode}}">
-    </section>
+    </fieldset>
+    <input aria-label="Website" placeholder="Website" type="url" name="website" value="{{formData.website}}">
     <section class="wpfk--form__rating">
         <label>Rating</label>
         <div class="wpfk--form__rating-container">
