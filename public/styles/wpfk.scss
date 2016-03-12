@@ -70,7 +70,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .container {
     max-width: $max-content-width;
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: center;
 }
 
@@ -95,6 +95,12 @@ h2 {
     color: $subheading-font-colour;
 }
 
+p {
+    font-family: LatoRegular, Helvetica, Arial, sans-serif;
+    font-size: em-calc(16);
+    color: #999;
+}
+
 textarea,
 input[type='text'],
 input[type='email'],
@@ -115,6 +121,11 @@ fieldset {
     margin: 0;
     padding: 0;
     display: block;
+}
+
+.wpfk--intro {
+    width: 580px;
+    margin: 0 auto;
 }
 
 .wpfk--form__checkbox-container {
