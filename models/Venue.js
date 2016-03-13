@@ -12,7 +12,8 @@ Venue.add({
     venueName: { type: String, label: 'Venue Name', index: true },
     venueType: {
         softplay: { type: Boolean, label: 'Softplay', index: true },
-        activities: { type: Boolean, label: 'Activities', index: true },
+        indoorActivities: { type: Boolean, label: 'Indoor Activities', index: true },
+        outdoorActivities: { type: Boolean, label: 'Outdoor Activities', index: true },        
         food: { type: Boolean, label: 'Restaurants and food', index: true },
         pubs: { type: Boolean, label: 'Pubs with gardens/play facilities', index: true },
         hotels: { type: Boolean, label: 'Hotels', index: true },
@@ -121,9 +122,9 @@ Venue.add({
     state: { type: Types.Select, options: 'Draft, Published, Archived', default: 'Draft' },
     user: { 
         yourName: { type: String, label: "Your name" },
-        childName: { type: String, label: "Your child's name" },
-        childAge: { type: Number, label: "Your child's age" },
         email: { type: Types.Email, label: "Email" },
+        childName: { type: String, label: "Your childrens name" },
+        childAge: { type: Number, label: "Your childrens age" },
         agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
     },
     addedOn: { type: Date, default: Date.now }

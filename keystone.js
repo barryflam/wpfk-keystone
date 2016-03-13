@@ -36,7 +36,7 @@ keystone.init({
 	'user model': 'User',
     'google api key': process.env.GOOGLE_API_KEY,
     'google server api key': process.env.GOOGLE_SERVER_API_KEY,
-    'default region': 'gb' 
+    'default region': 'gb'
 });
 
 // Load your project's Models
