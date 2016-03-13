@@ -112,7 +112,8 @@ textarea,
 input[type='text'],
 input[type='email'],
 input[type='number'],
-input[type='url'] {
+input[type='url'],
+input[type='tel'] {
     background: #f5f5f5;
     border-radius: 5px;
     border: 1px solid #ddd;
@@ -151,6 +152,12 @@ fieldset {
 
 .venueSearch {
     position: relative;
+    
+    input[type="text"] {
+        background: #f5f5f5 url(/images/powered_by_google_on_white_hdpi.png) no-repeat 97% 50%;
+        background-size: 144px 18px;
+        outline: none;
+    }
 
     .venueResults {
         position: absolute;
@@ -207,7 +214,7 @@ fieldset {
 .wpfk--form__checkbox-container {
     display : flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: left;
     margin: 0;
     padding: 0;
 
@@ -215,7 +222,7 @@ fieldset {
         display: block;
         margin: 15px 0;
         padding: 0;
-        flex: 1 0 33%;
+        flex: 0 0 33%;
         min-width: 33%;
         list-style: none;
     }

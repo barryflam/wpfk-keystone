@@ -17,11 +17,9 @@
     <div class="venueSearch">
         <input aria-label="Venue name" autocomplete="off" placeholder="Venue name" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
         <div id="places-results" class="venueResults"></div>
-        <img id="gmapsattr" class="wpfk--google-logo" src="/images/powered_by_google_on_white_hdpi.png" width="144" height="18" />
     </div>
-    <textarea id="venueAddress" aria-label="Venue address" name="address" placeholder="Venue address" rows="4">{{formData.venueAddress}}</textarea>
-    <fieldset>
-        <legend>Venue type (check all that apply)</legend>
+    <section class="wpfk--form__description">
+        <h3>Venue type (check all that apply)</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="venueType.softplay" id="venueTypesoftplay" {{#if formData.venueType.softplay}}checked="checked"{{/if}} /> <label for="venueTypesoftplay">Softplay</label></li>
             <li><input type="checkbox" name="venueType.outdoorActivities" id="venueTypeOutdoorActivities" {{#if formData.venueType.outdoorActivities}}checked="checked"{{/if}} /> <label for="venueTypeOutdoorActivities">Outdoor Activities</label></li>
@@ -38,21 +36,19 @@
             <li><input type="checkbox" name="venueType.libraries" id="venueTypelibraries" {{#if formData.venueType.libraries}}checked="checked"{{/if}} /> <label for="venueTypelibraries">Libraries</label></li>
             <li><input type="checkbox" name="venueType.sports" id="venueTypesports" {{#if formData.venueType.sports}}checked="checked"{{/if}} /> <label for="venueTypesports">Sports</label></li>
         </ul>
-    </fieldset>
+    </section>
     <section class="wpfk--form__description">
         <h3 id="venueDescription">Venue Description</h3>
         <textarea aria-labelledby="venueDescription" name="description" placeholder="I love this place because..." rows="4">{{formData.description}}</textarea>
     </section>
-    <fieldset class="wpfk--form__description">
-        <legend>Venue Address</legend>
-        <input aria-label="Address Line 1" placeholder="Address Line 1" type="text" name="address1" value="{{formData.address1}}">
-        <input aria-label="Address Line 2" placeholder="Address Line 2" type="text" name="address2" value="{{formData.address2}}">
-        <input aria-label="Town/City" placeholder="Town/City" type="text" name="townCity" value="{{formData.townCity}}">
-        <input aria-label="Postcode" placeholder="Postcode" type="text" name="postcode" value="{{formData.postcode}}">
-    </fieldset>
-    <input id="venueWebsite" aria-label="Website" placeholder="Website" type="text" name="website" value="{{formData.website}}">
+    <section class="wpfk--form__description">
+        <h3 id="venueDescription">Location and Contact</h3>
+        <textarea id="venueAddress" aria-label="Venue address" name="address" placeholder="Venue address" rows="5">{{formData.address}}</textarea>
+        <input id="venueWebsite" aria-label="Website" placeholder="Website" type="text" name="website" value="{{formData.website}}">
+        <input id="venueTelephone" aria-label="Telephone number" placeholder="Telephone number" type="tel" name="telephoneNumber" value="{{formData.telephoneNumber}}">
+    </section>
     <section class="wpfk--form__rating">
-        <label>Rating</label>
+        <h3>Rating</h3>
         <div class="wpfk--form__rating-container">
             <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
             <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label> 
@@ -61,8 +57,8 @@
             <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
         </div> 
     </section>
-    <fieldset>
-        <legend>Suitable for age groups</label>
+    <section>
+        <h3>Suitable for age groups</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
             <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
@@ -78,34 +74,34 @@
             <li><input type="checkbox" name="suitableForAges.from10Yto12Y" id="suitableForAgesfrom10Yto12Y" {{#if formData.suitableForAges.from10Yto12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom10Yto12Y">10 - 12 years</li>
             <li><input type="checkbox" name="suitableForAges.from12Y" id="suitableForAgesfrom12Y" {{#if formData.suitableForAges.from12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom12Y">12 years+</label></li>
         </ul>
-    </fieldset>
-    <fieldset>
-        <legend>Booking required?</legend>
+    </section>
+    <section>
+        <h3>Booking required?</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label for="bookingRequired">Yes</label></li>
         </ul>
-    </fieldset>
-    <fieldset>
-        <legend>Services</legend>
+    </section>
+    <section>
+        <h3>Services</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
             <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
             <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
             <li><input type="checkbox" name="services.suitableForMany" id="servicessuitableForMany" {{#if formData.services.suitableForMany}}checked="checked"{{/if}} /> <label for="servicessuitableForMany">Suitable for twins/multiples</label></li>
-            <li><input type="checkbox" name="services.doublePramFriendly" id="servicesdoublePramFriendly" {{#if formData.services.doublePramFriendly}}checked="checked"{{/if}} /> <label for="servicesdoublePramFriendly">Pram/wheelchair accessible</label></li>
+            <li><input type="checkbox" name="services.doublePramFriendly" id="servicesdoublePramFriendly" {{#if formData.services.doublePramFriendly}}checked="checked"{{/if}} /> <label for="servicesdoublePramFriendly">Double pram friendly</label></li>
         </ul>
-    </fieldset>
-    <fieldset>
-        <legend>Prices</legend>
+    </section>
+    <section>
+        <h3>Prices</h3>
         <ul class="wpfk--form__prices-container">
             <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li> 
             <li><label for="priceschild">Child</label> <input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" placeholder="0" /></li>
             <li><label for="pricesinfant">Infant</label> <input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" placeholder="0" /></li>
             <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /></li>
         </ul>
-    </fieldset>
-    <fieldset>
-        <legend>Opening hours</legend>
+    </section>
+    <section>
+        <h3>Opening hours</h3>
         <ul class="wpfk--form__opening-container" id="openingHours">
             <li data-day="Monday">
                 <ul class="wpfk--form__opening-day-container">
@@ -157,7 +153,7 @@
                 </ul>
             </li>
         </ul>
-    </fieldset>
+    </section>
     <section>
         <h3 id="imageUpload">Image</label>
         <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
@@ -185,12 +181,18 @@
 </form>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBBWZIQ-18garx9-_7Iv06ZqJ5ISC0oDw&libraries=places"></script>
 <script type="text/javascript">
-    var service = new google.maps.places.PlacesService(document.getElementById('gmapsattr'));
+    var ukBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(49.383639452689664, -17.39866406249996),
+        new google.maps.LatLng(59.53530451232491, 8.968523437500039));
     
     var venueSearchElement = document.getElementById("venueName");
+    
+    var service = new google.maps.places.PlacesService(venueSearchElement);
+    
     var out = document.getElementById("places-results");
     var venueAddress = document.getElementById("venueAddress");
     var venueWebsite = document.getElementById("venueWebsite");
+    var venueTelephone = document.getElementById("venueTelephone");
     
     var openOnDayRegex = /([^:]*): (.*)/;
     var openingHoursRegex = /(.*) – (.*)/;
@@ -202,7 +204,7 @@
         var val = venueSearchElement.value;
         out.style.display = "none";
         if(val.length >= 3) {
-            service.textSearch({query: val }, function(data, status) {  
+            service.textSearch({query: val, bounds: ukBounds}, function(data, status) {  
                 out.innerHTML = "";
                 data.slice(0,5).forEach(function(place) {
                     out.style.display = "block";
@@ -210,13 +212,26 @@
                     var linkEl = document.createElement("a");
                     linkEl.href = "#";
                     linkEl.innerHTML = place.name + " <small>(" + place.formatted_address + ")</small>";
-                    linkEl.addEventListener("click", function() {
+                    linkEl.addEventListener("click", function(e) {
+                        e.preventDefault();
                         venueSearchElement.value = place.name;
                         service.getDetails({placeId: place.place_id}, function(place, status) {
                             console.log(place);
                             out.style.display = "none"; 
-                            venueAddress.value = place.formatted_address ? place.formatted_address : "";
+                            
+                            if (place.address_components && place.address_components.length > 0) {
+                                venueAddress.value = "";
+                                
+                                var addressComponents = place.address_components;
+                                
+                                for(var i = 0, len = addressComponents.length; i < len; i++) {
+                                    venueAddress.value += addressComponents[i].long_name + (i != (len - 1) ? "\n" : "");
+                                }   
+                            }
+                            
                             venueWebsite.value = place.website ? place.website : "";
+                            venueTelephone.value = place.formatted_phone_number ? place.formatted_phone_number : "";
+                            
                             place.opening_hours.weekday_text.forEach(function(dayOpening) {
                                 var dayInfo = openOnDayRegex.exec(dayOpening);
                                 var dayName = dayInfo[1];

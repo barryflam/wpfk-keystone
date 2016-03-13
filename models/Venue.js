@@ -9,7 +9,7 @@ var Venue = new keystone.List('Venue', {
  
 Venue.add({
     venueState: { type: Types.Select, options: 'Not opened, Open, Closed', default: 'Open' },
-    venueName: { type: String, label: 'Venue Name', index: true },
+    venueName: { type: String, label: 'Venue Name', index: true, required: true },
     venueType: {
         softplay: { type: Boolean, label: 'Softplay', index: true },
         indoorActivities: { type: Boolean, label: 'Indoor Activities', index: true },
@@ -26,12 +26,10 @@ Venue.add({
         libraries: { type: Boolean, label: 'Libraries', index: true },
         sports: { type: Boolean, label: 'Sports', index: true }
     },
+    address: { type: Types.Textarea, initial: false, required: true },
     website: { type: Types.Url },
-    address1: { type: String },
-    address2: { type: String },
-    townCity: { type: String },
-    postcode: { type: String },
-    description: { type: Types.Html, wysiwyg: true, height: 150 },
+    telephoneNumber: { type: String },
+    description: { type: Types.Html, wysiwyg: true, height: 150, initial: false, required: true },
     rating: { type: Types.Select, numeric: true, options: [
         { value: 0, label: '0' },
         { value: 1, label: '1' },
@@ -59,7 +57,10 @@ Venue.add({
     services: { 
         babyChanging: { type: Boolean, label: 'Baby changing available?' },
         childrensMenu: { type: Boolean, label: 'Has a childrens menu?' },
-        wheelAccessible: { type: Boolean, label: 'Pram/Wheelchair accessible?' }   
+        wheelAccessible: { type: Boolean, label: 'Pram/Wheelchair accessible?' },
+        suitableForMany: { type: Boolean, label: 'Suitable for twins/multiples?' },
+        doublePramFriendly: { type: Boolean, label: 'Double pram friendly?' }
+           
     },
     prices: {
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
