@@ -14,10 +14,13 @@
 </section>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
     <h2>Venue information</h2>
-    <div class="venueSearch">
+    <section class="venueSearch">
         <input aria-label="Venue name" autocomplete="off" placeholder="Venue name" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
         <div id="places-results" class="venueResults"></div>
-    </div>
+    </section>
+    <section class="wpfk--form__description">
+        <textarea aria-labelledby="venueDescription" name="description" placeholder="I love this place because..." rows="4">{{formData.description}}</textarea>
+    </section>
     <section class="wpfk--form__description">
         <h3>Venue type (check all that apply)</h3>
         <ul class="wpfk--form__checkbox-container">
@@ -37,16 +40,6 @@
             <li><input type="checkbox" name="venueType.sports" id="venueTypesports" {{#if formData.venueType.sports}}checked="checked"{{/if}} /> <label for="venueTypesports">Sports</label></li>
         </ul>
     </section>
-    <section class="wpfk--form__description">
-        <h3 id="venueDescription">Venue Description</h3>
-        <textarea aria-labelledby="venueDescription" name="description" placeholder="I love this place because..." rows="4">{{formData.description}}</textarea>
-    </section>
-    <section class="wpfk--form__description">
-        <h3 id="venueDescription">Location and Contact</h3>
-        <textarea id="venueAddress" aria-label="Venue address" name="address" placeholder="Venue address" rows="5">{{formData.address}}</textarea>
-        <input id="venueWebsite" aria-label="Website" placeholder="Website" type="text" name="website" value="{{formData.website}}">
-        <input id="venueTelephone" aria-label="Telephone number" placeholder="Telephone number" type="tel" name="telephoneNumber" value="{{formData.telephoneNumber}}">
-    </section>
     <section class="wpfk--form__rating">
         <h3>Rating</h3>
         <div class="wpfk--form__rating-container">
@@ -57,9 +50,30 @@
             <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
         </div> 
     </section>
+    <section class="wpfk--form__checkbox-container">
+        <h3>Booking required? <input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label class="wpfk--form__checkbox-inline" for="bookingRequired">Yes</label></h3>
+    </section>
     <section>
-        <h3>Suitable for age groups</h3>
+        <h3>Services</h3>
         <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
+            <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
+            <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
+            <li><input type="checkbox" name="services.suitableForMany" id="servicessuitableForMany" {{#if formData.services.suitableForMany}}checked="checked"{{/if}} /> <label for="servicessuitableForMany">Suitable for twins/multiples</label></li>
+            <li><input type="checkbox" name="services.doublePramFriendly" id="servicesdoublePramFriendly" {{#if formData.services.doublePramFriendly}}checked="checked"{{/if}} /> <label for="servicesdoublePramFriendly">Double pram friendly</label></li>
+        </ul>
+    </section>
+    <section class="wpfk--form__description wpfk--form-collapse {{#if formData.address.expanded}}wpfk--form-collapse--expanded{{/if}}">
+        <h3 id="venueDescription">Location and Contact</h3>
+        <section class="wpfk--form-collapse--more">
+            <textarea id="venueAddress" aria-label="Venue address" name="address" placeholder="Venue address" rows="5">{{formData.address}}</textarea>
+            <input id="venueWebsite" aria-label="Website" placeholder="Website" type="text" name="website" value="{{formData.website}}">
+            <input id="venueTelephone" aria-label="Telephone number" placeholder="Telephone number" type="tel" name="telephoneNumber" value="{{formData.telephoneNumber}}">
+        </section>
+    </section> 
+    <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
+        <h3>Suitable for age groups</h3>
+        <ul class="wpfk--form__checkbox-container wpfk--form-collapse--more">
             <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
             <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
             <li><input type="checkbox" name="suitableForAges.from1Yto2Y" id="suitableForAgesfrom1Yto2Y" {{#if formData.suitableForAges.from1Yto2Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom1Yto2Y">1 - 2 years</li>
@@ -75,81 +89,65 @@
             <li><input type="checkbox" name="suitableForAges.from12Y" id="suitableForAgesfrom12Y" {{#if formData.suitableForAges.from12Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom12Y">12 years+</label></li>
         </ul>
     </section>
-    <section>
-        <h3>Booking required?</h3>
-        <ul class="wpfk--form__checkbox-container">
-            <li><input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label for="bookingRequired">Yes</label></li>
-        </ul>
-    </section>
-    <section>
-        <h3>Services</h3>
-        <ul class="wpfk--form__checkbox-container">
-            <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
-            <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
-            <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
-            <li><input type="checkbox" name="services.suitableForMany" id="servicessuitableForMany" {{#if formData.services.suitableForMany}}checked="checked"{{/if}} /> <label for="servicessuitableForMany">Suitable for twins/multiples</label></li>
-            <li><input type="checkbox" name="services.doublePramFriendly" id="servicesdoublePramFriendly" {{#if formData.services.doublePramFriendly}}checked="checked"{{/if}} /> <label for="servicesdoublePramFriendly">Double pram friendly</label></li>
-        </ul>
-    </section>
-    <section>
+    <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>Prices</h3>
-        <ul class="wpfk--form__prices-container">
+        <ul class="wpfk--form__prices-container wpfk--form-collapse--more">
             <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li> 
             <li><label for="priceschild">Child</label> <input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" placeholder="0" /></li>
             <li><label for="pricesinfant">Infant</label> <input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" placeholder="0" /></li>
             <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /></li>
         </ul>
     </section>
-    <section>
+    <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>Opening hours</h3>
-        <ul class="wpfk--form__opening-container" id="openingHours">
+        <ul class="wpfk--form__opening-container wpfk--form-collapse--more" id="openingHours">
             <li data-day="Monday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.monday.isOpen" id="openingHoursMondayIsOpen" {{#if openingHours.monday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursMondayIsOpen">Monday</label></li>
-                    <li><input type="text" name="openingHours.monday.open.from" id="openingHoursMondayOpenFrom" value="{{openingHours.monday.open.from}}" aria-label="Monday Open From" /></li>
-                    <li><input type="text" name="openingHours.monday.open.to" id="openingHoursMondayOpenTo" value="{{openingHours.monday.open.to}}" aria-label="Monday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.monday.isOpen" id="openingHoursMondayIsOpen" {{#if formData.openingHours.monday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursMondayIsOpen">Monday</label></li>
+                    <li><input type="text" name="openingHours.monday.open.from" id="openingHoursMondayOpenFrom" value="{{formData.openingHours.monday.open.from}}" aria-label="Monday Open From" /></li>
+                    <li><input type="text" name="openingHours.monday.open.to" id="openingHoursMondayOpenTo" value="{{formData.openingHours.monday.open.to}}" aria-label="Monday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Tuesday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.tuesday.isOpen" id="openingHoursTuedayIsOpen" {{#if openingHours.tuesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursTuedayIsOpen">Tuesday</label></li>
-                    <li><input type="text" name="openingHours.tuesday.open.from" id="openingHoursTuesdayOpenFrom" value="{{openingHours.tuesday.open.from}}" aria-label="Tuesday Open From" /></li>
-                    <li><input type="text" name="openingHours.tuesday.open.to" id="openingHoursTuesdayOpenTo" value="{{openingHours.tuesday.open.to}}" aria-label="Tuesday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.tuesday.isOpen" id="openingHoursTuedayIsOpen" {{#if formData.openingHours.tuesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursTuedayIsOpen">Tuesday</label></li>
+                    <li><input type="text" name="openingHours.tuesday.open.from" id="openingHoursTuesdayOpenFrom" value="{{formData.openingHours.tuesday.open.from}}" aria-label="Tuesday Open From" /></li>
+                    <li><input type="text" name="openingHours.tuesday.open.to" id="openingHoursTuesdayOpenTo" value="{{formData.openingHours.tuesday.open.to}}" aria-label="Tuesday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Wednesday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.wednesday.isOpen" id="openingHoursWednesdayIsOpen" {{#if openingHours.wednesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursWednesdayIsOpen">Wednesday</label></li>
-                    <li><input type="text" name="openingHours.wednesday.open.from" id="openingHoursWednesdayOpenFrom" value="{{openingHours.wednesday.open.from}}" aria-label="Wednesday Open From" /></li>
-                    <li><input type="text" name="openingHours.wednesday.open.to" id="openingHoursWednesdayOpenTo" value="{{openingHours.wednesday.open.to}}" aria-label="Wednesday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.wednesday.isOpen" id="openingHoursWednesdayIsOpen" {{#if formData.openingHours.wednesday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursWednesdayIsOpen">Wednesday</label></li>
+                    <li><input type="text" name="openingHours.wednesday.open.from" id="openingHoursWednesdayOpenFrom" value="{{formData.openingHours.wednesday.open.from}}" aria-label="Wednesday Open From" /></li>
+                    <li><input type="text" name="openingHours.wednesday.open.to" id="openingHoursWednesdayOpenTo" value="{{formData.openingHours.wednesday.open.to}}" aria-label="Wednesday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Thursday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.thursday.isOpen" id="openingHoursThursdayIsOpen" {{#if openingHours.thursday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursThursdayIsOpen">Thursday</label></li>
-                    <li><input type="text" name="openingHours.thursday.open.from" id="openingHoursThursdayOpenFrom" value="{{openingHours.thursday.open.from}}" aria-label="Thursday Open From" /></li>
-                    <li><input type="text" name="openingHours.thursday.open.to" id="openingHoursThursdayOpenTo" value="{{openingHours.thursday.open.to}}" aria-label="Thursday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.thursday.isOpen" id="openingHoursThursdayIsOpen" {{#if formData.openingHours.thursday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursThursdayIsOpen">Thursday</label></li>
+                    <li><input type="text" name="openingHours.thursday.open.from" id="openingHoursThursdayOpenFrom" value="{{formData.openingHours.thursday.open.from}}" aria-label="Thursday Open From" /></li>
+                    <li><input type="text" name="openingHours.thursday.open.to" id="openingHoursThursdayOpenTo" value="{{formData.openingHours.thursday.open.to}}" aria-label="Thursday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Friday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.friday.isOpen" id="openingHoursFridayIsOpen" {{#if openingHours.friday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursFridayIsOpen">Friday</label></li>
-                    <li><input type="text" name="openingHours.friday.open.from" id="openingHoursFridayOpenFrom" value="{{openingHours.friday.open.from}}" aria-label="Friday Open From" /></li>
-                    <li><input type="text" name="openingHours.friday.open.to" id="openingHoursFridayOpenTo" value="{{openingHours.friday.open.to}}" aria-label="Friday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.friday.isOpen" id="openingHoursFridayIsOpen" {{#if formData.openingHours.friday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursFridayIsOpen">Friday</label></li>
+                    <li><input type="text" name="openingHours.friday.open.from" id="openingHoursFridayOpenFrom" value="{{formData.openingHours.friday.open.from}}" aria-label="Friday Open From" /></li>
+                    <li><input type="text" name="openingHours.friday.open.to" id="openingHoursFridayOpenTo" value="{{formData.openingHours.friday.open.to}}" aria-label="Friday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Saturday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.saturday.isOpen" id="openingHoursSaturdayIsOpen" {{#if openingHours.saturday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSaturdayIsOpen">Saturday</label></li>
-                    <li><input type="text" name="openingHours.saturday.open.from" id="openingHoursSaturdayOpenFrom" value="{{openingHours.saturday.open.from}}" aria-label="Saturday Open From" /></li>
-                    <li><input type="text" name="openingHours.saturday.open.to" id="openingHoursSaturdayOpenTo" value="{{openingHours.saturday.open.to}}" aria-label="Saturday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.saturday.isOpen" id="openingHoursSaturdayIsOpen" {{#if formData.openingHours.saturday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSaturdayIsOpen">Saturday</label></li>
+                    <li><input type="text" name="openingHours.saturday.open.from" id="openingHoursSaturdayOpenFrom" value="{{formData.openingHours.saturday.open.from}}" aria-label="Saturday Open From" /></li>
+                    <li><input type="text" name="openingHours.saturday.open.to" id="openingHoursSaturdayOpenTo" value="{{formData.openingHours.saturday.open.to}}" aria-label="Saturday Open To" /></li>
                 </ul>
             </li>
             <li data-day="Sunday">
                 <ul class="wpfk--form__opening-day-container">
-                    <li><input type="checkbox" name="openingHours.sunday.isOpen" id="openingHoursSundayIsOpen" {{#if openingHours.sunday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSundayIsOpen">Sunday</label></li>
-                    <li><input type="text" name="openingHours.sunday.open.from" id="openingHoursSundayOpenFrom" value="{{openingHours.sunday.open.from}}" aria-label="Sunday Open From" /></li>
-                    <li><input type="text" name="openingHours.sunday.open.to" id="openingHoursSundayOpenTo" value="{{openingHours.sunday.open.to}}" aria-label="Sunday Open To" /></li>
+                    <li><input type="checkbox" name="openingHours.sunday.isOpen" id="openingHoursSundayIsOpen" {{#if formData.openingHours.sunday.isOpen}}checked="checked"{{/if}} /> <label for="openingHoursSundayIsOpen">Sunday</label></li>
+                    <li><input type="text" name="openingHours.sunday.open.from" id="openingHoursSundayOpenFrom" value="{{formData.openingHours.sunday.open.from}}" aria-label="Sunday Open From" /></li>
+                    <li><input type="text" name="openingHours.sunday.open.to" id="openingHoursSundayOpenTo" value="{{formData.openingHours.sunday.open.to}}" aria-label="Sunday Open To" /></li>
                 </ul>
             </li>
         </ul>
@@ -180,6 +178,17 @@
     </section>
 </form>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBBWZIQ-18garx9-_7Iv06ZqJ5ISC0oDw&libraries=places"></script>
+<script type="text/javascript">
+    document.body.classList.add('js-enabled');
+    var collapsibles = document.querySelectorAll('.wpfk--form-collapse h3');
+    
+    for(var i = 0, len = collapsibles.length; i < len; i++) {
+        collapsibles[i].addEventListener("click", function(e) {
+            e.preventDefault();
+            e.target.parentNode.classList.toggle('wpfk--form-collapse--expanded');
+        })
+    }
+</script>
 <script type="text/javascript">
     var ukBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(49.383639452689664, -17.39866406249996),

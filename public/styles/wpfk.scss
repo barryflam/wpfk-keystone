@@ -118,6 +118,7 @@ input[type='tel'] {
     border-radius: 5px;
     border: 1px solid #ddd;
     padding: 15px 20px;
+    margin: 1% 0;
     font-family: LatoRegular, Helvetica, Arial, sans-serif;
     font-size: em-calc(16);
     display: block;
@@ -152,7 +153,7 @@ fieldset {
 
 .venueSearch {
     position: relative;
-    
+
     input[type="text"] {
         background: #f5f5f5 url(/images/powered_by_google_on_white_hdpi.png) no-repeat 97% 50%;
         background-size: 144px 18px;
@@ -177,7 +178,7 @@ fieldset {
             border-color: #ddd;
             border-style: solid;
             border-width: 0 1px 0 1px;
-            
+
             a {
                 color: #666;
                 text-decoration: none;
@@ -188,25 +189,25 @@ fieldset {
 
             &:hover {
                 background: $brand-purple;
-                
+
                 a {
                     color: #fff;
                 }
             }
-            
+
             &:first-child {
                 border-radius: 5px 5px 0 0;
                 border-top-width: 1px;
             }
-            
+
             &:last-child {
                 border-radius: 0 0 5px 5px;
                 border-bottom-width: 1px;
             }
         }
 
-        a { 
-            
+        a {
+
         }
     }
 }
@@ -418,16 +419,17 @@ fieldset {
     }
 
     .wpfk--form-input--child {
-        display: flex;
         margin: 0 auto;
         width: 360px;
 
         input {
-            margin-top: 0;
-            flex: 0 0 48%;
+            margin: 0;
+            padding: 4%;
+            width: 48%;
+            display: inline-block;
 
             & + input {
-                margin-left: 4%;
+                float: right;
             }
         }
     }
@@ -458,4 +460,44 @@ fieldset {
 a.wpfk--form__submit-button {
     display: inline-block;
     text-decoration: none;
+}
+
+.js-enabled {
+    .wpfk--form-collapse {
+        background: #fff;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin: 15px -15px;
+        padding: 15px 15px;
+
+        h3 {
+            cursor: pointer;
+            margin: 0;
+
+            &:after {
+                content: "▲";
+                float: right;
+            }
+        }
+
+        & .wpfk--form-collapse--more {
+            max-height: 0;
+            overflow: hidden;
+            margin: 0;
+
+            -webkit-transition: max-height 0.5s;
+            -moz-transition: max-height 0.5s;
+            transition: max-height 0.5s;
+        }
+
+        &.wpfk--form-collapse--expanded {
+            & h3:after {
+                content: "▼";
+            }
+
+            .wpfk--form-collapse--more {
+                max-height: 1000px;
+            }
+        }
+    }
 }

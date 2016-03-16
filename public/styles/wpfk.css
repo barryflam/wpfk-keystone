@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: LatoBold;
   src: url("/fonts/LatoLatin-Bold.woff2") format("woff2"), url("/fonts/LatoLatin-Bold.woff") format("woff"); }
@@ -75,6 +76,7 @@ input[type='tel'] {
   border-radius: 5px;
   border: 1px solid #ddd;
   padding: 15px 20px;
+  margin: 1% 0;
   font-family: LatoRegular, Helvetica, Arial, sans-serif;
   font-size: 1em;
   display: block;
@@ -294,14 +296,15 @@ fieldset {
     background: #fff;
     width: 360px; }
   .wpfk--form__your-details .wpfk--form-input--child {
-    display: flex;
     margin: 0 auto;
     width: 360px; }
     .wpfk--form__your-details .wpfk--form-input--child input {
-      margin-top: 0;
-      flex: 0 0 48%; }
+      margin: 0;
+      padding: 4%;
+      width: 48%;
+      display: inline-block; }
       .wpfk--form__your-details .wpfk--form-input--child input + input {
-        margin-left: 4%; }
+        float: right; }
   .wpfk--form__your-details .wpfk--form-agree {
     width: 450px;
     margin: 0 auto; }
@@ -324,3 +327,27 @@ fieldset {
 a.wpfk--form__submit-button {
   display: inline-block;
   text-decoration: none; }
+
+.js-enabled .wpfk--form-collapse {
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin: 15px -15px;
+  padding: 15px 15px; }
+  .js-enabled .wpfk--form-collapse h3 {
+    cursor: pointer;
+    margin: 0; }
+    .js-enabled .wpfk--form-collapse h3:after {
+      content: "▲";
+      float: right; }
+  .js-enabled .wpfk--form-collapse .wpfk--form-collapse--more {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition: max-height 0.5s;
+    transition: max-height 0.5s; }
+  .js-enabled .wpfk--form-collapse.wpfk--form-collapse--expanded h3:after {
+    content: "▼"; }
+  .js-enabled .wpfk--form-collapse.wpfk--form-collapse--expanded .wpfk--form-collapse--more {
+    max-height: 1000px; }
