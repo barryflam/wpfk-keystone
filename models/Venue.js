@@ -123,7 +123,7 @@ Venue.add({
     state: { type: Types.Select, options: 'Draft, Published, Archived', default: 'Draft' },
     user: { 
         yourName: { type: String, label: "Your name" },
-        email: { type: Types.Email, label: "Email", required: true },
+        email: { type: Types.Email, label: "Email", required: true, initial: false },
         childName: { type: String, label: "Your childrens name" },
         childAge: { type: Number, label: "Your childrens age" },
         agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
