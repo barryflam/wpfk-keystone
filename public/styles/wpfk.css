@@ -53,7 +53,8 @@ h1 {
   font-family: LatoBold, Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: 2.25em;
-  color: #009b95; }
+  color: #009b95;
+  margin: 1%; }
 
 h2 {
   font-family: LatoBold, Helvetica, Arial, sans-serif;
@@ -338,7 +339,7 @@ a.wpfk--form__submit-button {
     cursor: pointer;
     margin: 0; }
     .js-enabled .wpfk--form-collapse h3:after {
-      content: "▲";
+      content: "▼";
       float: right; }
   .js-enabled .wpfk--form-collapse .wpfk--form-collapse--more {
     max-height: 0;
@@ -348,6 +349,6 @@ a.wpfk--form__submit-button {
     -moz-transition: max-height 0.5s;
     transition: max-height 0.5s; }
   .js-enabled .wpfk--form-collapse.wpfk--form-collapse--expanded h3:after {
-    content: "▼"; }
+    content: "▲"; }
   .js-enabled .wpfk--form-collapse.wpfk--form-collapse--expanded .wpfk--form-collapse--more {
     max-height: 1000px; }
