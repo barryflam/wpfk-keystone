@@ -1,6 +1,6 @@
 {{#if venueSubmitted}}
 <section class="wpfk--form-intro wpfk--form-thank-you">
-    <h1>Thanks for adding your Wikiplaceforkids!</h1>
+    <h1>Thanks for adding your Wiki Place!</h1>
     <p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
     <p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
     <section class="wpfk--form-actions">
@@ -9,7 +9,7 @@
 </section>
 {{else}}
 <section class="wpfk--form-intro">
-    <h1>Recommend your Wikiplaceforkids</h1>
+    <h1>Recommend your Wiki Place</h1>
     <p>Please complete as much as you can of the form below and with every new venue added you get yourself an entry into the April prize draw, for £150 to treat yourself to exactly what you like!</p>
 </section>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
@@ -50,8 +50,11 @@
             <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
         </div> 
     </section>
-    <section class="wpfk--form__checkbox-container">
-        <h3>Booking required? <input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label class="wpfk--form__checkbox-inline" for="bookingRequired">Yes</label></h3>
+    <section>
+        <h3>Booking required?</h3>
+        <ul class="wpfk--form__checkbox-container">
+            <li><input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label for="bookingRequired">Yes</label></li>
+        </ul>
     </section>
     <section>
         <h3>Services</h3>
