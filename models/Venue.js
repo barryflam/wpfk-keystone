@@ -59,8 +59,8 @@ Venue.add({
         childrensMenu: { type: Boolean, label: 'Has a childrens menu?' },
         wheelAccessible: { type: Boolean, label: 'Pram/Wheelchair accessible?' },
         suitableForMany: { type: Boolean, label: 'Suitable for twins/multiples?' },
-        doublePramFriendly: { type: Boolean, label: 'Double pram friendly?' }
-           
+        doublePramFriendly: { type: Boolean, label: 'Double pram friendly?' },
+        goodFood: { type: Boolean, label: 'Good food for parents?' }
     },
     prices: {
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
