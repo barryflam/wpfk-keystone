@@ -1,6 +1,6 @@
 {{#if venueSubmitted}}
 <section class="wpfk--form-intro wpfk--form-thank-you">
-    <h1>Thanks for adding your Wiki Place for Kids!</h1>
+    <h1>Thanks for adding your Wikiplaceforkids!</h1>
     <p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
     <p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
     <section class="wpfk--form-actions">
@@ -9,7 +9,7 @@
 </section>
 {{else}}
 <section class="wpfk--form-intro">
-    <h1>Please submit your Wiki place</h1>
+    <h1>Recommend your Wikiplaceforkids</h1>
     <p>Please complete as much as you can of the form below and with every new venue added you get yourself an entry into the April prize draw, for £150 to treat yourself to exactly what you like!</p>
 </section>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
@@ -152,9 +152,11 @@
             </li>
         </ul>
     </section>
-    <section>
+    <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3 id="imageUpload">Add your images</label>
-        <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
+        <section class="wpfk--form-collapse--more">
+            <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
+        </section>
     </section>
     <section class="wpfk--form__your-details">
         <h2>your details</h2>
