@@ -475,7 +475,7 @@ a.wpfk--form__submit-button {
             margin: 0;
 
             &:after {
-                content: "▲";
+                content: "▼";
                 float: right;
             }
         }
@@ -492,7 +492,7 @@ a.wpfk--form__submit-button {
 
         &.wpfk--form-collapse--expanded {
             & h3:after {
-                content: "▼";
+                content: "▲";
             }
 
             .wpfk--form-collapse--more {
