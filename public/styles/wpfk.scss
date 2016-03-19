@@ -512,9 +512,11 @@ a.wpfk--form__submit-button {
             cursor: pointer;
             margin: 0;
 
-            &:after {
+            &:before {
                 content: "▼";
                 float: right;
+                text-align: right;
+                vertical-align: top;
             }
         }
 
@@ -529,7 +531,7 @@ a.wpfk--form__submit-button {
         }
 
         &.wpfk--form-collapse--expanded {
-            & h3:after {
+            & h3:before {
                 content: "▲";
             }
 
