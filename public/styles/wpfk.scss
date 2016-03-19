@@ -387,6 +387,10 @@ fieldset {
 
         li {
             flex: 0 0 20%;
+            
+            @media (max-width: $tablet-breakpoint) {
+                flex: 0 0 30%
+            }
         }
     }
 
@@ -395,6 +399,10 @@ fieldset {
         margin: 15px 5%;
         padding: 0;
         list-style: none;
+        
+        @media (max-width: $tablet-breakpoint) {
+            margin: 15px 1%;
+        }
     }
 
     input[type='checkbox'] {
@@ -429,6 +437,10 @@ fieldset {
             padding: 0;
             margin: 0 15px 0 0;
             box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24);
+            
+            @media (max-width: $tablet-breakpoint) {
+                display: block;
+            }
         }
 
         &:checked + label::before {

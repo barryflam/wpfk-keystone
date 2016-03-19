@@ -14,6 +14,8 @@ exports = module.exports = function(req, res) {
 	
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'recommend' }, function(next) {
+        
+        console.log(req);
 		
 		var newVenue = new Venue.model(),
 			updater = newVenue.getUpdateHandler(req);

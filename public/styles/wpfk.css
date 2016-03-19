@@ -274,11 +274,17 @@ fieldset {
     padding: 0; }
     .wpfk--form__opening-container .wpfk--form__opening-day-container li {
       flex: 0 0 20%; }
+      @media (max-width: 800px) {
+        .wpfk--form__opening-container .wpfk--form__opening-day-container li {
+          flex: 0 0 30%; } }
   .wpfk--form__opening-container li {
     display: block;
     margin: 15px 5%;
     padding: 0;
     list-style: none; }
+    @media (max-width: 800px) {
+      .wpfk--form__opening-container li {
+        margin: 15px 1%; } }
   .wpfk--form__opening-container input[type='checkbox'] {
     display: none; }
     .wpfk--form__opening-container input[type='checkbox'] + label {
@@ -304,6 +310,9 @@ fieldset {
       padding: 0;
       margin: 0 15px 0 0;
       box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24); }
+      @media (max-width: 800px) {
+        .wpfk--form__opening-container input[type='checkbox'] + label::before {
+          display: block; } }
     .wpfk--form__opening-container input[type='checkbox']:checked + label::before {
       background: #c63e8a url(/images/tick-white.svg) no-repeat 50% 50%;
       background-size: 10px 10px; }
