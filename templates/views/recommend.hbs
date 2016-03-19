@@ -15,14 +15,14 @@
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
     <h2>Venue information</h2>
     <section class="venueSearch">
-        <input aria-label="Venue name" autocomplete="off" placeholder="Venue name" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
+        <input aria-label="Venue name" autocomplete="off" placeholder="What's your Wiki Place called?" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
         <div id="places-results" class="venueResults"></div>
     </section>
     <section class="wpfk--form__description">
         <textarea aria-label="What's brilliant about this place?" name="description" placeholder="What's brilliant about this place?" rows="4">{{formData.description}}</textarea>
     </section>
     <section class="wpfk--form__description">
-        <h3>Venue type (check all that apply)</h3>
+        <h3>What type of place is it? (select all that apply)</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="venueType.softplay" id="venueTypesoftplay" {{#if formData.venueType.softplay}}checked="checked"{{/if}} /> <label for="venueTypesoftplay">Softplay</label></li>
             <li><input type="checkbox" name="venueType.outdoorActivities" id="venueTypeOutdoorActivities" {{#if formData.venueType.outdoorActivities}}checked="checked"{{/if}} /> <label for="venueTypeOutdoorActivities">Outdoor Activities</label></li>
@@ -41,7 +41,7 @@
         </ul>
     </section>
     <section class="wpfk--form__rating">
-        <h3>Rating</h3>
+        <h3>Your rating out of 5</h3>
         <div class="wpfk--form__rating-container">
             <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
             <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label> 
@@ -51,13 +51,13 @@
         </div> 
     </section>
     <section>
-        <h3>Booking required?</h3>
+        <h3>If booking required?</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="bookingRequired" id="bookingRequired" {{#if formData.bookingRequired}}checked="checked"{{/if}} /> <label for="bookingRequired">Yes</label></li>
         </ul>
     </section>
     <section>
-        <h3>Services</h3>
+        <h3>Does it have any of the following?</h3>
         <ul class="wpfk--form__checkbox-container">
             <li><input type="checkbox" name="services.babyChanging" id="servicesbabyChanging" {{#if formData.services.babyChanging}}checked="checked"{{/if}} /> <label for="servicesbabyChanging">Baby changing</label></li>
             <li><input type="checkbox" name="services.childrensMenu" id="serviceschildrensMenu" {{#if formData.services.childrensMenu}}checked="checked"{{/if}} /> <label for="serviceschildrensMenu">Childrens menu</label></li>
@@ -68,15 +68,15 @@
         </ul>
     </section>
     <section class="wpfk--form__description wpfk--form-collapse {{#if formData.address.expanded}}wpfk--form-collapse--expanded{{/if}}">
-        <h3 id="venueDescription">Add location and contact</h3>
+        <h3 id="venueDescription">Where is it?</h3>
         <section class="wpfk--form-collapse--more">
             <textarea id="venueAddress" aria-label="Venue address" name="address" placeholder="Venue address" rows="5">{{formData.address}}</textarea>
             <input id="venueWebsite" aria-label="Website" placeholder="Website" type="text" name="website" value="{{formData.website}}">
             <input id="venueTelephone" aria-label="Telephone number" placeholder="Telephone number" type="tel" name="telephoneNumber" value="{{formData.telephoneNumber}}">
         </section>
-    </section> 
+    </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
-        <h3>Add prices</h3>
+        <h3>Do you know the prices?</h3>
         <ul class="wpfk--form__prices-container wpfk--form-collapse--more">
             <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li> 
             <li><label for="priceschild">Child</label> <input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" placeholder="0" /></li>
@@ -85,7 +85,7 @@
         </ul>
     </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
-        <h3>Add age group suitability</h3>
+        <h3>What age of child does it suit?</h3>
         <ul class="wpfk--form__checkbox-container wpfk--form-collapse--more">
             <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
             <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
@@ -103,7 +103,7 @@
         </ul>
     </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
-        <h3>Add opening hours</h3>
+        <h3>Do you know the opening hours?</h3>
         <ul class="wpfk--form__opening-container wpfk--form-collapse--more" id="openingHours">
             <li data-day="Monday">
                 <ul class="wpfk--form__opening-day-container">
@@ -157,7 +157,7 @@
         </ul>
     </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
-        <h3 id="imageUpload">Add your images</h3>
+        <h3 id="imageUpload">Add images of your Wiki Place</h3>
         <section class="wpfk--form-collapse--more">
             <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
         </section>

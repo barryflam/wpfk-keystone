@@ -19,6 +19,8 @@ $heading-font-size-px: 36;
 $subheading-font-size-px: 24;
 $subheading-font-colour: #454545;
 
+$tablet-breakpoint: 800px;
+
 @function em-calc($pixel-size, $base: $base-font-size-px) {
     @return #{$pixel-size/$base}em;
 }
@@ -75,15 +77,21 @@ input[type=number]::-webkit-outer-spin-button {
     margin: 0;
 }
 
+article[role='main'] {
+    width: 100%;
+    margin: 0 auto;
+}
+
 .container {
     max-width: $max-content-width;
     margin: 20px auto;
     text-align: center;
+    width: 100%;
 }
 
 .wpfk--content-box {
     background: $content-background-color;
-    padding: 40px;
+    padding: 15px 40px;
     box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
     text-align: left;
 }
@@ -127,6 +135,16 @@ input[type='tel'] {
     width: 100%;
 }
 
+textarea:focus,
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='number']:focus,
+input[type='url']:focus,
+input[type='tel']:focus {
+    font-size: em-calc(16);
+    background: #f5f5f5;
+}
+
 fieldset {
     border: 0 none;
     margin: 0;
@@ -135,8 +153,9 @@ fieldset {
 }
 
 .wpfk--form-intro {
-    width: 580px;
+    max-width: 580px;
     margin: 0 auto;
+    padding: 0 10%;
 }
 
 .wpfk--form-thank-you {
@@ -147,11 +166,6 @@ fieldset {
     }
 }
 
-.wpfk--google-logo {
-    float: right;
-    margin: -5% 2% 0 0;
-}
-
 .venueSearch {
     position: relative;
 
@@ -159,6 +173,11 @@ fieldset {
         background: #f5f5f5 url(/images/powered_by_google_on_white_hdpi.png) no-repeat 97% 50%;
         background-size: 144px 18px;
         outline: none;
+        
+        @media (max-width: $tablet-breakpoint) {
+            padding-bottom: 10%;
+            background-position: 97% 80%;
+        }
     }
 
     .venueResults {
@@ -227,6 +246,10 @@ fieldset {
         flex: 0 0 33%;
         min-width: 33%;
         list-style: none;
+        
+        @media (max-width: $tablet-breakpoint) {
+            flex: 0 0 100%;
+        }
     }
 
     input[type='checkbox'] {
@@ -236,7 +259,6 @@ fieldset {
             font-size: em-calc(14);
             cursor: pointer;
             color: #999;
-            white-space: nowrap;
 
             &::selection,
             &::moz-selection {
@@ -341,6 +363,9 @@ fieldset {
 }
 
 .wpfk--form__opening-container {
+    margin: 0;
+    padding: 0;
+    
     .wpfk--form__opening-day-container {
         display: flex;
         flex-wrap: wrap;
@@ -368,6 +393,10 @@ fieldset {
             cursor: pointer;
             color: #999;
             white-space: nowrap;
+            
+            @media (max-width: $tablet-breakpoint) {
+                white-space: normal;
+            }
 
             &::selection,
             &::moz-selection {
@@ -398,8 +427,8 @@ fieldset {
 }
 
 .wpfk--form__your-details {
-    width: 720px;
     margin: 0 auto;
+    padding: 0 20px;
     background: #f5f5f5;
 
     h2 {
@@ -416,16 +445,14 @@ fieldset {
     input[type='email'] {
         margin: 15px auto;
         background: #fff;
-        width: 360px;
     }
 
     .wpfk--form-input--child {
         margin: 0 auto;
-        width: 360px;
 
         input {
             margin: 0;
-            padding: 4%;
+            padding: 15px 4%;
             width: 48%;
             display: inline-block;
 
@@ -436,8 +463,18 @@ fieldset {
     }
 
     .wpfk--form-agree {
-        width: 450px;
         margin: 0 auto;
+        max-width: 480px;
+        
+        li {
+            flex: none;
+            width: 100%;
+        }
+        
+        label {
+            overflow: hidden;
+            white-space: normal;
+        }
     }
 }
 
