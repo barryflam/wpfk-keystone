@@ -42,6 +42,14 @@ article[role='main'] {
   width: 100%;
   margin: 0 auto; }
 
+.alert ul, .alert li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.alert.alert-danger li {
+  color: red; }
+
 .container {
   max-width: 820px;
   margin: 20px auto;
@@ -331,6 +339,9 @@ fieldset {
     .wpfk--form__your-details .wpfk--form-agree li {
       flex: none;
       width: 100%; }
+      @media (max-width: 800px) {
+        .wpfk--form__your-details .wpfk--form-agree li {
+          text-align: right; } }
     .wpfk--form__your-details .wpfk--form-agree label {
       overflow: hidden;
       white-space: normal; }

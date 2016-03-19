@@ -82,6 +82,18 @@ article[role='main'] {
     margin: 0 auto;
 }
 
+.alert {
+    ul, li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    &.alert-danger li {
+        color: red;
+    }
+}
+
 .container {
     max-width: $max-content-width;
     margin: 20px auto;
@@ -469,6 +481,10 @@ fieldset {
         li {
             flex: none;
             width: 100%;
+                        
+            @media (max-width: $tablet-breakpoint) {
+                text-align: right;
+            }
         }
         
         label {
