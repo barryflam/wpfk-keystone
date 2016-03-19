@@ -202,29 +202,24 @@ fieldset {
         display: none;
         box-sizing: border-box;
         width: 100%;
+        list-style: none;
 
-        p {
+        li {
             margin: 0;
-            padding: 0;
+            padding: 15px 20px;
             background: #f5f5f5;
             border-color: #ddd;
             border-style: solid;
             border-width: 0 1px 0 1px;
+            color: #666;
+            display: block;
+            cursor: pointer;
 
-            a {
-                color: #666;
-                text-decoration: none;
-                display: block;
-                padding: 15px 20px;
-                margin: 0;
-            }
-
-            &:hover {
+            &:hover,
+            &:focus {
                 background: $brand-purple;
-
-                a {
-                    color: #fff;
-                }
+                color: #fff;
+                outline: none;
             }
 
             &:first-child {
@@ -236,10 +231,6 @@ fieldset {
                 border-radius: 0 0 5px 5px;
                 border-bottom-width: 1px;
             }
-        }
-
-        a {
-
         }
     }
 }

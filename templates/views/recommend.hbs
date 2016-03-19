@@ -9,14 +9,14 @@
 </section>
 {{else}}
 <section class="wpfk--form-intro">
-    <h1>Recommend your Wiki Place</h1>
-    <p>Please complete as much as you can of the form below and with every new venue added you get yourself an entry into the April prize draw, for £150 to treat yourself to exactly what you like!</p>
+    <h1 tabindex="1">Recommend your Wiki Place</h1>
+    <p tabindex="2">Please complete as much as you can of the form below and with every new venue added you get yourself an entry into the April prize draw, for £150 to treat yourself to exactly what you like!</p>
 </section>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
-    <h2>Venue information</h2>
+    <h2 tabindex="3">Venue information</h2>
     <section class="venueSearch">
-        <input aria-label="Venue name" autocomplete="off" placeholder="What's your Wiki Place called?" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
-        <div id="places-results" class="venueResults"></div>
+        <input tabindex="4" list="places-results" aria-label="Venue name" autocomplete="off" placeholder="What's your Wiki Place called?" id="venueName" type="text" name="venueName" value="{{formData.venueName}}" />
+        <ul id="places-results" class="venueResults"></ul>
     </section>
     <section class="wpfk--form__description">
         <textarea aria-label="What's brilliant about this place?" name="description" placeholder="What's brilliant about this place?" rows="4">{{formData.description}}</textarea>
@@ -44,11 +44,11 @@
         <h3>Your rating out of 5</h3>
         <div class="wpfk--form__rating-container">
             <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
-            <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label> 
+            <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label>
             <input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label>
             <input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label>
             <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
-        </div> 
+        </div>
     </section>
     <section>
         <h3>If booking required?</h3>
@@ -64,7 +64,7 @@
             <li><input type="checkbox" name="services.wheelAccessible" id="serviceswheelAccessible" {{#if formData.services.wheelAccessible}}checked="checked"{{/if}} /> <label for="serviceswheelAccessible">Pram/wheelchair accessible</label></li>
             <li><input type="checkbox" name="services.suitableForMany" id="servicessuitableForMany" {{#if formData.services.suitableForMany}}checked="checked"{{/if}} /> <label for="servicessuitableForMany">Suitable for twins/multiples</label></li>
             <li><input type="checkbox" name="services.doublePramFriendly" id="servicesdoublePramFriendly" {{#if formData.services.doublePramFriendly}}checked="checked"{{/if}} /> <label for="servicesdoublePramFriendly">Double pram friendly</label></li>
-            <li><input type="checkbox" name="services.goodFood" id="servicesgoodFood" {{#if formData.services.goodFood}}checked="checked"{{/if}} /> <label for="servicesgoodFood">Good food for parents</label></li>            
+            <li><input type="checkbox" name="services.goodFood" id="servicesgoodFood" {{#if formData.services.goodFood}}checked="checked"{{/if}} /> <label for="servicesgoodFood">Good food for parents</label></li>
         </ul>
     </section>
     <section class="wpfk--form__description wpfk--form-collapse {{#if formData.address.expanded}}wpfk--form-collapse--expanded{{/if}}">
@@ -78,7 +78,7 @@
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>Do you know the prices?</h3>
         <ul class="wpfk--form__prices-container wpfk--form-collapse--more">
-            <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li> 
+            <li><label for="pricesadult">Adult</label> <input type="number" name="prices.adult" id="pricesadult" value="{{formData.prices.adult}}" placeholder="0" /></li>
             <li><label for="priceschild">Child</label> <input type="number" name="prices.child" id="priceschild" value="{{formData.prices.child}}" placeholder="0" /></li>
             <li><label for="pricesinfant">Infant</label> <input type="number" name="prices.infant" id="pricesinfant" value="{{formData.prices.infant}}" placeholder="0" /></li>
             <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.prices.otherDescription}}" /></li>
@@ -169,8 +169,8 @@
             <input type="email" name="user.email" id="useremail" value="{{formData.user.email}}" placeholder="Your email address" aria-label="Your email address" />
             <section class="wpfk--form-input--child">
                 <input type="text" name="user.childName" id="userchildName" value="{{formData.user.childName}}" placeholder="Childrens names" aria-label="Childrens names" />
-                <input type="text" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" placeholder="Childrens ages" aria-label="Childrens ages" />
-            </section>  
+                <input type="text" name="user.childAge" id="userchildAge" value="{{formData.user.childAge}}" placeholder="Childrens ages (e.g. 7 &amp; 8)" aria-label="Childrens ages (e.g. 7 &amp; 8)" />
+            </section>
         </section>
         <section class="wpfk--form-agree">
             <ul class="wpfk--form__checkbox-container">
@@ -187,7 +187,7 @@
 <script type="text/javascript">
     document.body.classList.add('js-enabled');
     var collapsibles = document.querySelectorAll('.wpfk--form-collapse h3');
-    
+
     for(var i = 0, len = collapsibles.length; i < len; i++) {
         collapsibles[i].addEventListener("click", function(e) {
             e.preventDefault();
@@ -199,78 +199,114 @@
     var ukBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(49.383639452689664, -17.39866406249996),
         new google.maps.LatLng(59.53530451232491, 8.968523437500039));
-    
+
     var venueSearchElement = document.getElementById("venueName");
-    
+
     var service = new google.maps.places.PlacesService(venueSearchElement);
-    
+
     var out = document.getElementById("places-results");
     var venueAddress = document.getElementById("venueAddress");
     var venueWebsite = document.getElementById("venueWebsite");
     var venueTelephone = document.getElementById("venueTelephone");
-    
+
     var openOnDayRegex = /([^:]*): (.*)/;
     var openingHoursRegex = /(.*) – (.*)/;
     var isOpenSelectorPattern = "input[name='openingHours.[[day]].isOpen']";
     var openFromSelectorPattern = "input[name='openingHours.[[day]].open.from']";
-    var openToSelectorPattern = "input[name='openingHours.[[day]].open.to']"; 
-    
-    venueSearchElement.addEventListener("keyup", function() {
-        var val = venueSearchElement.value;
-        out.style.display = "none";
-        if(val.length >= 3) {
-            service.textSearch({query: val, bounds: ukBounds}, function(data, status) {  
-                out.innerHTML = "";
-                data.slice(0,5).forEach(function(place) {
-                    out.style.display = "block";
-                    var pEl = document.createElement("p");
-                    var linkEl = document.createElement("a");
-                    linkEl.href = "#";
-                    linkEl.innerHTML = place.name + " <small>(" + place.formatted_address + ")</small>";
-                    linkEl.addEventListener("click", function(e) {
-                        e.preventDefault();
-                        venueSearchElement.value = place.name;
-                        service.getDetails({placeId: place.place_id}, function(place, status) {
-                            console.log(place);
-                            out.style.display = "none"; 
-                            
-                            if (place.address_components && place.address_components.length > 0) {
-                                venueAddress.value = "";
-                                
-                                var addressComponents = place.address_components;
-                                
-                                for(var i = 0, len = addressComponents.length; i < len; i++) {
-                                    venueAddress.value += addressComponents[i].long_name + (i != (len - 1) ? "\n" : "");
-                                }   
-                            }
-                            
-                            venueWebsite.value = place.website ? place.website : "";
-                            venueTelephone.value = place.formatted_phone_number ? place.formatted_phone_number : "";
-                            
-                            place.opening_hours.weekday_text.forEach(function(dayOpening) {
-                                var dayInfo = openOnDayRegex.exec(dayOpening);
-                                var dayName = dayInfo[1];
-                                var isOpenOnDay = (dayInfo[2] != "Closed");
-                                
-                                var openingHours = openingHoursRegex.exec(dayInfo[2]);
-                                var openFrom = openingHours ? openingHours[1] : "";
-                                var openTo = openingHours ? openingHours[2] : "";
-                                
-                                var isOpenSelector = isOpenSelectorPattern.replace("[[day]]", dayName.toLowerCase());
-                                var openFromSelector = openFromSelectorPattern.replace("[[day]]", dayName.toLowerCase());
-                                var openToSelector = openToSelectorPattern.replace("[[day]]", dayName.toLowerCase());
-                                
-                                document.querySelector(isOpenSelector).checked = isOpenOnDay;
-                                document.querySelector(openFromSelector).value = openFrom;
-                                document.querySelector(openToSelector).value = openTo;
-                            });
-                        });
-                    });
-                    pEl.appendChild(linkEl);
-                    out.appendChild(pEl);
-                });
+    var openToSelectorPattern = "input[name='openingHours.[[day]].open.to']";
+
+    function getVenueDetails(place) {
+        venueSearchElement.value = place.name;
+        service.getDetails({placeId: place.place_id}, function(place, status) {
+            console.log(place);
+            out.style.display = "none";
+
+            if (place.address_components && place.address_components.length > 0) {
+                venueAddress.value = "";
+
+                var addressComponents = place.address_components;
+
+                for(var i = 0, len = addressComponents.length; i < len; i++) {
+                    venueAddress.value += addressComponents[i].long_name + (i != (len - 1) ? "\n" : "");
+                }
+            }
+
+            venueWebsite.value = place.website ? place.website : "";
+            venueTelephone.value = place.formatted_phone_number ? place.formatted_phone_number : "";
+
+            place.opening_hours.weekday_text.forEach(function(dayOpening) {
+                var dayInfo = openOnDayRegex.exec(dayOpening);
+                var dayName = dayInfo[1];
+                var isOpenOnDay = (dayInfo[2] != "Closed");
+
+                var openingHours = openingHoursRegex.exec(dayInfo[2]);
+                var openFrom = openingHours ? openingHours[1] : "";
+                var openTo = openingHours ? openingHours[2] : "";
+
+                var isOpenSelector = isOpenSelectorPattern.replace("[[day]]", dayName.toLowerCase());
+                var openFromSelector = openFromSelectorPattern.replace("[[day]]", dayName.toLowerCase());
+                var openToSelector = openToSelectorPattern.replace("[[day]]", dayName.toLowerCase());
+
+                document.querySelector(isOpenSelector).checked = isOpenOnDay;
+                document.querySelector(openFromSelector).value = openFrom;
+                document.querySelector(openToSelector).value = openTo;
             });
-        } 
+        });
+    }
+
+    function clearSuggestions() {
+        out.innerHTML = "";
+        out.style.display = "none";
+    }
+
+    function showSuggestions() {
+        clearSuggestions();
+        var val = venueSearchElement.value;
+        if(val.length >= 3) {
+            service.textSearch({query: val, bounds: ukBounds}, function(data, status) {
+                clearSuggestions();
+                out.style.display = "block";
+                for(var i = 0, len = data.length; i < len; i++)
+                {
+                    var place = data[i];
+                    var liEl = document.createElement("li");
+                    liEl.setAttribute("role", "button");
+                    liEl.innerHTML = place.name + " <small>(" + place.formatted_address + ")</small>";
+                    liEl.tabIndex = 5 + i;
+                    (function(p) {
+                        liEl.addEventListener("click", function () {
+                            getVenueDetails(p);
+                        });
+                        liEl.addEventListener("keydown", function(e) { // Trigger the click event from the keyboard
+                            var code = window.event ? e.keyCode : e.which;
+                            if ((code === 13) || (code === 32)) {
+                                getVenueDetails(p);
+                            }
+                        });
+                        liEl.addEventListener("blur", function () {
+                            suggestionsVisible();
+                        });
+                    })(place);
+                    out.appendChild(liEl);
+                }
+            });
+        }
+    }
+    
+    function suggestionsVisible() {
+        window.setTimeout(function() {
+            if(document.activeElement !== venueSearchElement && document.activeElement.parentNode !== out) {
+                clearSuggestions();
+            }
+        }, 200);
+    }
+    
+    venueSearchElement.addEventListener("blur", function () {
+        suggestionsVisible();
+    });
+
+    venueSearchElement.addEventListener("keyup", function() {
+        showSuggestions();
     });
 </script>
 {{/if}}

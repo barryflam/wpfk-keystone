@@ -140,28 +140,26 @@ fieldset {
     font-size: 1em;
     display: none;
     box-sizing: border-box;
-    width: 100%; }
-    .venueSearch .venueResults p {
+    width: 100%;
+    list-style: none; }
+    .venueSearch .venueResults li {
       margin: 0;
-      padding: 0;
+      padding: 15px 20px;
       background: #f5f5f5;
       border-color: #ddd;
       border-style: solid;
-      border-width: 0 1px 0 1px; }
-      .venueSearch .venueResults p a {
-        color: #666;
-        text-decoration: none;
-        display: block;
-        padding: 15px 20px;
-        margin: 0; }
-      .venueSearch .venueResults p:hover {
-        background: #c63e8a; }
-        .venueSearch .venueResults p:hover a {
-          color: #fff; }
-      .venueSearch .venueResults p:first-child {
+      border-width: 0 1px 0 1px;
+      color: #666;
+      display: block;
+      cursor: pointer; }
+      .venueSearch .venueResults li:hover, .venueSearch .venueResults li:focus {
+        background: #c63e8a;
+        color: #fff;
+        outline: none; }
+      .venueSearch .venueResults li:first-child {
         border-radius: 5px 5px 0 0;
         border-top-width: 1px; }
-      .venueSearch .venueResults p:last-child {
+      .venueSearch .venueResults li:last-child {
         border-radius: 0 0 5px 5px;
         border-bottom-width: 1px; }
 
