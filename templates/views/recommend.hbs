@@ -87,6 +87,7 @@
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>What age of child does it suit?</h3>
         <ul class="wpfk--form__checkbox-container wpfk--form-collapse--more">
+            <li><input type="checkbox" name="suitableForAges.all" id="suitableForAgesAll" {{#if formData.suitableForAges.all}}checked="checked"{{/if}} /> <label for="suitableForAgesAll">All</label></li>
             <li><input type="checkbox" name="suitableForAges.to6M" id="suitableForAgesto6M" {{#if formData.suitableForAges.to6M}}checked="checked"{{/if}} /> <label for="suitableForAgesto6M">0 - 6 months</label></li>
             <li><input type="checkbox" name="suitableForAges.from6Mto1Y" id="suitableForAgesfrom6Mto1Y" {{#if formData.suitableForAges.from6Mto1Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom6Mto1Y">6 months - 1 year</li>
             <li><input type="checkbox" name="suitableForAges.from1Yto2Y" id="suitableForAgesfrom1Yto2Y" {{#if formData.suitableForAges.from1Yto2Y}}checked="checked"{{/if}} /> <label for="suitableForAgesfrom1Yto2Y">1 - 2 years</li>
@@ -214,6 +215,8 @@
     var isOpenSelectorPattern = "input[name='openingHours.[[day]].isOpen']";
     var openFromSelectorPattern = "input[name='openingHours.[[day]].open.from']";
     var openToSelectorPattern = "input[name='openingHours.[[day]].open.to']";
+    
+    var allAgesCheckbox = document.getElementById('suitableForAgesAll');
 
     function getVenueDetails(place) {
         venueSearchElement.value = place.name;
@@ -252,6 +255,18 @@
                 document.querySelector(openToSelector).value = openTo;
             });
         });
+    }
+    
+    function suitableForAll(e) {
+        var allCheckbox = e.target;
+        var checkboxes = allCheckbox.parentNode.parentNode.getElementsByTagName('input');
+        
+        for(var i = 0, len = checkboxes.length; i < len; i++) {
+            var el = checkboxes[i];
+            if(el.id !== "suitableForAll") {
+                el.checked = allCheckbox.checked;
+            }
+        }
     }
 
     function clearSuggestions() {
@@ -308,5 +323,7 @@
     venueSearchElement.addEventListener("keyup", function() {
         showSuggestions();
     });
+    
+    allAgesCheckbox.addEventListener("change", suitableForAll);
 </script>
 {{/if}}
