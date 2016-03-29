@@ -10,13 +10,21 @@ exports = module.exports = function(req, res) {
 	locals.section = 'recommend';
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
-	locals.enquirySubmitted = false;
+	locals.enquirySubmitted = false; 
+    
+    // Read user data from session
+    if(req.session.user)
+    {
+        locals.formData["user.yourName"] = req.session.user.yourName ? req.session.user.yourName : "";
+        locals.formData["user.email"] = req.session.user.email ? req.session.user.email : "";
+        locals.formData["user.childName"] = req.session.user.childName ? req.session.user.childName : "";
+        locals.formData["user.childAge"] = req.session.user.childAge ? req.session.user.childAge : "";   
+    } 
 	
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'recommend' }, function(next) {
+        locals.formData = req.body || {};
         
-        console.log(req);
-		
 		var newVenue = new Venue.model(),
 			updater = newVenue.getUpdateHandler(req);
 		
@@ -63,7 +71,8 @@ exports = module.exports = function(req, res) {
                 'services.wheelAccessible',
                 'services.suitableForMany',
                 'services.doublePramFriendly',  
-                'services.goodFood',                                              
+                'services.goodFood',   
+                'services.kidsParties',                                           
                 'prices.adult',
                 'prices.child',
                 'prices.infant',
@@ -98,9 +107,16 @@ exports = module.exports = function(req, res) {
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
 		}, function(err) {
+            console.log(locals.formData["user.yourName"]);
+            
 			if (err) {
 				locals.validationErrors = err.errors;
 			} else {
+                req.session.user = {};
+                req.session.user.yourName = locals.formData["user.yourName"];
+                req.session.user.email = locals.formData["user.email"];
+                req.session.user.childName = locals.formData["user.childName"];
+                req.session.user.childAge = locals.formData["user.childAge"];
 				locals.venueSubmitted = true;
 			}
 			next();

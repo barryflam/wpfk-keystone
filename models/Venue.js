@@ -60,7 +60,8 @@ Venue.add({
         wheelAccessible: { type: Boolean, label: 'Pram/Wheelchair accessible?' },
         suitableForMany: { type: Boolean, label: 'Suitable for twins/multiples?' },
         doublePramFriendly: { type: Boolean, label: 'Double pram friendly?' },
-        goodFood: { type: Boolean, label: 'Good food for parents?' }
+        goodFood: { type: Boolean, label: 'Good food for parents?' },
+        kidsParties: { type: Boolean, label: 'Available for kids parties?' }        
     },
     prices: {
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
