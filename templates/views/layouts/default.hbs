@@ -13,39 +13,38 @@
 		{{{isAdminEditorCSS user}}}
 	</head>
 	<body>
-        <div class="container">
-            <header role="banner">
-                <img src="/images/logo.svg" width="180">
-            </header>
-            <article role="main">
-                {{#if messages}}
-                <div id="flash-messages" class="container">
-                    {{#if messages.info}}
-                    <div class="alert alert-info">
-                            {{{flashMessages messages.info}}}
-                    </div>
-                    {{/if}}
-                    {{#if messages.success}}
-                    <div class="alert alert-success">
-                            {{{flashMessages messages.success}}}
-                    </div>
-                    {{/if}}
-                    {{#if messages.warning}}
-                    <div class="alert alert-warning">
-                            {{{flashMessages messages.warning}}}
-                    </div>
-                    {{/if}}
-                    {{#if messages.error}}
-                    <div class="alert alert-danger">
-                            {{{flashMessages messages.error}}}
-                    </div>
-                    {{/if}}
+        <header class="wpfk--site-header" role="banner">
+            <a class="wpfk--recommend-link" href="/recommend">Suggest a Wiki Place</a>
+            <img src="/images/logo.png" width="171">
+        </header>
+        <article role="main">
+            {{#if messages}}
+            <div id="flash-messages" class="wpfk--messages">
+                {{#if messages.info}}
+                <div class="alert alert-info">
+                        {{{flashMessages messages.info}}}
                 </div>
                 {{/if}}
-                <!-- The content block should contain the body of your template's content-->
-                {{{body}}}
-            </article>
-        </div>
+                {{#if messages.success}}
+                <div class="alert alert-success">
+                        {{{flashMessages messages.success}}}
+                </div>
+                {{/if}}
+                {{#if messages.warning}}
+                <div class="alert alert-warning">
+                        {{{flashMessages messages.warning}}}
+                </div>
+                {{/if}}
+                {{#if messages.error}}
+                <div class="alert alert-danger">
+                        {{{flashMessages messages.error}}}
+                </div>
+                {{/if}}
+            </div>
+            {{/if}}
+            <!-- The content block should contain the body of your template's content-->
+            {{{body}}}
+        </article>
 		{{{isAdminEditorJS user}}}
 	</body>
 </html>

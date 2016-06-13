@@ -1,11 +1,13 @@
-$brand-purple: #c63e8a;
+$brand-purple: #e53cad;
 $brand-orange: #e29f00;
 $brand-light-blue: #008dcd;
 $brand-dark-blue: #002655;
-$brand-turqoise: #009b95;
+$brand-turqoise: #2eaaa5;
+$brand-grey: #454545;
 
 $page-background-color: #f5f5f5;
 $content-background-color: #fff;
+$content-foreground-color: #000;
 
 $max-page-width: 1200px;
 $max-content-width: 820px;
@@ -17,7 +19,10 @@ $base-font-size-px: 16;
 $heading-font-size-px: 36;
 
 $subheading-font-size-px: 24;
-$subheading-font-colour: #454545;
+$subheading-font-colour: $brand-grey;
+
+$nav-link-colour: $brand-grey;
+$nav-link-underline: $brand-purple;
 
 $tablet-breakpoint: 800px;
 
@@ -44,6 +49,12 @@ $tablet-breakpoint: 800px;
     src:
         url('/fonts/fabfeltscript-bold.woff2') format('woff2'),
         url('/fonts/fabfeltscript-bold.woff') format('woff')
+}
+
+@font-face {
+    font-family: PacificoRegular;
+    src:
+        url('/fonts/Pacifico.ttf') format('truetype');
 }
 
 html, body {
@@ -88,20 +99,61 @@ article[role='main'] {
         padding: 0;
         list-style: none;
     }
-    
+
     &.alert-danger li {
         color: red;
     }
 }
 
-.container {
+%container {
     max-width: $max-content-width;
-    margin: 20px auto;
+    margin: 0 auto;
     text-align: center;
     width: 100%;
 }
 
+.wpfk--recommend-link {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+    font-size: em-calc(14);
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.2em;
+    background: $brand-purple;
+    border: 1px solid $brand-purple;
+    border-radius: 2px;
+    padding: 1% 2%;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: #fff;
+        color: $brand-purple;
+        transition: 0.2s background;
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+        position: static;
+        display: block;
+        margin-top: -20px;
+        border-radius: 0;
+    } 
+}
+
+.wpfk--site-header {
+    @extend %container;
+    margin-top: 20px;
+}
+
+.wpfk--messages {
+    @extend %container;
+}
+
 .wpfk--content-box {
+    @extend %container;
     background: $content-background-color;
     padding: 15px 40px;
     box-shadow: 0 20px 50px 0 rgba(0, 0, 0, 0.2);
@@ -126,7 +178,7 @@ h2 {
 p {
     font-family: LatoRegular, Helvetica, Arial, sans-serif;
     font-size: em-calc(16);
-    color: #999;
+    color: $content-foreground-color;
 }
 
 textarea,
@@ -164,10 +216,242 @@ fieldset {
     display: block;
 }
 
-.wpfk--form-intro {
-    max-width: 580px;
+.wpfk--site-nav {
+    @extend %container;
+    font-family: LatoBold, Helvetica, Arial, Sans-Serif;
+    font-size: em-calc(16px);
+
+    ul {
+        position: relative;
+        display: block;
+        width: 100%;
+        list-style: none;
+        margin: 0 0 20px 0;
+        padding: 0;
+        top: -20px;
+
+        @media (max-width: $tablet-breakpoint) {
+            top: 0;
+        }
+    }
+
+    li {
+        width: 40%;
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+
+        &:first-child,
+        &:last-child {
+            width: 5%;
+
+            @media (max-width: $tablet-breakpoint) {
+                width: auto;
+            }
+        }
+
+        @media (max-width: $tablet-breakpoint) {
+            width: auto;
+            padding: 0 3%;
+        }
+    }
+
+    a {
+        color: $nav-link-colour;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding-bottom: 5px;
+        letter-spacing: 0.2em;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border-bottom: 2px solid $nav-link-underline;
+        }
+    }
+}
+
+.wpfk--hero-image {
+    width: 100%;
     margin: 0 auto;
+}
+
+.wpfk--form-intro {
+    @extend %container;
+    max-width: 580px;
     padding: 0 10%;
+}
+
+.wpfk--site-description {
+    @extend %container;
+    max-width: 780px;
+
+    p {
+        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        font-size: em-calc(20);
+        line-height: em-calc(36);
+    }
+}
+
+.wpfk--discover-box {
+    @extend %container;
+    max-width: 100%;
+    margin: 5% 0;
+
+    h1 {
+        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        font-size: em-calc(32);
+        color: $content-foreground-color;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+    }
+
+    .wpfk--discover-image-boxes {
+        display: block;
+        width: 100%;
+        padding: 5% 0;
+    }
+}
+
+.wpfk--overlayed-image {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+    height: 25%;
+    margin: 0 2%;
+    padding: 0;
+
+    @media (max-width: $tablet-breakpoint) {
+        display: block;
+        margin: 2% auto;
+        width: 80%;
+        height: 80%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+
+    a {
+        display: block;
+        position: absolute;
+        padding-top: 35%;
+        box-sizing: border-box;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        font-family: PacificoRegular, Arial, Helvetica, sans-serif;
+        font-size: em-calc(42);
+        color: $content-background-color;
+        text-align: center;
+        text-decoration: none;
+        
+        &:hover,
+        &:focus,
+        &:active {
+            background: rgba($brand-turqoise, 0.8);
+            transition: 0.2s background;
+        }
+    }
+}
+
+.wpfk--button-link {
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+    font-size: em-calc(14);
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $brand-turqoise;
+    letter-spacing: 0.2em;
+    border: 1px solid $brand-turqoise;
+    border-radius: 2px;
+    padding: 1% 2%;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background: $brand-turqoise;
+        color: #fff;
+        transition: 0.2s background;
+    }
+}
+
+.wpfk--footer {
+    background: $brand-turqoise;
+
+
+    .wpfk--footer-container {
+        @extend %container;
+        max-width: 1200px;
+        padding: 5% 0;
+    
+        img {
+            display: inline-block;
+        }
+
+        section {
+            display: inline-block;
+            width: 25%;
+            vertical-align: top;
+            padding: 0 0 0 10%;
+
+            @media (max-width: $tablet-breakpoint) {
+                display: block;
+                width: 80%;
+            }
+
+            h1 {
+                font-family: LatoBold, Arial, Helvetica, sans-serif;
+                font-size: em-calc(14);
+                text-transform: uppercase;
+                letter-spacing: 0.2em;
+                color: #fff;
+                text-align: left;
+            }
+
+            p, li, a {
+                font-family: LatoRegular, Arial, Helvetica, sans-serif;
+                font-size: em-calc(14);
+                color: rgba(#fff, 0.7);
+                text-align: left;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                text-align: left;
+
+                a {
+                    text-decoration: none;
+                }
+            }
+
+            input[type='email'] {
+                width: 70%;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                display: inline-block;
+            }
+
+            input[type='submit'] {
+                width: 30%;
+                box-sizing: border-box;
+                background: #f5f5f5;
+                border-radius: 5px;
+                border: 1px solid #ddd;
+                padding: 15px 20px;
+                margin: 1% 0;
+                font-family: LatoRegular, Helvetica, Arial, sans-serif;
+                font-size: em-calc(16);
+                display: inline-block;
+                box-sizing: border-box;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
 }
 
 .wpfk--form-thank-you {
@@ -185,7 +469,7 @@ fieldset {
         background: #f5f5f5 url(/images/powered_by_google_on_white_hdpi.png) no-repeat 97% 50%;
         background-size: 144px 18px;
         outline: none;
-        
+
         @media (max-width: $tablet-breakpoint) {
             padding-bottom: 10%;
             background-position: 97% 80%;
@@ -249,7 +533,7 @@ fieldset {
         flex: 0 0 33%;
         min-width: 33%;
         list-style: none;
-        
+
         @media (max-width: $tablet-breakpoint) {
             flex: 0 0 100%;
         }
@@ -368,7 +652,7 @@ fieldset {
 .wpfk--form__opening-container {
     margin: 0;
     padding: 0;
-    
+
     .wpfk--form__opening-day-container {
         display: flex;
         flex-wrap: wrap;
@@ -378,7 +662,7 @@ fieldset {
 
         li {
             flex: 0 0 20%;
-            
+
             @media (max-width: $tablet-breakpoint) {
                 flex: 0 0 30%
             }
@@ -390,7 +674,7 @@ fieldset {
         margin: 15px 5%;
         padding: 0;
         list-style: none;
-        
+
         @media (max-width: $tablet-breakpoint) {
             margin: 15px 1%;
         }
@@ -404,7 +688,7 @@ fieldset {
             cursor: pointer;
             color: #999;
             white-space: nowrap;
-            
+
             @media (max-width: $tablet-breakpoint) {
                 white-space: normal;
             }
@@ -428,7 +712,7 @@ fieldset {
             padding: 0;
             margin: 0 15px 0 0;
             box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24);
-            
+
             @media (max-width: $tablet-breakpoint) {
                 display: block;
             }
@@ -480,16 +764,16 @@ fieldset {
     .wpfk--form-agree {
         margin: 0 auto;
         max-width: 480px;
-        
+
         li {
             flex: none;
             width: 100%;
-                        
+
             @media (max-width: $tablet-breakpoint) {
                 text-align: right;
             }
         }
-        
+
         label {
             overflow: hidden;
             white-space: normal;
