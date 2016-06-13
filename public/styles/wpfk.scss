@@ -112,6 +112,10 @@ article[role='main'] {
     width: 100%;
 }
 
+.wpfk--coming-soon {
+    @extend %container;
+}
+
 .wpfk--recommend-link {
     position: absolute;
     top: 5%;
