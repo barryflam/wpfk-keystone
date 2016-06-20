@@ -131,6 +131,39 @@ Venue.add({
     },
     addedOn: { type: Date, default: Date.now }
 });
+
+Venue.schema.virtual('openToday').get(function () {
+    const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+    const todayIndex = new Date().getDay();
+    const today = days[todayIndex];
+
+    if (this.openingHours[today].isOpen) {
+        return {
+            from: ("0000" + this.openingHours[today].open.from).substr(-4,4),
+            to: ("0000" + this.openingHours[today].open.to).substr(-4,4) 
+        };
+    }   
+
+    return false;
+});
+
+Venue.schema.virtual('costsMoney').get(function() {
+    return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
+});
+
+Venue.schema.virtual('facilities').get(function() {
+    return Object.keys(this.services).filter(function (value) {
+        return typeof this[value] === "boolean";
+    }, this.services);
+});
+
+Venue.schema.virtual('opens').get(function() {
+    return Object.keys(this.openingHours).filter(function (value) {
+        return typeof this[value].isOpen === "boolean";
+    }, this.openingHours).map(function (value) {
+        return value + ": " + ("0000" + this[value].open.from).substr(-4,4) + " - " + ("0000" + this[value].open.to).substr(-4,4);
+    }, this.openingHours);
+});
  
 Venue.defaultColumns = 'name, type, state|20%, publishedAt|15%'
 Venue.register();

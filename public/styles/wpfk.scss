@@ -9,6 +9,8 @@ $page-background-color: #f5f5f5;
 $content-background-color: #fff;
 $content-foreground-color: #000;
 
+$border-grey: #ddd;
+
 $max-page-width: 1200px;
 $max-content-width: 820px;
 $grids: 12;
@@ -25,6 +27,36 @@ $nav-link-colour: $brand-grey;
 $nav-link-underline: $brand-purple;
 
 $tablet-breakpoint: 800px;
+
+%wide-container {
+    max-width: $max-page-width;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+}
+
+%container {
+    max-width: $max-content-width;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+}
+
+%flex-container {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;      
+
+    @media (max-width: $tablet-breakpoint) {
+        display: block;
+    }
+}
+
+@mixin flex($flexy) {
+    -webkit-flex: $flexy;
+    -ms-flex: $flexy;
+    flex: $flexy;
+}
 
 @function em-calc($pixel-size, $base: $base-font-size-px) {
     @return #{$pixel-size/$base}em;
@@ -105,13 +137,6 @@ article[role='main'] {
     }
 }
 
-%container {
-    max-width: $max-content-width;
-    margin: 0 auto;
-    text-align: center;
-    width: 100%;
-}
-
 .wpfk--coming-soon {
     @extend %container;
 }
@@ -144,7 +169,7 @@ article[role='main'] {
         display: block;
         margin-top: -20px;
         border-radius: 0;
-    } 
+    }
 }
 
 .wpfk--site-header {
@@ -164,12 +189,16 @@ article[role='main'] {
     text-align: left;
 }
 
+.wpfk--wide-container {
+    @extend %wide-container;
+}
+
 h1 {
     font-family: LatoBold, Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-size: em-calc($heading-font-size-px);
     color: $brand-turqoise;
-    margin: 1%;
+    margin: 1% 0;
 }
 
 h2 {
@@ -351,7 +380,7 @@ fieldset {
         color: $content-background-color;
         text-align: center;
         text-decoration: none;
-        
+
         &:hover,
         &:focus,
         &:active {
@@ -389,7 +418,7 @@ fieldset {
         @extend %container;
         max-width: 1200px;
         padding: 5% 0;
-    
+
         img {
             display: inline-block;
         }
@@ -845,6 +874,275 @@ a.wpfk--form__submit-button {
             .wpfk--form-collapse--more {
                 max-height: 1000px;
             }
+        }
+    }
+}
+
+.wpfk--custom-select {
+	border: 1px solid $border-grey;
+	border-radius: .3em;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	background: #f3f3f3; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+    font-size: em-calc(16);
+
+    & select {
+        font-family: LatoBold, Arial, Helvetica, sans-serif;
+        font-size: em-calc(16);
+    }
+
+    &:after {
+        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        font-size: em-calc(16);
+        content: ">" !important;
+        transform: scale(1.5,1) rotate(90deg);
+        color: $brand-purple;
+        margin: -8px -5px 0 0;
+        /*width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-top: 7px solid $brand-purple;
+        margin-top: -3px;*/
+    }
+    &:hover {
+        border-color: #888;
+    }
+
+    & select:focus {
+        outline: none;
+        box-shadow: 0 0 1px 3px rgba(180,222,250, 1);
+        color: #222; /* Match-02 focus color */
+    }
+}
+
+.wpfk--search-header {
+    background: $brand-turqoise;
+    min-height: 80px;
+    width: 100%;
+    padding: 50px 0 0 0;
+
+    @media (max-width: $tablet-breakpoint) {
+        padding: 2% 0;
+        min-height: 0;
+    }
+
+    h1 {
+        padding: 0 2%;
+        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: em-calc(32);
+        color: #fff;
+    }
+
+    .wpfk--custom-select {
+        width: 180px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        @media (max-width: $tablet-breakpoint) {
+            position: relative;
+            width: 96%;
+            margin: 2%;
+        }
+    }
+}
+
+.wpfk--search {
+    @extend %wide-container;
+    @extend %flex-container;
+}
+
+.wpfk--search-filters {    
+    @include flex(1 0 25%);
+    background: #fff;
+    padding: 2%;
+    box-sizing: border-box;
+
+    @media (max-width: $tablet-breakpoint) {
+        display: block;
+        width: 96%;
+        margin: 0 2%;
+    }
+
+    h1 {
+        font-family: LatoBold, Arial, Helvetica, sans-serif;
+        font-size: em-calc(20);
+        color: $brand-grey;
+    }
+
+    h2 {
+        font-family: LatoBold, Arial, Helvetica, sans-serif;
+        font-size: em-calc(14);
+        color: $brand-grey;
+    }
+}
+
+.wpfk--search-results {
+    @include flex(3 0 73%);
+    position: relative;
+    margin-left: 2%;
+    box-sizing: border-box;
+
+    @media (max-width: $tablet-breakpoint) {
+        display: block;
+        width: 96%;
+    }
+
+    &--sort {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        .wpfk--custom-select {
+            display: inline-block;
+            vertical-align: middle;
+            background: none;
+        }
+    }
+
+
+    .wpfk--search-result {
+        background: #fff;
+        margin: 0 0 20px 0;
+        
+        &__image {
+            display: inline-block;
+            vertical-align: top;
+            width: 47%;
+
+            img {
+                display: block;
+                width: 100%;
+            }
+
+            p { 
+                background: $brand-turqoise;
+                padding: 20px;
+                color: #fff;
+                text-transform: uppercase;
+                margin: 0;
+            }
+        }
+
+        &__details {
+            display: inline-block;
+            vertical-align: top;
+            width: 48%;
+            padding: 2%;
+
+            h1 {
+                font-family: LatoRegular, Arial, Helvetica, sans-serif;
+                font-size: em-calc(24);
+                font-weight: normal;
+                color: $brand-grey;
+            }
+
+            .wpfk--search-result__opening-times {
+                font-family: LatoRegular, Arial, Helvetica, sans-serif;
+                font-size: em-calc(14);
+                color: $brand-turqoise;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.wpfk--venue-header {
+    @extend %wide-container;
+
+    h1 {
+        width: 100%;
+        height: 100%;
+        font-family: LatoBold, Arial, Helvetica, sans-serif;
+        font-size: em-calc(60);
+        color: #fff;
+        vertical-align: middle;
+        text-align: center;
+        position: absolute;
+        top: 30%;
+
+        @media (max-width: $tablet-breakpoint) {
+            font-size: em-calc(40);
+        }
+    }
+
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+
+.wpfk--venue-content {
+    @extend %container;
+    top: -93px;
+    position: relative;
+    background: #fff;
+    box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.14);
+    padding: 38px;
+    box-sizing: border-box;
+    text-align: left;
+
+    @media (max-width: $tablet-breakpoint) {
+        position: static;
+    }
+
+    h1 {
+        font-family: LatoBold, Arial, Helvetica, sans-serif;
+        font-size: em-calc(30);
+        font-weight: normal;
+        color: $brand-grey;
+    }
+
+    .wpfk--search-result__opening-times {
+        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        font-size: em-calc(14);
+        color: $brand-turqoise;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+    }
+
+    .wpfk--venue-section {
+        width: 100%;
+        margin: 5% 0;
+        padding: 5% 0;
+        border-top: 1px solid $border-grey; 
+
+        h1 {
+            font-family: LatoBold, Arial, Helvetica, sans-serif;
+            font-size: em-calc(22);
+            color: $brand-grey;
+            margin: 0;
+        }
+    }
+
+    .wpfk--venue-details-list {
+        width: 70%;
+        margin: 5% auto;
+        padding: 0;
+
+        dd, dt {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0 5%;
+            padding: 0;
+            font-family: LatoRegular, Arial, Helvetica, sans-serif;
+        }
+
+        dt {
+            font-weight: bold;
+            font-family: LatoBold, Arial, Helvetica, sans-serif;
         }
     }
 }

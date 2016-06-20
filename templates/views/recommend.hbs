@@ -180,6 +180,8 @@
         </section>
     </section>
     <section class="wpfk--form-actions">
+        <input type="hidden" id="venueLat" name="lat" value="">
+        <input type="hidden" id="venueLng" name="lng" value="">        
         <input type="hidden" name="action" value="recommend">
         <button type="submit" class="wpfk--form__submit-button">Submit your Wiki Place</button>
     </section>
@@ -209,6 +211,8 @@
     var venueAddress = document.getElementById("venueAddress");
     var venueWebsite = document.getElementById("venueWebsite");
     var venueTelephone = document.getElementById("venueTelephone");
+    var venueLat = document.getElementById('venueLat');
+    var venueLng = document.getElementById('venueLng');
 
     var openOnDayRegex = /([^:]*): (.*)/;
     var openingHoursRegex = /(.*) – (.*)/;
@@ -221,7 +225,6 @@
     function getVenueDetails(place) {
         venueSearchElement.value = place.name;
         service.getDetails({placeId: place.place_id}, function(place, status) {
-            console.log(place);
             out.style.display = "none";
 
             if (place.address_components && place.address_components.length > 0) {
@@ -236,6 +239,9 @@
 
             venueWebsite.value = place.website ? place.website : "";
             venueTelephone.value = place.formatted_phone_number ? place.formatted_phone_number : "";
+            
+            venueLat = place.geometry.location.lat;
+            venueLng = place.geometry.location.lng;
 
             place.opening_hours.weekday_text.forEach(function(dayOpening) {
                 var dayInfo = openOnDayRegex.exec(dayOpening);

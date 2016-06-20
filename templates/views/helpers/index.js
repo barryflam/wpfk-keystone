@@ -348,6 +348,14 @@ module.exports = function() {
 	_helpers.underscoreFormat = function (obj, underscoreMethod) {
 		return obj._[underscoreMethod].format();
 	}
+
+    _helpers.times = function(n, block) {
+        console.log(n);
+        var accum = '';
+        for(var i = 0; i < n; ++i)
+            accum += block.fn(i);
+        return accum;
+    }
 	
 	return _helpers;
 };

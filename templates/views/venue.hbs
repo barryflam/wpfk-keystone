@@ -1,0 +1,51 @@
+<nav class="wpfk--site-nav">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Search</a></li>
+    </ul>    
+</nav>
+<header class="wpfk--venue-header">
+    <img src="/images/sealife-large.jpg" width="1200" />
+    <h1>{{venue.venueName}}</h1>
+</header>
+<article class="wpfk--venue-content">
+    <h1>{{venue.venueName}}</h1>
+    <p class="wpfk--search-result__opening-times">{{#if venue.openToday}}Open today from {{venue.openToday.from}} until {{venue.openToday.to}}{{else}}Closed{{/if}}</p>
+    <p class="wpfk--search-rating">
+        {{#times venue.rating}}
+        <img src="/images/star-filled.svg" />
+        {{/times}}
+    </p>
+    {{{venue.description}}}
+    <section class="wpfk--venue-section">
+        <h1>Details</h1>
+        <dl class="wpfk--venue-details-list">
+            <dt>Address:</dt>
+            <dd style="white-space: pre-wrap">{{{venue.address}}}</dd>
+            <dt>Contact:</dt>
+            <dd>{{venue.telephoneNumber}}</dd>
+            <dt>Price:</dt>
+            <dd>{{#if costsMoney}}Paid{{else}}Free{{/if}}</dd>
+            <dt>Website:</dt>
+            <dd>{{website}}</dd>
+        </dl>
+    </section>
+    <section class="wpfk--venue-section">
+        <h1>Facilities</h1>
+        <ul>
+            {{#each venue.facilities}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </section>
+        <section class="wpfk--venue-section">
+        <h1>Opening Hours</h1>
+        <ul>
+            {{#each venue.opens}}
+            <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </section>
+</article>

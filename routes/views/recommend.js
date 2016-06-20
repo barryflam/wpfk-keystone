@@ -103,7 +103,9 @@ exports = module.exports = function(req, res) {
                 'user.childName',
                 'user.childAge',
                 'user.email',
-		        'user.agreement'
+		        'user.agreement',
+                'lat',
+                'lng'
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
 		}, function(err) {

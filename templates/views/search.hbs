@@ -1,0 +1,101 @@
+<nav class="wpfk--site-nav">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Search</a></li>
+    </ul>    
+</nav>
+<form action="get">
+    <header class="wpfk--search-header">
+        <div class="wpfk--wide-container">
+            <h1>Results for, London SE4</h1>
+            <div class="wpfk--custom-select custom-select">
+                <select name="day">
+                    <option>Today</option>
+                    <option>Tomorrow</option>
+                    <option>Next week</option>
+                </select>
+            </div>
+        </div>
+    </header>
+    <div class="wpfk--search">
+        <aside class="wpfk--search-filters">
+            <a href="#">Map view</a>
+            <h1>Filter search results</h1>
+            <h2>Location</h2>
+            <input type="text" class="wpfk--input-location" placeholder="London, SE4" />
+            <section class="wpfk--custom-select custom-select">
+                <select name="radius">
+                    <option>This area only</option>
+                    <option>Within 1 mile</option>
+                    <option>Within 5 miles</option>
+                    <option>Within 10 miles</option>
+                    <option>Within 25 miles</option>
+                    <option>Within 50 miles</option>
+                </select>
+            </section>
+            <hr />
+            <section>
+                <h2>Age range</h2>
+                <ul class="wpfk--form__checkbox-container">
+                    <li><input type="checkbox" name="softplay" id="softplay" /> <label for="softplay">Softplay</label></li>
+                </ul>
+            </section>
+            <hr/>
+            <section>
+                <h2>Age range</h2>
+                <ul class="wpfk--form__checkbox-container">
+                    <li><input type="checkbox" name="zeroToSix" id="zeroToSix" /> <label for="zeroToSix">0 - 6</label></li>
+                </ul>
+            </section>
+            <section>
+                <h2>Facilities</h2>
+                <ul class="wpfk--form__checkbox-container">
+                    <li><input type="checkbox" /> <label>Good food for parents</label></input></li>
+                    <li><input type="checkbox" /> <label>Wheelchair access</label></li>
+                    <li><input type="checkbox" /> <label>Pram accessible</label></li>
+                    <li><input type="checkbox" /> <label>Double pram friendly</label></li>
+                    <li><input type="checkbox" /> <label>Breast/Bottle feeding facilities</label></li>
+                    <li><input type="checkbox" /> <label>Venue for children’s parties</label></li>
+                    <li><input type="checkbox" /> <label>Suitable for twins/multiples</label></li>
+                    <li><input type="checkbox" /> <label>High chairs</label></li>
+                    <li><input type="checkbox" /> <label>Kids menu</label></li>
+                </ul>
+            </section>
+        </aside>
+        <section class="wpfk--search-results">
+            <p class="wpfk--search-results__found">We have found <strong>{{venues.total}} results</strong></p>
+            <div class="wpfk--search-results--sort">
+                <label for="sort-by">Sort by</label>
+                <div class="wpfk--custom-select custom-select">
+                    <select name="sort-by" id="sort-by">
+                        <option>Most popular</option>
+                        <option>Least popular</option>
+                    </select>
+                </div>
+            </div>
+            {{#each venues.results}}
+            <article class="wpfk--search-result">
+                <div class="wpfk--search-result__image">
+                    <img src="/images/sealife.jpg" alt="Sealife" width="380" />
+                    <p class="wpfk--search-item__price">{{#if costsMoney}}Paid{{else}}Free{{/if}}</p>
+                </div>
+                <div class="wpfk--search-result__details">
+                    <h1>{{venueName}}</h1>
+                    <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today from {{openToday.from}} until {{openToday.to}}{{else}}Closed{{/if}}</p>
+                    <p class="wpfk--search-result__address">{{address}}</p>
+                    <p class="wpfk--search-result__distance">X.XX miles</p>
+                    {{{description}}}
+                    <p class="wpfk--search-rating">
+                        {{#times rating}}
+                        <img src="/images/star-filled.svg" />
+                        {{/times}}
+                    </p>
+                    <p><a href="/venue/{{slug}}">Find out more</a></p>
+                </div>
+            </article>
+            {{/each}}
+        </section>
+    </div>    
+</form>
