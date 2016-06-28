@@ -27,6 +27,8 @@ Venue.add({
         sports: { type: Boolean, label: 'Sports', index: true }
     },
     address: { type: Types.Textarea, initial: false, required: true },
+    lat: { type: Types.Number, label: "Latitude" },
+    lng: { type: Types.Number, label: "Longitude" },
     website: { type: Types.Url },
     telephoneNumber: { type: String },
     description: { type: Types.Html, wysiwyg: true, height: 150, initial: false, required: true },
