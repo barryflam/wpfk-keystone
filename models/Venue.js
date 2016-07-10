@@ -123,6 +123,7 @@ Venue.add({
             }
         }
     },
+    geoLocation: { type: Types.Location, defaults: { country: 'United Kingdom' } },
     image: { type: Types.CloudinaryImage },
     state: { type: Types.Select, options: 'Draft, Published, Archived', default: 'Draft' },
     user: { 

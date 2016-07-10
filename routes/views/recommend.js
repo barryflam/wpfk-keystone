@@ -27,6 +27,11 @@ exports = module.exports = function(req, res) {
         
 		var newVenue = new Venue.model(),
 			updater = newVenue.getUpdateHandler(req);
+
+        var geoLocationField = [req.body.lng, req.body.lat];
+        req.body.geoLocation = {
+            geo: geoLocationField 
+        };
 		
 		updater.process(req.body, {
 			flashErrors: true,
@@ -106,7 +111,8 @@ exports = module.exports = function(req, res) {
 		        'user.agreement',
 		'placeId',
                 'lat',
-                'lng'
+                'lng',
+                'geoLocation'
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
 		}, function(err) {
