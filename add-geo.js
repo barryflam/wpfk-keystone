@@ -178,7 +178,7 @@ Venue.model
                     });;
                 } else {
                     failCount++;
-                    console.log('ERROR!', location);
+                    console.log('ERROR ['+venue._id+']: ', location);
                 }
                 console.log('Success:', successCount, 'Failure:', failCount, 'Total:', totalCount)
             });
