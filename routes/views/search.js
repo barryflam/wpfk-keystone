@@ -24,25 +24,30 @@ exports = module.exports = function(req, res) {
             apiRes.on('end', function () {
                 console.log('Request end');
                 var jsonData = JSON.parse(body);
-                var searchFrom = jsonData.results[0].geometry.location;
-                
-                Venue.model
-                    .find({
-                        'geoLocation.geo': {
-                            $near: { 
-                                $geometry: { 
-                                    type: 'Point',
-                                    coordinates: [searchFrom.lng, searchFrom.lat]
-                                }
-                            } 
-                        }
-                    })
-                    .limit(25)
-                    .exec(function(err, venues) {
-                        console.log(venues);
-                        locals.venues = venues;
-                        next(err);
-                    });
+
+                if(jsonData.results.length > 1) {
+                    var searchFrom = jsonData.results[0].geometry.location;
+                    
+                    Venue.model
+                        .find({
+                            'geoLocation.geo': {
+                                $near: { 
+                                    $geometry: { 
+                                        type: 'Point',
+                                        coordinates: [searchFrom.lng, searchFrom.lat]
+                                    }
+                                } 
+                            }
+                        })
+                        .limit(25)
+                        .exec(function(err, venues) {
+                            console.log(venues);
+                            locals.venues = venues;
+                            next(err);
+                        });
+                } else {
+                    next("Error for Google Maps API", jsonData.status)
+                }
             });
         }).on('error', function (e) {
             console.log('Got error: ' + e.message);

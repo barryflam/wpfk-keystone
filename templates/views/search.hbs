@@ -6,10 +6,10 @@
         <li><a href="#">Search</a></li>
     </ul>    
 </nav>
-<form action="get">
+<form method="get" action="/search">
     <header class="wpfk--search-header">
         <div class="wpfk--wide-container">
-            <h1>Results for, London SE4</h1>
+            <h1>{{#if vicinity}}Results for, {{vicinity}}{{else}}Results{{/if}}</h1>
             <div class="wpfk--custom-select custom-select">
                 <select name="day">
                     <option>Today</option>
@@ -21,11 +21,11 @@
     </header>
     <div class="wpfk--search">
         <aside class="wpfk--search-filters">
-            <a href="#">Map view</a>
+            <!--<a href="#">Map view</a>-->
             <h1>Filter search results</h1>
             <h2>Location</h2>
-            <input type="text" class="wpfk--input-location" placeholder="London, SE4" />
-            <section class="wpfk--custom-select custom-select">
+            <input type="text" class="wpfk--input-location" placeholder="London, SE4" name="vicinity" />
+            <!--<section class="wpfk--custom-select custom-select">
                 <select name="radius">
                     <option>This area only</option>
                     <option>Within 1 mile</option>
@@ -62,7 +62,7 @@
                     <li><input type="checkbox" /> <label>High chairs</label></li>
                     <li><input type="checkbox" /> <label>Kids menu</label></li>
                 </ul>
-            </section>
+            </section>-->
         </aside>
         <section class="wpfk--search-results">
             <p class="wpfk--search-results__found">We have found <strong>{{venues.total}} results</strong></p>
@@ -79,7 +79,7 @@
             <article class="wpfk--search-result">
                 <div class="wpfk--search-result__image">
                     <img src="/images/sealife.jpg" alt="Sealife" width="380" />
-                    <p class="wpfk--search-item__price">{{#if costsMoney}}Paid{{else}}Free{{/if}}</p>
+                    {{#if costsMoney}}{{else}}<p class="wpfk--search-item__price">Free</p>{{/if}}
                 </div>
                 <div class="wpfk--search-result__details">
                     <h1>{{venueName}}</h1>
