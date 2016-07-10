@@ -25,7 +25,7 @@ exports = module.exports = function(req, res) {
                 console.log('Request end');
                 var jsonData = JSON.parse(body);
 
-                if(jsonData.results.length > 1) {
+                if(jsonData.results.length > 0) {
                     var searchFrom = jsonData.results[0].geometry.location;
                     
                     Venue.model
