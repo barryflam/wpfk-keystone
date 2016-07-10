@@ -104,6 +104,7 @@ exports = module.exports = function(req, res) {
                 'user.childAge',
                 'user.email',
 		        'user.agreement',
+		'placeId',
                 'lat',
                 'lng'
             ].join(', '),

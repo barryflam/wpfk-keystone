@@ -180,8 +180,9 @@
         </section>
     </section>
     <section class="wpfk--form-actions">
-        <input type="hidden" id="venueLat" name="lat" value="">
-        <input type="hidden" id="venueLng" name="lng" value="">        
+        <input type="hidden" id="venueLat" name="lat" value="{{formData.lat}}">
+        <input type="hidden" id="venueLng" name="lng" value="{{formData.lng}}">        
+        <input type="hidden" id="venuePlaceId" name="placeId" value="{{formData.placeId}}">        
         <input type="hidden" name="action" value="recommend">
         <button type="submit" class="wpfk--form__submit-button">Submit your Wiki Place</button>
     </section>
@@ -213,6 +214,7 @@
     var venueTelephone = document.getElementById("venueTelephone");
     var venueLat = document.getElementById('venueLat');
     var venueLng = document.getElementById('venueLng');
+    var venuePlaceId = document.getElementById('venuePlaceId');
 
     var openOnDayRegex = /([^:]*): (.*)/;
     var openingHoursRegex = /(.*) – (.*)/;
@@ -240,8 +242,10 @@
             venueWebsite.value = place.website ? place.website : "";
             venueTelephone.value = place.formatted_phone_number ? place.formatted_phone_number : "";
             
-            venueLat = place.geometry.location.lat;
-            venueLng = place.geometry.location.lng;
+            venueLat.value = place.geometry.location.lat();
+            venueLng.value = place.geometry.location.lng();
+
+	    venuePlaceId.value = place.place_id;
 
             place.opening_hours.weekday_text.forEach(function(dayOpening) {
                 var dayInfo = openOnDayRegex.exec(dayOpening);
