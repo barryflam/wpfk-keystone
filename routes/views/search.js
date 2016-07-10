@@ -9,9 +9,7 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
     var doGeocode = function(address, next) {
-        var encodedAddress = encodeURIComponent(address);
-
-        https.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + encodedAddress + '&key=' + googleApiKey, (apiRes) => {
+        https.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleApiKey, (apiRes) => {
             // consume response body
             apiRes.setEncoding('utf8');
             var body = "";
@@ -25,20 +23,38 @@ exports = module.exports = function(req, res) {
 
             apiRes.on('end', function () {
                 console.log('Request end');
-                console.log(JSON.parse(body));
-                next();
+                var jsonData = JSON.parse(body);
+                var searchFrom = jsonData.results[0].geometry.location;
+                
+                Venue.model
+                    .find({
+                        'geoLocation.geo': {
+                            $near: { 
+                                $geometry: { 
+                                    type: 'Point',
+                                    coordinates: [searchFrom.lng, searchFrom.lat]
+                                }
+                            } 
+                        }
+                    })
+                    .limit(25)
+                    .exec(function(err, venues) {
+                        console.log(venues);
+                        locals.venues = venues;
+                        next(err);
+                    });
             });
         }).on('error', function (e) {
             console.log('Got error: ' + e.message);
-            next();
+            next(e.message);
         });;
     }
 
     view.on('get', function(next) {
-        doGeocode("1 Kings Road, PE27 5QR", next);
+        doGeocode(req.query.vicinity, next);
     });
 
-    view.on('post', function(next) {
+    /*view.on('post', function(next) {
         Venue.paginate({
             page: req.query.page || 1,
             perPage: 25
@@ -48,7 +64,7 @@ exports = module.exports = function(req, res) {
             locals.venues = results;
             next(err);
         });
-    });
+    });*/
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.

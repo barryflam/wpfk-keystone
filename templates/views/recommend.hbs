@@ -245,7 +245,7 @@
             venueLat.value = place.geometry.location.lat();
             venueLng.value = place.geometry.location.lng();
 
-	    venuePlaceId.value = place.place_id;
+            venuePlaceId.value = place.place_id;
 
             place.opening_hours.weekday_text.forEach(function(dayOpening) {
                 var dayInfo = openOnDayRegex.exec(dayOpening);
