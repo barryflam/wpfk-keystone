@@ -24,31 +24,56 @@
             <!--<a href="#">Map view</a>-->
             <h1>Filter search results</h1>
             <h2>Location</h2>
-            <input type="text" class="wpfk--input-location" placeholder="London, SE4" name="vicinity" />
-            <!--<section class="wpfk--custom-select custom-select">
+            <input type="text" class="wpfk--input-location" placeholder="London, SE4" name="vicinity" value="{{vicinity}}" />
+            <section class="wpfk--custom-select custom-select">
                 <select name="radius">
-                    <option>This area only</option>
-                    <option>Within 1 mile</option>
-                    <option>Within 5 miles</option>
-                    <option>Within 10 miles</option>
-                    <option>Within 25 miles</option>
-                    <option>Within 50 miles</option>
+                    <option value="1" {{#ifeq radius 1}}selected="selected"{{/ifeq}}>This area only</option>
+                    <option value="5" {{#ifeq radius 5}}selected="selected"{{/ifeq}}>Within 5 miles</option>
+                    <option value="10" {{#ifeq radius 10}}selected="selected"{{/ifeq}}>Within 10 miles</option>
+                    <option value="25" {{#ifeq radius 25}}selected="selected"{{/ifeq}}>Within 25 miles</option>
+                    <option value="50" {{#ifeq radius 50}}selected="selected"{{/ifeq}}>Within 50 miles</option>
                 </select>
             </section>
             <hr />
             <section>
                 <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container">
-                    <li><input type="checkbox" name="softplay" id="softplay" /> <label for="softplay">Softplay</label></li>
+                <ul class="wpfk--form__checkbox-container-linear">
+                    <li><input type="checkbox" name="venueTypes" value="softplay" id="softplay" {{#if venueType.softplay}}checked="checked"{{/if}} /> <label for="softplay">Softplay</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="indoorActivities" id="indoorActivities" {{#if venueType.indoorActivities}}checked="checked"{{/if}}/> <label for="indoorActivities">Indoor Activities</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="outdoorActivities" id="outdoorActivities" {{#if venueType.outdoorActivities}}checked="checked"{{/if}}/> <label for="outdoorActivities">Outdoor Activities</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="food" id="food" {{#if venueType.food}}checked="checked"{{/if}}/> <label for="food">Restaurants and food</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="pubs" id="pubs" {{#if venueType.pubs}}checked="checked"{{/if}}/> <label for="pubs">Pubs with gardens/play facilities</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="hotels" id="hotels" {{#if venueType.hotels}}checked="checked"{{/if}}/> <label for="hotels">Hotels</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="groups" id="groups" {{#if venueType.groups}}checked="checked"{{/if}}/> <label for="groups">Toddler groups</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="classes" id="classes" {{#if venueType.classes}}checked="checked"{{/if}}/> <label for="classes">Baby classes</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="swimming" id="swimming" {{#if venueType.swimming}}checked="checked"{{/if}}/> <label for="swimming">Swimming/Splash parks</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="outdoors" id="outdoors" {{#if venueType.outdoors}}checked="checked"{{/if}}/> <label for="outdoors">Parks/Walks/Outdoor fun</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="animals" id="animals" {{#if venueType.animals}}checked="checked"{{/if}}/> <label for="animals">Open Farms/Safari/Zoo</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="culture" id="culture" {{#if venueType.culture}}checked="checked"{{/if}}/> <label for="culture">Museums/Cultural activites</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="libraries" id="libraries" {{#if venueType.libraries}}checked="checked"{{/if}}/> <label for="libraries">Libraries</label></li>
+                    <li><input type="checkbox" name="venueTypes" value="sports" id="sports" {{#if venueType.sports}}checked="checked"{{/if}}/> <label for="sports">Sports</label></li>
                 </ul>
             </section>
             <hr/>
             <section>
                 <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container">
-                    <li><input type="checkbox" name="zeroToSix" id="zeroToSix" /> <label for="zeroToSix">0 - 6</label></li>
+                <ul class="wpfk--form__checkbox-container-linear">
+                    <li><input type="checkbox" name="ageRanges" value="to6M" id="to6M" {{#if ageRange.to6M}}checked="checked"{{/if}}/> <label for="to6M">0-6m</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from6Mto1Y" id="from6Mto1Y" {{#if ageRange.from6Mto1Y}}checked="checked"{{/if}}/> <label for="from6Mto1Y">6m-1y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from1Yto2Y" id="from1Yto2Y" {{#if ageRange.from1Yto2Y}}checked="checked"{{/if}}/> <label for="from1Yto2Y">1-2y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from2Yto3Y" id="from2Yto3Y" {{#if ageRange.from2Yto3Y}}checked="checked"{{/if}}/> <label for="from2Yto3Y">2-3y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from3Yto4Y" id="from3Yto4Y" {{#if ageRange.from3Yto4Y}}checked="checked"{{/if}}/> <label for="from3Yto4Y">3-4y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from4Yto5Y" id="from4Yto5Y" {{#if ageRange.from4Yto5Y}}checked="checked"{{/if}}/> <label for="from4Yto5Y">4-5y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from5Yto6Y" id="from5Yto6Y" {{#if ageRange.from5Yto6Y}}checked="checked"{{/if}}/> <label for="from5Yto6Y">5-6y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from6Yto7Y" id="from6Yto7Y" {{#if ageRange.from6Yto7Y}}checked="checked"{{/if}}/> <label for="from6Yto7Y">6-7y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from7Yto8Y" id="from7Yto8Y" {{#if ageRange.from7Yto8Y}}checked="checked"{{/if}}/> <label for="from7Yto8Y">7-8y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from8Yto9Y" id="from8Yto9Y" {{#if ageRange.from8Yto9Y}}checked="checked"{{/if}}/> <label for="from8Yto9Y">8-9y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from9Yto10Y" id="from9Yto10Y" {{#if ageRange.from9Yto10Y}}checked="checked"{{/if}}/> <label for="from9Yto10Y">9-10y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from10Yto12Y" id="from10Yto12Y" {{#if ageRange.from10Yto12Y}}checked="checked"{{/if}}/> <label for="from10Yto12Y">10-12y</label></li>
+                    <li><input type="checkbox" name="ageRanges" value="from12Y" id="from12Y" {{#if ageRange.from12Y}}checked="checked"{{/if}}/> <label for="from12Y">12y+</label></li>
                 </ul>
             </section>
+            <!--
             <section>
                 <h2>Facilities</h2>
                 <ul class="wpfk--form__checkbox-container">
@@ -65,7 +90,7 @@
             </section>-->
         </aside>
         <section class="wpfk--search-results">
-            <p class="wpfk--search-results__found">We have found <strong>{{venues.total}} results</strong></p>
+            <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>
             <div class="wpfk--search-results--sort">
                 <label for="sort-by">Sort by</label>
                 <div class="wpfk--custom-select custom-select">

@@ -608,6 +608,54 @@ fieldset {
     }
 }
 
+.wpfk--form__checkbox-container-linear {
+    display : block;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: block;
+        margin: 15px 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        & + label {
+            font-size: em-calc(14);
+            cursor: pointer;
+            color: #999;
+
+            &::selection,
+            &::moz-selection {
+                color: #999;
+                background: transparent;
+            }
+        }
+
+        & + label::before {
+            content: " ";
+            display: inline-block;
+            vertical-align: middle;
+            width: 25px;
+            height: 25px;
+            background: #f5f5f5 url(/images/tick-white.svg) no-repeat 50% 50%;
+            background-size: 10px 10px;
+            border: 0 none;
+            padding: 0;
+            margin: 0 15px 0 0;
+            box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        &:checked + label::before {
+            background: #c63e8a url(/images/tick-white.svg) no-repeat 50% 50%;
+            background-size: 10px 10px;
+        }
+    }
+}
+
 .starRating:not(old){
   display        : inline-block;
   width          : 7.5em;
@@ -1005,6 +1053,11 @@ a.wpfk--form__submit-button {
             display: inline-block;
             vertical-align: middle;
             background: none;
+        }
+
+        @media (max-width: $tablet-breakpoint) {
+            position: static;
+            margin: 2% 0;
         }
     }
 
