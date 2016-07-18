@@ -76,7 +76,13 @@ exports = module.exports = function(req, res) {
             .limit(50)
             .exec(function(err, venues) {
                 locals.venues = venues;
-                locals.venueCount = venues.length;
+
+                if (venues) {
+                    locals.venueCount = venues.length;
+                } else {
+                    locals.venueCount = 0;
+                }
+                
                 next(err);
             });
     }
