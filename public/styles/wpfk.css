@@ -764,6 +764,10 @@ a.wpfk--form__submit-button {
       display: inline-block;
       vertical-align: top;
       width: 47%; }
+      @media (max-width: 800px) {
+        .wpfk--search-results .wpfk--search-result__image {
+          display: block;
+          width: 100%; } }
       .wpfk--search-results .wpfk--search-result__image img {
         display: block;
         width: 100%; }
@@ -778,6 +782,10 @@ a.wpfk--form__submit-button {
       vertical-align: top;
       width: 48%;
       padding: 2%; }
+      @media (max-width: 800px) {
+        .wpfk--search-results .wpfk--search-result__details {
+          display: block;
+          width: 96%; } }
       .wpfk--search-results .wpfk--search-result__details h1 {
         font-family: LatoRegular, Arial, Helvetica, sans-serif;
         font-size: 1.5em;

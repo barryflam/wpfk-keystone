@@ -1071,6 +1071,11 @@ a.wpfk--form__submit-button {
             vertical-align: top;
             width: 47%;
 
+            @media (max-width: $tablet-breakpoint) {
+                display: block;
+                width: 100%;
+            }
+
             img {
                 display: block;
                 width: 100%;
@@ -1090,6 +1095,11 @@ a.wpfk--form__submit-button {
             vertical-align: top;
             width: 48%;
             padding: 2%;
+
+            @media (max-width: $tablet-breakpoint) {
+                display: block;
+                width: 96%;
+            }
 
             h1 {
                 font-family: LatoRegular, Arial, Helvetica, sans-serif;
