@@ -42,7 +42,7 @@ exports = module.exports = function(req, res) {
     }
 
     var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next) {
-        var andFilterMatcher = [{
+        var andFilterMatcher = fromLatLng !== null && radius !== null ? [{
             'geoLocation.geo': {
                 $near: { 
                     $geometry: { 
@@ -52,7 +52,7 @@ exports = module.exports = function(req, res) {
                     $maxDistance: milesToMeters(locals.radius)
                 }
             }
-        }];
+        }] : [];
 
         venueTypes.forEach(function(type) {
             var emptyObj = {};
@@ -118,13 +118,17 @@ exports = module.exports = function(req, res) {
             locals.ageRange[range] = true;
         });
 
-        doGeocode(req.query.vicinity, function (geocodeResponse) {
-            if (geocodeResponse.lat && geocodeResponse.lng) {
-                queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next);
-            } else {
-                next(geocodeResponse);
-            }
-        });
+        if(locals.vicinity && locals.vicinity.length > 0) {
+            doGeocode(req.query.vicinity, function (geocodeResponse) {
+                if (geocodeResponse.lat && geocodeResponse.lng) {
+                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next);
+                } else {
+                    next(geocodeResponse);
+                }
+            });
+        } else {
+            queryVenues(null, null, venueTypes, ageRanges, next);
+        }
     });
 
     /*view.on('post', function(next) {
