@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.wpfk--wide-container, .wpfk--search, .wpfk--venue-header {
+.wpfk--wide-container, .wpfk--search, .wpfk--home-content, .wpfk--venue-header {
   max-width: 1200px;
   position: relative;
   margin: 0 auto;
@@ -687,6 +687,51 @@ a.wpfk--form__submit-button {
     color: #222;
     /* Match-02 focus color */ }
 
+input[type='text'].wpfk--inline-input,
+section.wpfk--inline-input {
+  display: inline-block;
+  border-radius: 0;
+  width: 25%;
+  margin: 0;
+  max-height: 41px;
+  box-shadow: none;
+  vertical-align: top; }
+  input[type='text'].wpfk--inline-input--narrow,
+  section.wpfk--inline-input--narrow {
+    width: 10%; }
+
+button.wpfk--inline-input {
+  width: 13%;
+  font-size: 1em;
+  display: inline-block;
+  padding: 10px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  max-height: 41px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  vertical-align: top;
+  margin: 0;
+  font-family: LatoRegular, Arial, Helvetica, sans-serif; }
+
+input[type='text'].wpfk--inline-input,
+section.wpfk--inline-input select,
+section.wpfk--inline-input select:focus,
+section.wpfk--inline-input select:active {
+  font-family: LatoRegular, Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  color: #aaa; }
+
+.wpfk--home-search-bar {
+  width: 100%;
+  text-align: center; }
+  .wpfk--home-search-bar section.wpfk--inline-input:first-child {
+    border-top-left-radius: .3em;
+    border-bottom-left-radius: .3em; }
+  .wpfk--home-search-bar button:last-child {
+    border-top-right-radius: .3em;
+    border-bottom-right-radius: .3em; }
+
 .wpfk--search-header {
   background: #2eaaa5;
   min-height: 80px;
@@ -798,6 +843,18 @@ a.wpfk--form__submit-button {
         text-transform: uppercase;
         letter-spacing: 0.1em;
         font-weight: bold; }
+
+.wpfk--home-content {
+  top: -93px;
+  position: relative;
+  background: #fff;
+  box-shadow: 10px 10px 20px 0 rgba(0, 0, 0, 0.14);
+  padding: 38px;
+  box-sizing: border-box;
+  text-align: left; }
+  @media (max-width: 800px) {
+    .wpfk--home-content {
+      position: static; } }
 
 .wpfk--venue-header h1 {
   width: 100%;

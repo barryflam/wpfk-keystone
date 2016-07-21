@@ -1,12 +1,12 @@
 <nav class="wpfk--site-nav">
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#">Search</a></li>
+        <li><a href="/search">Search</a></li>
     </ul>    
 </nav>
-<form method="get" action="/search">
+<form id="search" method="get" action="/search">
     <header class="wpfk--search-header">
         <div class="wpfk--wide-container">
             <h1>{{#if vicinity}}Results for, {{vicinity}}{{else}}Results{{/if}}</h1>
@@ -26,7 +26,7 @@
             <h2>Location</h2>
             <input type="text" class="wpfk--input-location" placeholder="London, SE4" name="vicinity" value="{{vicinity}}" />
             <section class="wpfk--custom-select custom-select">
-                <select name="radius">
+                <select name="radius" id="selectSubmitter">
                     <option value="1" {{#ifeq radius 1}}selected="selected"{{/ifeq}}>This area only</option>
                     <option value="5" {{#ifeq radius 5}}selected="selected"{{/ifeq}}>Within 5 miles</option>
                     <option value="10" {{#ifeq radius 10}}selected="selected"{{/ifeq}}>Within 10 miles</option>
@@ -37,7 +37,7 @@
             <hr />
             <section>
                 <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container-linear">
+                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters">
                     <li><input type="checkbox" name="venueTypes" value="softplay" id="softplay" {{#if venueType.softplay}}checked="checked"{{/if}} /> <label for="softplay">Softplay</label></li>
                     <li><input type="checkbox" name="venueTypes" value="indoorActivities" id="indoorActivities" {{#if venueType.indoorActivities}}checked="checked"{{/if}}/> <label for="indoorActivities">Indoor Activities</label></li>
                     <li><input type="checkbox" name="venueTypes" value="outdoorActivities" id="outdoorActivities" {{#if venueType.outdoorActivities}}checked="checked"{{/if}}/> <label for="outdoorActivities">Outdoor Activities</label></li>
@@ -57,7 +57,7 @@
             <hr/>
             <section>
                 <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container-linear">
+                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters">
                     <li><input type="checkbox" name="ageRanges" value="to6M" id="to6M" {{#if ageRange.to6M}}checked="checked"{{/if}}/> <label for="to6M">0-6m</label></li>
                     <li><input type="checkbox" name="ageRanges" value="from6Mto1Y" id="from6Mto1Y" {{#if ageRange.from6Mto1Y}}checked="checked"{{/if}}/> <label for="from6Mto1Y">6m-1y</label></li>
                     <li><input type="checkbox" name="ageRanges" value="from1Yto2Y" id="from1Yto2Y" {{#if ageRange.from1Yto2Y}}checked="checked"{{/if}}/> <label for="from1Yto2Y">1-2y</label></li>
@@ -124,3 +124,20 @@
         </section>
     </div>    
 </form>
+<script type="text/javascript">
+    function onChangeSubmit (event) {
+        document.getElementById('search').submit();
+    }
+
+    document.getElementById('selectSubmitter').addEventListener('change', function (e) {
+        onChangeSubmit(e);
+    });
+
+    var checkboxes = document.querySelectorAll(".checkboxSubmitters input[type='checkbox']");
+
+    for (i = 0, len = checkboxes.length; i < len; ++i) {        
+        checkboxes[i].addEventListener('change', function (e) {
+            onChangeSubmit(e);
+        });
+    };
+</script>

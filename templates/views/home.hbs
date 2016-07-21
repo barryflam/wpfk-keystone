@@ -1,53 +1,91 @@
 <nav class="wpfk--site-nav">
     <ul>
-        <li><a href="#">Home</a></li>
+        <li><a href="/home">Home</a></li>
         <li><a href="#">About Us</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#">Search</a></li>
+        <li><a href="/search">Search</a></li>
     </ul>    
 </nav>
 <img class="wpfk--hero-image" src="/images/hero.jpg" />
-<section class="wpfk--site-description">
-    <p>The site that helps parents find great things to do with the kids, big and small, from baby classes to babycinos and softplay to sunny resorts. Everything counts.</p>
-</section>
-<section class="wpfk--discover-box">
-    <h1>What’s new this week</h1>
-    <p>Discover new, inspiring places close to home.</p>
-    <div class="wpfk--discover-image-boxes">
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kid-tall.jpg" alt="Tall kid" />
-            <figcaption><a href="#">Baby group</a></figcaption>
-        </figure>
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kids-face.jpg" alt="Kid's face'" />
-            <figcaption><a href="#">Soft play</a></figcaption>
-        </figure>
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
-            <figcaption><a href="#">Day out</a></figcaption>
-        </figure>
-    </div>  
-    <p><a class="wpfk--button-link" href="#">See all new this week</a></p>    
-</section>
-<section class="wpfk--discover-box">
-    <h1>Browse popular characters</h1>
-    <p>Discover new, inspiring places close to home.</p>
-    <div class="wpfk--discover-image-boxes">
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kid-tall.jpg" alt="Tall kid" />
-            <figcaption><a href="#">Baby group</a></figcaption>
-        </figure>
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kids-face.jpg" alt="Kid's face'" />
-            <figcaption><a href="#">Soft play</a></figcaption>
-        </figure>
-        <figure class="wpfk--overlayed-image">
-            <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
-            <figcaption><a href="#">Day out</a></figcaption>
-        </figure>
-    </div>  
-    <p><a class="wpfk--button-link" href="#">See more</a></p>    
-</section>
+<article class="wpfk--home-content">
+    <form class="wpfk--home-search-bar" action="/search" method="get">
+        <section class="wpfk--custom-select custom-select wpfk--inline-input">
+            <select name="venueTypes">
+                <option value="softplay">Softplay</option>
+                <option value="indoorActivities">Indoor Activities</option>
+                <option value="outdoorActivities">Outdoor Activities</option>
+                <option value="food">Restaurants and food</option>
+                <option value="pubs">Pubs with gardens/play facilities</option>
+                <option value="hotels">Hotels</option>
+                <option value="groups">Toddler groups</option>
+                <option value="classes">Baby classes</option>
+                <option value="swimming">Swimming/Splash parks</option>
+                <option value="outdoors">Parks/Walks/Outdoor fun</option>
+                <option value="animals">Open Farms/Safari/Zoo</option>
+                <option value="culture">Museums/Cultural activites</option>
+                <option value="libraries">Libraries</option>
+                <option value="sports">Sports</option>
+            </select>
+        </section><input type="text" class="wpfk--input-location wpfk--inline-input" placeholder="Enter location" name="vicinity" value="{{vicinity}}" /><section class="wpfk--custom-select custom-select wpfk--inline-input wpfk--inline-input--narrow">
+            <select name="ageRanges">
+                <option value="to6M">0-6m</option>
+                <option value="from6Mto1Y">6m-1y</option>
+                <option value="from1Yto2Y">1-2y</option>
+                <option value="from2Yto3Y">2-3y</option>
+                <option value="from3Yto4Y">3-4y</option>
+                <option value="from4Yto5Y">4-5y</option>
+                <option value="from5Yto6Y">5-6y</option>
+                <option value="from6Yto7Y">6-7y</option>
+                <option value="from7Yto8Y">7-8y</option>
+                <option value="from8Yto9Y">8-9y</option>
+                <option value="from9Yto10Y">9-10y</option>
+                <option value="from10Yto12Y">10-12y</option>
+                <option value="from12Y">12y+</option>
+            </select>
+        </section><button type="submit" class="wpfk--form__submit-button wpfk--inline-input wpfk--inline-input--narrow">Let's Go</button>
+    </form>
+    <section class="wpfk--site-description">
+        <p>The site that helps parents find great things to do with the kids, big and small, from baby classes to babycinos and softplay to sunny resorts. Everything counts.</p>
+    </section>
+    <section class="wpfk--discover-box">
+        <h1>What’s new this week</h1>
+        <p>Discover new, inspiring places close to home.</p>
+        <div class="wpfk--discover-image-boxes">
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kid-tall.jpg" alt="Tall kid" />
+                <figcaption><a href="#">Baby group</a></figcaption>
+            </figure>
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kids-face.jpg" alt="Kid's face'" />
+                <figcaption><a href="#">Soft play</a></figcaption>
+            </figure>
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
+                <figcaption><a href="#">Day out</a></figcaption>
+            </figure>
+        </div>  
+        <p><a class="wpfk--button-link" href="#">See all new this week</a></p>    
+    </section>
+    <section class="wpfk--discover-box">
+        <h1>Browse popular characters</h1>
+        <p>Discover new, inspiring places close to home.</p>
+        <div class="wpfk--discover-image-boxes">
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kid-tall.jpg" alt="Tall kid" />
+                <figcaption><a href="#">Baby group</a></figcaption>
+            </figure>
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kids-face.jpg" alt="Kid's face'" />
+                <figcaption><a href="#">Soft play</a></figcaption>
+            </figure>
+            <figure class="wpfk--overlayed-image">
+                <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
+                <figcaption><a href="#">Day out</a></figcaption>
+            </figure>
+        </div>  
+        <p><a class="wpfk--button-link" href="#">See more</a></p>    
+    </section>
+</article>
 <footer class="wpfk--footer">
     <section class="wpfk--footer-container">
         <img src="/images/logo.png" alt="WPFK" width="171" />
