@@ -42,10 +42,6 @@ exports = module.exports = function(req, res) {
     }
 
     var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next) {
-        if (fromLatLng !== null && radius === null) {
-            radius = 1;
-        }
-
         var andFilterMatcher = fromLatLng !== null && radius !== null ? [{
             'geoLocation.geo': {
                 $near: { 
