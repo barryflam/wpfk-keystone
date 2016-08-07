@@ -170,5 +170,5 @@ Venue.schema.virtual('opens').get(function() {
     }, this.openingHours);
 });
  
-Venue.defaultColumns = 'name, type, state|20%, publishedAt|15%'
+Venue.defaultColumns = 'name, addedByWPFK|20%, state|20%'
 Venue.register();
