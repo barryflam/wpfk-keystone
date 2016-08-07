@@ -8,6 +8,7 @@ var Venue = new keystone.List('Venue', {
 });
  
 Venue.add({
+    addedByWPFK: { type: Boolean, label: 'Added by WPFK staff?', index: true, default: false },
     venueState: { type: Types.Select, options: 'Not opened, Open, Closed', default: 'Open' },
     venueName: { type: String, label: 'Venue Name', index: true, required: true },
     venueType: {
