@@ -9,6 +9,7 @@
 		<link href="/styles/wpfk.css" rel="stylesheet" />
 		<link href="/styles/select-css.css" rel="stylesheet">
 		<link href="/styles/select-css-compat.css" rel="stylesheet" />
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBBWZIQ-18garx9-_7Iv06ZqJ5ISC0oDw&libraries=places"></script>
         
 
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
@@ -18,7 +19,7 @@
 	<body>
         <header class="wpfk--site-header" role="banner">
             <a class="wpfk--recommend-link" href="/recommend">Suggest a Wiki Place</a>
-            <img src="/images/new-logo.svg" width="171" />
+            <img src="/images/new-logo.svg" width="250" />
         </header>
         <article role="main">
             {{#if messages}}
@@ -46,8 +47,80 @@
             </div>
             {{/if}}
             <!-- The content block should contain the body of your template's content-->
+            {{#if mainSite}}
+            <nav class="wpfk--site-nav">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/search">Search</a></li>
+                </ul>    
+            </nav>
+            {{/if}}
             {{{body}}}
+            {{#if mainSite}}
+            <footer class="wpfk--footer">
+                <section class="wpfk--footer-container">
+                    <img src="/images/new-logo-white.svg" alt="WPFK" width="250" />
+                    <section>
+                        <h1>Wiki places for kids</h1>
+                        <ul>
+                            <li><a href="/contact">Contact us</a></li>
+                            <li><a href="/privacy">Privacy policy</a></li>
+                            <li><a href="/terms">Terms and conditions</a></li>
+                            <li>Registered company number (?)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h1>Be in the know</h1>
+                        <p>Sign up for lorem ipsum dolor sit amet</p>
+                        <form action="#">
+                            <input type="email" placeholder="you@email.com" /><input type="submit" value="Join" />
+                        </form>
+                    </section>
+                </section>
+            </footer>
+            {{/if}}
         </article>
 		{{{isAdminEditorJS user}}}
+        <script type="text/javascript">
+            window.wpfk = {};
+
+            function geoFindMe() {
+                function success(position) {
+                    var geocoder = new google.maps.Geocoder;
+                    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+                    geocoder.geocode({'location': latlng}, function(results, status) {
+                        if (status === 'OK') {
+                            if (results[1]) {
+                                sessionStorage.setItem('vicinity', results[1].formatted_address);
+
+                                if(sessionStorage.getItem('vicinity')) {
+                                    var vicinityLinks = document.querySelectorAll('.addVicinity');
+
+                                    for(var i = 0, len = vicinityLinks.length; i < len; i++) {
+                                        var href = vicinityLinks[i].getAttribute('href');
+
+                                        if(href.indexOf('vicinity') === -1) {
+                                            vicinityLinks[i].setAttribute('href', href + "&vicinity=" + encodeURIComponent(sessionStorage.getItem('vicinity')) + "&radius=5");
+                                        }
+                                    }
+
+                                    var vicinityInputs = document.querySelectorAll('input[name="vicinity"]');
+                                    for(var i = 0, len = vicinityInputs.length; i < len; i++) {
+                                        vicinityInputs[i].value = sessionStorage.getItem('vicinity');
+                                    }
+                                }
+                            }
+                        }
+                    });
+                };
+
+                navigator.geolocation.getCurrentPosition(success);
+            }
+
+            geoFindMe();
+        </script>
 	</body>
 </html>

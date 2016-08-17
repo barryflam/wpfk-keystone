@@ -36,10 +36,11 @@ exports = module.exports = function(app) {
 	
 	// Views
 	app.get('/', routes.views.index);
-	app.get('/home', routes.views.home); 
+	app.get('/home', routes.views.home);
 	app.get('/search', routes.views.search);
     app.get('/venue/:slug', routes.views.venue);           
 	app.all('/recommend', routes.views.recommend);
+    app.get('/:slug', routes.views.about);
 	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
