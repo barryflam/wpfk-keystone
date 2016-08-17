@@ -7,6 +7,7 @@ exports = module.exports = function(req, res) {
 
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+    locals.mainSite = true;
 
     var milesToMeters = function(miles) {
         return (miles / 0.62137) * 1000;
@@ -76,6 +77,8 @@ exports = module.exports = function(req, res) {
             .limit(50)
             .exec(function(err, venues) {
                 locals.venues = venues;
+
+                console.log(venues);
 
                 if (venues) {
                     locals.venueCount = venues.length;
