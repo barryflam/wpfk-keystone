@@ -9,7 +9,7 @@ var Page = new keystone.List('Page', {
 
 Page.add({
 	title: { type: String, required: true },
-	content: { type: Types.Html, wysiwyg: true, height: 150, initial: false, required: true },
+	content: { type: Types.Html, wysiwyg: true, height: 150, initial: false, required: false },
 });
 
 Page.defaultColumns = 'title';
