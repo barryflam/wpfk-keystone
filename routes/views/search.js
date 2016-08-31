@@ -98,19 +98,18 @@ exports = module.exports = function(req, res) {
             })
             .limit(50)
             .exec(function(err, venues) {
-                venues.forEach(function (venue) {
-                    venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
-                });
+                if (venues) {
+                    locals.venueCount = venues.length;
+                    venues.forEach(function (venue) {
+                        venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
+                    });
+                } else {
+                    locals.venueCount = 0;
+                }
 
                 locals.venues = venues;
 
                 console.log(venues);
-
-                if (venues) {
-                    locals.venueCount = venues.length;
-                } else {
-                    locals.venueCount = 0;
-                }
                 
                 next(err);
             });
