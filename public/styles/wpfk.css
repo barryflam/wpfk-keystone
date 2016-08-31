@@ -644,6 +644,35 @@ a.wpfk--form__submit-button {
   .js-enabled .wpfk--form-collapse.wpfk--form-collapse--expanded .wpfk--form-collapse--more {
     max-height: 1000px; }
 
+.js-enabled .wpfk--filter-collapse {
+  background: #fff;
+  border-radius: 5px;
+  padding: 15px 0;
+  position: relative; }
+  .js-enabled .wpfk--filter-collapse h2 {
+    cursor: pointer;
+    margin: 0 0 0 15px; }
+  .js-enabled .wpfk--filter-collapse:after {
+    font-family: LatoRegular, Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    content: "<" !important;
+    transform: scale(1.5, 1) rotate(90deg);
+    color: #e53cad;
+    position: absolute;
+    left: 0;
+    top: 15px; }
+  .js-enabled .wpfk--filter-collapse .wpfk--form-collapse--more {
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    -webkit-transition: max-height 0.5s;
+    -moz-transition: max-height 0.5s;
+    transition: max-height 0.5s; }
+  .js-enabled .wpfk--filter-collapse.wpfk--form-collapse--expanded:after {
+    content: ">" !important; }
+  .js-enabled .wpfk--filter-collapse.wpfk--form-collapse--expanded .wpfk--form-collapse--more {
+    max-height: 1000px; }
+
 .wpfk--custom-select {
   border: 1px solid #ddd;
   border-radius: .3em;
@@ -702,7 +731,7 @@ section.wpfk--inline-input {
     width: 10%; }
 
 button.wpfk--inline-input {
-  width: 13%;
+  width: 18%;
   font-size: 1em;
   display: inline-block;
   padding: 10px 10px;
@@ -732,6 +761,17 @@ section.wpfk--inline-input select:active {
   .wpfk--home-search-bar button:last-child {
     border-top-right-radius: .3em;
     border-bottom-right-radius: .3em; }
+  @media (max-width: 800px) {
+    .wpfk--home-search-bar input[type='text'].wpfk--inline-input,
+    .wpfk--home-search-bar section.wpfk--inline-input,
+    .wpfk--home-search-bar button:last-child {
+      display: block;
+      width: 100%;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      margin: 0.5em 0; } }
 
 .wpfk--search-header {
   background: #2eaaa5;
@@ -779,6 +819,8 @@ section.wpfk--inline-input select:active {
     font-family: LatoBold, Arial, Helvetica, sans-serif;
     font-size: 0.875em;
     color: #454545; }
+  .wpfk--search-filters .wpfk--input-location {
+    margin: 15px 0 0; }
 
 .wpfk--search-results {
   -webkit-flex: 3 0 73%;
@@ -803,9 +845,17 @@ section.wpfk--inline-input select:active {
       .wpfk--search-results--sort {
         position: static;
         margin: 2% 0; } }
+  .wpfk--search-results .addedByWPFK {
+    width: 64px;
+    height: 71px;
+    background: url(/images/added-by-wpfk.png) no-repeat top left;
+    position: absolute;
+    top: -10px;
+    right: 30px; }
   .wpfk--search-results .wpfk--search-result {
     background: #fff;
-    margin: 0 0 20px 0; }
+    margin: 0 0 20px 0;
+    position: relative; }
     .wpfk--search-results .wpfk--search-result__image {
       display: inline-block;
       vertical-align: top;
@@ -834,15 +884,18 @@ section.wpfk--inline-input select:active {
           width: 96%; } }
       .wpfk--search-results .wpfk--search-result__details h1 {
         font-family: LatoRegular, Arial, Helvetica, sans-serif;
-        font-size: 1.5em;
+        font-size: 1.375em;
         font-weight: normal;
+        width: 80%;
         color: #454545; }
+      .wpfk--search-results .wpfk--search-result__details .wpfk--search-rating img, .wpfk--search-results .wpfk--search-result__details .wpfk--search-rating span {
+        vertical-align: middle; }
+      .wpfk--search-results .wpfk--search-result__details .wpfk--search-price {
+        font-weight: bold; }
       .wpfk--search-results .wpfk--search-result__details .wpfk--search-result__opening-times {
         font-family: LatoRegular, Arial, Helvetica, sans-serif;
         font-size: 0.875em;
         color: #2eaaa5;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
         font-weight: bold; }
 
 .wpfk--home-content {
@@ -895,8 +948,6 @@ section.wpfk--inline-input select:active {
     font-family: LatoRegular, Arial, Helvetica, sans-serif;
     font-size: 0.875em;
     color: #2eaaa5;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
     font-weight: bold; }
   .wpfk--venue-content .wpfk--venue-section {
     width: 100%;

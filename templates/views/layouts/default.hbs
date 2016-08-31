@@ -103,7 +103,7 @@
                                         var href = vicinityLinks[i].getAttribute('href');
 
                                         if(href.indexOf('vicinity') === -1) {
-                                            vicinityLinks[i].setAttribute('href', href + "&vicinity=" + encodeURIComponent(sessionStorage.getItem('vicinity')) + "&radius=5");
+                                            vicinityLinks[i].setAttribute('href', href + "&vicinity=" + encodeURIComponent(sessionStorage.getItem('vicinity')) + "&radius=50");
                                         }
                                     }
 

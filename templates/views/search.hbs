@@ -14,22 +14,27 @@
     <div class="wpfk--search">
         <aside class="wpfk--search-filters">
             <!--<a href="#">Map view</a>-->
-            <h1>Filter search results</h1>
-            <h2>Location</h2>
-            <input type="text" class="wpfk--input-location" placeholder="e.g. London, SE4" name="vicinity" value="{{vicinity}}" />
-            <section class="wpfk--custom-select custom-select">
-                <select name="radius" id="selectSubmitter">
-                    <option value="1" {{#ifeq radius 1}}selected="selected"{{/ifeq}}>This area only</option>
-                    <option value="5" {{#ifeq radius 5}}selected="selected"{{/ifeq}}>Within 5 miles</option>
-                    <option value="10" {{#ifeq radius 10}}selected="selected"{{/ifeq}}>Within 10 miles</option>
-                    <option value="25" {{#ifeq radius 25}}selected="selected"{{/ifeq}}>Within 25 miles</option>
-                    <option value="50" {{#ifeq radius 50}}selected="selected"{{/ifeq}}>Within 50 miles</option>
-                </select>
+            <h1>Refine by</h1>
+            <hr/>
+            <section class="wpfk--filter-collapse {{#if filterLocation}}wpfk--form-collapse--expanded{{/if}}">
+                <h2>Location</h2>
+                <section class="wpfk--form-collapse--more">
+                    <input type="text" class="wpfk--input-location" placeholder="e.g. London, SE4" name="vicinity" value="{{vicinity}}" />
+                    <section class="wpfk--custom-select custom-select">
+                        <select name="radius" id="selectSubmitter">
+                            <option value="1" {{#ifeq radius 1}}selected="selected"{{/ifeq}}>This area only</option>
+                            <option value="5" {{#ifeq radius 5}}selected="selected"{{/ifeq}}>Within 5 miles</option>
+                            <option value="10" {{#ifeq radius 10}}selected="selected"{{/ifeq}}>Within 10 miles</option>
+                            <option value="25" {{#ifeq radius 25}}selected="selected"{{/ifeq}}>Within 25 miles</option>
+                            <option value="50" {{#ifeq radius 50}}selected="selected"{{/ifeq}}>Within 50 miles</option>
+                        </select>
+                    </section>
+                </section>  
             </section>
             <hr />
-            <section>
-                <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters">
+            <section class="wpfk--filter-collapse {{#if filterActivityType}}wpfk--form-collapse--expanded{{/if}}">
+                <h2>Activity type</h2>
+                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters wpfk--form-collapse--more">
                     <li><input type="checkbox" name="venueTypes" value="softplay" id="softplay" {{#if venueType.softplay}}checked="checked"{{/if}} /> <label for="softplay">Softplay</label></li>
                     <li><input type="checkbox" name="venueTypes" value="indoorActivities" id="indoorActivities" {{#if venueType.indoorActivities}}checked="checked"{{/if}}/> <label for="indoorActivities">Indoor Activities</label></li>
                     <li><input type="checkbox" name="venueTypes" value="outdoorActivities" id="outdoorActivities" {{#if venueType.outdoorActivities}}checked="checked"{{/if}}/> <label for="outdoorActivities">Outdoor Activities</label></li>
@@ -47,9 +52,9 @@
                 </ul>
             </section>
             <hr/>
-            <section>
+            <section class="wpfk--filter-collapse {{#if filterAgeRanges}}wpfk--form-collapse--expanded{{/if}}">
                 <h2>Age range</h2>
-                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters">
+                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters wpfk--form-collapse--more">
                     <li><input type="checkbox" name="ageRanges" value="to6M" id="to6M" {{#if ageRange.to6M}}checked="checked"{{/if}}/> <label for="to6M">0-6m</label></li>
                     <li><input type="checkbox" name="ageRanges" value="from6Mto1Y" id="from6Mto1Y" {{#if ageRange.from6Mto1Y}}checked="checked"{{/if}}/> <label for="from6Mto1Y">6m-1y</label></li>
                     <li><input type="checkbox" name="ageRanges" value="from1Yto2Y" id="from1Yto2Y" {{#if ageRange.from1Yto2Y}}checked="checked"{{/if}}/> <label for="from1Yto2Y">1-2y</label></li>
@@ -65,10 +70,10 @@
                     <li><input type="checkbox" name="ageRanges" value="from12Y" id="from12Y" {{#if ageRange.from12Y}}checked="checked"{{/if}}/> <label for="from12Y">12y+</label></li>
                 </ul>
             </section>
-            <!--
-            <section>
+            <hr/>
+            <section class="wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
                 <h2>Facilities</h2>
-                <ul class="wpfk--form__checkbox-container">
+                <ul class="wpfk--form__checkbox-container wpfk--form-collapse--more">
                     <li><input type="checkbox" /> <label>Good food for parents</label></input></li>
                     <li><input type="checkbox" /> <label>Wheelchair access</label></li>
                     <li><input type="checkbox" /> <label>Pram accessible</label></li>
@@ -79,7 +84,7 @@
                     <li><input type="checkbox" /> <label>High chairs</label></li>
                     <li><input type="checkbox" /> <label>Kids menu</label></li>
                 </ul>
-            </section>-->
+            </section>
         </aside>
         <section class="wpfk--search-results">
             <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>
@@ -96,19 +101,20 @@
             <article class="wpfk--search-result">
                 <div class="wpfk--search-result__image">
                     <img src="/images/sealife.jpg" alt="Sealife" width="380" />
-                    {{#if costsMoney}}{{else}}<p class="wpfk--search-item__price">Free</p>{{/if}}
                 </div>
                 <div class="wpfk--search-result__details">
+                    {{#if addedByWPFK}}<span class="addedByWPFK"></span>{{/if}}
                     <h1>{{venueName}}</h1>
-                    <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today from {{openToday.from}} until {{openToday.to}}{{else}}Closed{{/if}}</p>
-                    <p class="wpfk--search-result__address">{{address}}</p>
-                    <p class="wpfk--search-result__distance">X.XX miles</p>
-                    {{{description}}}
                     <p class="wpfk--search-rating">
                         {{#times rating}}
                         <img src="/images/star-filled.svg" />
                         {{/times}}
+                        <span class="wpfk--search-distance">{{distance}} miles</span>
                     </p>
+                    <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed{{/if}}</p>
+                    <p class="wpfk--search-result__address">{{address}}</p>
+                    <p class="wpfk--search-price">Price: {{#if costsMoney}}Not free{{else}}Free{{/if}}</p>
+                    {{{description}}}
                     <p><a href="/venue/{{slug}}">Find out more</a></p>
                 </div>
             </article>
@@ -116,6 +122,17 @@
         </section>
     </div>    
 </form>
+<script type="text/javascript">
+    document.body.classList.add('js-enabled');
+    var collapsibles = document.querySelectorAll('.wpfk--filter-collapse h2');
+
+    for(var i = 0, len = collapsibles.length; i < len; i++) {
+        collapsibles[i].addEventListener("click", function(e) {
+            e.preventDefault();
+            e.target.parentNode.classList.toggle('wpfk--form-collapse--expanded');
+        })
+    }
+</script>
 <script type="text/javascript">
     function onChangeSubmit (event) {
         document.getElementById('search').submit();
