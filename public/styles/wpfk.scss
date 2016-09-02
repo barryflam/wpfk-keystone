@@ -1235,6 +1235,11 @@ section.wpfk--inline-input select:active {
                 color: $brand-grey;
             }
 
+            a {
+                text-decoration: none;
+                color: #000;
+            }
+
             .wpfk--search-rating {
                 img, span {
                     vertical-align: middle;
@@ -1321,6 +1326,11 @@ section.wpfk--inline-input select:active {
         font-size: em-calc(14);
         color: $brand-turqoise;
         font-weight: bold;
+    }
+
+    .wpfk--venue-description {
+        background: #f5f5f5;
+        padding: 1em;
     }
 
     .wpfk--venue-section {

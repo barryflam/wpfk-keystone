@@ -131,10 +131,19 @@ Venue.add({
         yourName: { type: String, label: "Your name" },
         email: { type: Types.Email, label: "Email", required: true, initial: false },
         childName: { type: String, label: "Your childrens name" },
-        childAge: { type: Number, label: "Your childrens age" },
+        childAge: { type: String, label: "Your childrens age" },
         agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
     },
     addedOn: { type: Date, default: Date.now }
+});
+
+Venue.schema.virtual('childrensAges').get(function () {
+    return this.user.childAge.replace(',', ' and ');
+});
+
+Venue.schema.virtual('formattedDate').get(function () {
+    var date = new Date(this.addedOn); 
+    return date.toDateString();
 });
 
 Venue.schema.virtual('openToday').get(function () {
@@ -154,6 +163,12 @@ Venue.schema.virtual('openToday').get(function () {
 
 Venue.schema.virtual('costsMoney').get(function() {
     return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
+});
+
+Venue.schema.virtual('activityType').get(function() {
+    return Object.keys(this.venueType).filter(function (value) {
+        return typeof this[value] === "boolean";
+    }, this.venueType);
 });
 
 Venue.schema.virtual('facilities').get(function() {

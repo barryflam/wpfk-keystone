@@ -16,7 +16,7 @@
             <!--<a href="#">Map view</a>-->
             <h1>Refine by</h1>
             <hr/>
-            <section class="wpfk--filter-collapse {{#if filterLocation}}wpfk--form-collapse--expanded{{/if}}">
+            <section class="wpfk--filter-collapse wpfk--form-collapse--expanded">
                 <h2>Location</h2>
                 <section class="wpfk--form-collapse--more">
                     <input type="text" class="wpfk--input-location" placeholder="e.g. London, SE4" name="vicinity" value="{{vicinity}}" />
@@ -103,19 +103,20 @@
                     <img src="/images/sealife.jpg" alt="Sealife" width="380" />
                 </div>
                 <div class="wpfk--search-result__details">
-                    {{#if addedByWPFK}}<span class="addedByWPFK"></span>{{/if}}
-                    <h1>{{venueName}}</h1>
-                    <p class="wpfk--search-rating">
-                        {{#times rating}}
-                        <img src="/images/star-filled.svg" />
-                        {{/times}}
-                        <span class="wpfk--search-distance">{{distance}} miles</span>
-                    </p>
-                    <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed{{/if}}</p>
-                    <p class="wpfk--search-result__address">{{address}}</p>
-                    <p class="wpfk--search-price">Price: {{#if costsMoney}}Not free{{else}}Free{{/if}}</p>
-                    {{{description}}}
-                    <p><a href="/venue/{{slug}}">Find out more</a></p>
+                    <a href="/venue/{{slug}}">
+                        {{#if addedByWPFK}}{{else}}<span class="addedByWPFK"></span>{{/if}}
+                        <h1>{{venueName}}</h1>
+                        <p class="wpfk--search-rating">
+                            {{#times rating}}
+                            <img src="/images/star-filled.svg" />
+                            {{/times}}
+                            <span class="wpfk--search-distance">{{distance}} miles</span>
+                        </p>
+                        <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
+                        <p class="wpfk--search-result__address">{{address}}</p>
+                        <p class="wpfk--search-price">Price: {{#if costsMoney}}Not free{{else}}Free{{/if}}</p>
+                        {{{description}}}
+                    </a>
                 </div>
             </article>
             {{/each}}

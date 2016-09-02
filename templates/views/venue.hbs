@@ -10,7 +10,18 @@
         <img src="/images/star-filled.svg" />
         {{/times}}
     </p>
-    {{{venue.description}}}
+    <section class="wpfk--venue-description">
+        {{{venue.description}}}
+        <p><strong>Recommended by {{venue.user.yourName}} with {{venue.user.childName}} (age {{venue.childrensAges}})</strong> - {{venue.formattedDate}}</p>
+    </section>
+    <section class="wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
+        <h2>Activity Type</h2>
+        <section class="wpfk--form-collapse--more">
+            {{#each venue.activityType}}
+            <li>✔ {{this}}</li>
+            {{/each}}
+        </section>
+    </section>
     <section class="wpfk--venue-section">
         <h1>Details</h1>
         <dl class="wpfk--venue-details-list">
