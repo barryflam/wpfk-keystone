@@ -955,6 +955,23 @@ section.wpfk--inline-input select:active {
   .wpfk--venue-content .wpfk--venue-description {
     background: #f5f5f5;
     padding: 1em; }
+  .wpfk--venue-content .wpfk--venue-activity-ticks {
+    list-style: none;
+    text-align: center; }
+    .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
+      display: inline-block;
+      width: 40%;
+      position: relative;
+      text-align: left;
+      padding: 0.5em 1em; }
+      .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
+        position: absolute;
+        left: -15px;
+        content: " ";
+        width: 25px;
+        height: 25px;
+        background: url(/images/tick-blue.svg) no-repeat 50% 50%;
+        background-size: 10px 10px; }
   .wpfk--venue-content .wpfk--venue-section {
     width: 100%;
     margin: 5% 0;
@@ -966,9 +983,11 @@ section.wpfk--inline-input select:active {
       color: #454545;
       margin: 0; }
   .wpfk--venue-content .wpfk--venue-details-list {
-    width: 70%;
-    margin: 5% auto;
-    padding: 0; }
+    width: 40%;
+    margin: 5%;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top; }
     .wpfk--venue-content .wpfk--venue-details-list dd, .wpfk--venue-content .wpfk--venue-details-list dt {
       width: 48%;
       display: inline-block;
@@ -979,6 +998,12 @@ section.wpfk--inline-input select:active {
     .wpfk--venue-content .wpfk--venue-details-list dt {
       font-weight: bold;
       font-family: LatoBold, Arial, Helvetica, sans-serif; }
+  .wpfk--venue-content .wpfk--venue-map {
+    margin: 5%;
+    width: 265px;
+    height: 265px;
+    display: inline-block;
+    vertical-align: top; }
 
 .wpfk--about-header {
   background: #2eaaa5;

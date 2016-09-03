@@ -16,11 +16,11 @@
     </section>
     <section class="wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
         <h2>Activity Type</h2>
-        <section class="wpfk--form-collapse--more">
+        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
             {{#each venue.activityType}}
-            <li>✔ {{this}}</li>
+            <li class="wpfk--venue-activity-tick">{{this}}</li>
             {{/each}}
-        </section>
+        </ul>
     </section>
     <section class="wpfk--venue-section">
         <h1>Details</h1>
@@ -34,6 +34,8 @@
             <dt>Website:</dt>
             <dd>{{website}}</dd>
         </dl>
+        <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:265px;width:265px;'></div>
+        <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng({{venue.latLng}}),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng({{venue.latLng}})});infowindow = new google.maps.InfoWindow({content:"<h3>{{venue.venueName}}</h3><p>{{venue.inlineAddress}}</p>"});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
     </section>
     <section class="wpfk--venue-section">
         <h1>Facilities</h1>

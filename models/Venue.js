@@ -161,6 +161,16 @@ Venue.schema.virtual('openToday').get(function () {
     return false;
 });
 
+Venue.schema.virtual('latLng').get(function() {
+    return this.geoLocation.geo[1] + "," + this.geoLocation.geo[0];
+});
+
+Venue.schema.virtual('inlineAddress').get(function() {
+    var inlineAddress = this.address;
+    inlineAddress = inlineAddress.replace(/\r?\n|\r/g, ', ');
+    return inlineAddress;
+});
+
 Venue.schema.virtual('costsMoney').get(function() {
     return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
 });
