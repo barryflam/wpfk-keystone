@@ -64,7 +64,7 @@ exports = module.exports = function(req, res) {
         });;
     }
 
-    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next) {
+    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next, sortBy) {
         var andFilterMatcher = fromLatLng !== null && radius !== null ? [{
             'geoLocation.geo': {
                 $near: { 
@@ -76,7 +76,7 @@ exports = module.exports = function(req, res) {
                 }
             }
         }] : [];
-
+ 
         venueTypes.forEach(function(type) {
             var emptyObj = {};
             emptyObj['venueType.' + type] = true;
@@ -96,6 +96,7 @@ exports = module.exports = function(req, res) {
             .find({
                 $and: andFilterMatcher
             })
+            .sort(sortBy)
             .limit(50)
             .exec(function(err, venues) {
                 if (venues) {
@@ -121,6 +122,27 @@ exports = module.exports = function(req, res) {
         locals.radius = req.query.radius;
 
         locals.venueType = {};
+
+        var sortBy;
+
+        switch (req.query.sortBy) {
+            case "popularity":
+                locals.sortByPopularity = true;
+                sortBy = "-rating";
+                break;
+            case "added":
+                locals.sortByAdded = true;
+                sortBy = "-addedOn";
+                break;
+            case "open-today":
+                locals.sortByOpenToday = true;
+                sortBy = "-openToday";
+                break;
+            case "nearest": 
+            default:
+                locals.sortByNearest = true;
+                sortBy = null;
+        }
 
         var venueTypes = req.query.venueTypes || [];
 
@@ -152,27 +174,15 @@ exports = module.exports = function(req, res) {
             locals.filterLocation = true;
             doGeocode(req.query.vicinity, function (geocodeResponse) {
                 if (geocodeResponse.lat && geocodeResponse.lng) {
-                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next);
+                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next, sortBy);
                 } else {
                     next(geocodeResponse);
                 }
             });
         } else {
-            queryVenues(null, null, venueTypes, ageRanges, next);
+            queryVenues(null, null, venueTypes, ageRanges, next, sortBy);
         }
     });
-
-    /*view.on('post', function(next) {
-        Venue.paginate({
-            page: req.query.page || 1,
-            perPage: 25
-        })
-        .sort('-publishedDate')
-        .exec(function(err, results) {
-            locals.venues = results;
-            next(err);
-        });
-    });*/
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.

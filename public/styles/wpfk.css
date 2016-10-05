@@ -655,7 +655,7 @@ a.wpfk--form__submit-button {
   .js-enabled .wpfk--filter-collapse:after {
     font-family: LatoRegular, Arial, Helvetica, sans-serif;
     font-size: 1em;
-    content: "<" !important;
+    content: ">" !important;
     transform: scale(1.5, 1) rotate(90deg);
     color: #e53cad;
     position: absolute;
@@ -669,7 +669,7 @@ a.wpfk--form__submit-button {
     -moz-transition: max-height 0.5s;
     transition: max-height 0.5s; }
   .js-enabled .wpfk--filter-collapse.wpfk--form-collapse--expanded:after {
-    content: ">" !important; }
+    content: "<" !important; }
   .js-enabled .wpfk--filter-collapse.wpfk--form-collapse--expanded .wpfk--form-collapse--more {
     max-height: 1000px; }
 

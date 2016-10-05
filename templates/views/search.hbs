@@ -21,7 +21,7 @@
                 <section class="wpfk--form-collapse--more">
                     <input type="text" class="wpfk--input-location" placeholder="e.g. London, SE4" name="vicinity" value="{{vicinity}}" />
                     <section class="wpfk--custom-select custom-select">
-                        <select name="radius" id="selectSubmitter">
+                        <select name="radius" class="selectSubmitter">
                             <option value="1" {{#ifeq radius 1}}selected="selected"{{/ifeq}}>This area only</option>
                             <option value="5" {{#ifeq radius 5}}selected="selected"{{/ifeq}}>Within 5 miles</option>
                             <option value="10" {{#ifeq radius 10}}selected="selected"{{/ifeq}}>Within 10 miles</option>
@@ -91,9 +91,11 @@
             <div class="wpfk--search-results--sort">
                 <label for="sort-by">Sort by</label>
                 <div class="wpfk--custom-select custom-select">
-                    <select name="sort-by" id="sort-by">
-                        <option>Most popular</option>
-                        <option>Least popular</option>
+                    <select name="sortBy" class="selectSubmitter">
+                        <option {{#if sortByNearest}}selected="selected" {{/if}}value="nearest">Nearest</option>
+                        <option {{#if sortByPopularity}}selected="selected" {{/if}}value="popularity">Most popular</option>
+                        <option {{#if sortByAdded}}selected="selected" {{/if}}value="added">Recently added</option>
+                        <option {{#if sortByOpenToday}}selected="selected" {{/if}}value="open-today">Open today</option>
                     </select>
                 </div>
             </div>
@@ -139,14 +141,10 @@
         document.getElementById('search').submit();
     }
 
-    document.getElementById('selectSubmitter').addEventListener('change', function (e) {
-        onChangeSubmit(e);
-    });
+    var submitters = document.querySelectorAll(".selectSubmitter, .checkboxSubmitters input[type='checkbox']");
 
-    var checkboxes = document.querySelectorAll(".checkboxSubmitters input[type='checkbox']");
-
-    for (i = 0, len = checkboxes.length; i < len; ++i) {        
-        checkboxes[i].addEventListener('change', function (e) {
+    for (i = 0, len = submitters.length; i < len; ++i) {        
+        submitters[i].addEventListener('change', function (e) {
             onChangeSubmit(e);
         });
     };

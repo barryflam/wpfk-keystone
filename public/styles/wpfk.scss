@@ -940,7 +940,7 @@ a.wpfk--form__submit-button {
         &:after {
                 font-family: LatoRegular, Arial, Helvetica, sans-serif;
                 font-size: em-calc(16);
-                content: "<" !important;
+                content: ">" !important;
                 transform: scale(1.5,1) rotate(90deg);
                 color: $brand-purple;
                 position: absolute;
@@ -960,7 +960,7 @@ a.wpfk--form__submit-button {
 
         &.wpfk--form-collapse--expanded {
             &:after {
-                content: ">" !important;
+                content: "<" !important;
             }
 
             .wpfk--form-collapse--more {
