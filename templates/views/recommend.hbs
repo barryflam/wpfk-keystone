@@ -163,7 +163,8 @@
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3 id="imageUpload">Add images of your Wiki Place</h3>
         <section class="wpfk--form-collapse--more">
-            <input aria-labelledby="imageUpload" name="image" type="file" accept="image/*" />
+            <input aria-labelledby="imageUpload" name="image_upload" type="file" accept="image/*" />
+            <input name="image_action" type="hidden" value="upload" />
         </section>
     </section>
     <section class="wpfk--form__your-details">

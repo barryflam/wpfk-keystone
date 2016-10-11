@@ -110,7 +110,7 @@ exports = module.exports = function(req, res) {
                 'user.childAge',
                 'user.email',
 		        'user.agreement',
-		'placeId',
+		        'placeId',
                 'lat',
                 'lng',
                 'geoLocation'
