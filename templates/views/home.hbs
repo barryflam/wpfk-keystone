@@ -1,4 +1,4 @@
-<img class="wpfk--hero-image" src="/images/hero.jpg" />
+<img class="wpfk--hero-image" src="{{heroImage.url}}" />
 <article class="wpfk--home-content">
     <form class="wpfk--home-search-bar" action="/search" method="get">
         <input type="hidden" name="radius" value="50" /><section class="wpfk--custom-select custom-select wpfk--inline-input">
@@ -43,41 +43,41 @@
         {{{content}}}
     </section>
     <section class="wpfk--discover-box">
-        <h1>What’s new this week</h1>
-        <p>Discover new, inspiring places close to home.</p>
+        <h1>{{section1Title}}</h1>
+        <p>{{section1Strapline}}</p>
         <div class="wpfk--discover-image-boxes">
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kid-tall.jpg" alt="Tall kid" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=classes">Baby group</a></figcaption>
+                <img src="{{section1Box1Image.url}}" alt="{{section1Box1Title}}" />
+                <figcaption><a class="addVicinity" href="{{section1Box1Link}}">{{section1Box1Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kids-face.jpg" alt="Kid's face'" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=softplay">Soft play</a></figcaption>
+                <img src="{{section1Box2Image.url}}" alt="{{section1Box2Title}}" />
+                <figcaption><a class="addVicinity" href="{{section1Box2Link}}">{{section1Box2Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=outdoors">Day out</a></figcaption>
+                <img src="{{section1Box3Image.url}}" alt="{{section1Box3Title}}" />
+                <figcaption><a class="addVicinity" href="{{section1Box3Link}}">{{section1Box3Title}}</a></figcaption>
             </figure>
         </div>  
-        <p><a class="wpfk--button-link" href="/search">See all new this week</a></p>    
+        <p><a class="wpfk--button-link" href="{{section1LinkUrl}}">{{section1LinkText}}</a></p>    
     </section>
     <section class="wpfk--discover-box">
-        <h1>Browse popular characters</h1>
-        <p>Discover new, inspiring places close to home.</p>
+        <h1>{{section2Title}}</h1>
+        <p>{{section2Strapline}}</p>
         <div class="wpfk--discover-image-boxes">
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kid-tall.jpg" alt="Tall kid" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=classes">Baby group</a></figcaption>
+                <img src="{{section2Box1Image.url}}" alt="{{section2Box1Title}}" />
+                <figcaption><a class="addVicinity" href="{{section1Box1Link}}">{{section1Box1Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kids-face.jpg" alt="Kid's face'" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=softplay">Soft play</a></figcaption>
+                <img src="{{section2Box2Image.url}}" alt="{{section2Box2Title}}" />
+                <figcaption><a class="addVicinity" href="{{section1Box2Link}}">{{section1Box2Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
-                <img src="/images/kids-bench.jpg" alt="Kids sitting on a bench" />
-                <figcaption><a class="addVicinity" href="/search?venueTypes=outdoors">Day out</a></figcaption>
+                <img src="{{section2Box3Image.url}}" alt="{{section2Box3Title}}" />
+                <figcaption><a class="addVicinity" href="{{section2Box3Link}}">{{section2Box3Title}}</a></figcaption>
             </figure>
         </div>  
-        <p><a class="wpfk--button-link" href="/search">See more</a></p>    
+        <p><a class="wpfk--button-link" href="{{section2LinkUrl}}">{{section2LinkText}}</a></p>    
     </section>
 </article>
