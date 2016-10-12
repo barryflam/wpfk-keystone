@@ -101,11 +101,14 @@
             </div>
             {{#each venues}}
             <article class="wpfk--search-result">
-                <div class="wpfk--search-result__image">
-                    <img src="/images/sealife.jpg" alt="Sealife" width="380" />
-                </div>
-                <div class="wpfk--search-result__details">
-                    <a href="/venue/{{slug}}">
+                <a href="/venue/{{slug}}">
+                    <div class="wpfk--search-result__image">
+                        {{#if image.url}}
+                        <img src="{{image.url}}" alt="{{venueName}}" width="380" />
+                        {{else}}
+                        <img src="/images/sealife.jpg" alt="Sealife" width="380" />
+                        {{/if}}
+                    </div><div class="wpfk--search-result__details">
                         {{#if addedByWPFK}}{{else}}<span class="addedByWPFK"></span>{{/if}}
                         <h1>{{venueName}}</h1>
                         <p class="wpfk--search-rating">
@@ -117,9 +120,9 @@
                         <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
                         <p class="wpfk--search-result__address">{{address}}</p>
                         <p class="wpfk--search-price">Price: {{#if costsMoney}}Not free{{else}}Free{{/if}}</p>
-                        {{{description}}}
-                    </a>
-                </div>
+                        <p>{{{description}}}</p>
+                    </div>
+                </a>
             </article>
             {{/each}}
         </section>

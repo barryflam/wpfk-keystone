@@ -1248,6 +1248,7 @@ section.wpfk--inline-input select:active {
 
             .wpfk--search-price {
                 font-weight: bold;
+                color: #000;
             }
 
             .wpfk--search-result__opening-times {
@@ -1297,6 +1298,8 @@ section.wpfk--inline-input select:active {
     img {
         display: block;
         width: 100%;
+        height: 421px;
+        object-fit: cover;
     }
 }
 

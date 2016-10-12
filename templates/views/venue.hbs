@@ -1,6 +1,12 @@
 <header class="wpfk--venue-header">
-    <img src="/images/sealife-large.jpg" width="1200" />
-    <h1>{{venue.venueName}}</h1>
+    <div class="wpfk--venue-image-container">
+        {{#if venue.image.url}}
+        <img src="{{venue.image.url}}" alt="{{venue.venueName}}" width="1200" />
+        {{else}}
+        <img src="/images/sealife-large.jpg" width="1200" />
+        {{/if}}
+        <h1>{{venue.venueName}}</h1>
+    </div>
 </header>
 <article class="wpfk--venue-content">
     <h1>{{venue.venueName}}</h1>
