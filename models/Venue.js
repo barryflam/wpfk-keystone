@@ -138,7 +138,7 @@ Venue.add({
 });
 
 Venue.schema.virtual('childrensAges').get(function () {
-    return this.user.childAge.replace(',', ' and ');
+    return this.user.childAge.replace(',', ' and ').replace(' ', ' and ');
 });
 
 Venue.schema.virtual('formattedDate').get(function () {
