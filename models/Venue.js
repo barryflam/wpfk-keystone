@@ -13,17 +13,17 @@ Venue.add({
     venueName: { type: String, label: 'Venue Name', index: true, required: true },
     venueType: {
         softplay: { type: Boolean, label: 'Softplay', index: true },
-        indoorActivities: { type: Boolean, label: 'Indoor Activities', index: true },
-        outdoorActivities: { type: Boolean, label: 'Outdoor Activities', index: true },        
+        indoorActivities: { type: Boolean, label: 'Indoor activities', index: true },
+        outdoorActivities: { type: Boolean, label: 'Outdoor activities', index: true },        
         food: { type: Boolean, label: 'Restaurants and food', index: true },
-        pubs: { type: Boolean, label: 'Pubs with gardens/play facilities', index: true },
+        pubs: { type: Boolean, label: 'Pubs with gardens or play facilities', index: true },
         hotels: { type: Boolean, label: 'Hotels', index: true },
         groups: { type: Boolean, label: 'Toddler groups', index: true },
         classes: { type: Boolean, label: 'Baby classes', index: true },
-        swimming: { type: Boolean, label: 'Swimming/Splash parks', index: true },
-        outdoors: { type: Boolean, label: 'Parks/Walks/Outdoor fun', index: true },
-        animals: { type: Boolean, label: 'Open Farms/Safari/Zoo', index: true },
-        culture: { type: Boolean, label: 'Museums/Cultural activites', index: true },
+        swimming: { type: Boolean, label: 'Swimming and splash parks', index: true },
+        outdoors: { type: Boolean, label: 'Parks, walks and outdoor fun', index: true },
+        animals: { type: Boolean, label: 'Open farms, safari parks and zoos', index: true },
+        culture: { type: Boolean, label: 'Museums, cultural activites', index: true },
         libraries: { type: Boolean, label: 'Libraries', index: true },
         sports: { type: Boolean, label: 'Sports', index: true }
     },
@@ -178,20 +178,26 @@ Venue.schema.virtual('costsMoney').get(function() {
 Venue.schema.virtual('activityType').get(function() {
     return Object.keys(this.venueType).filter(function (value) {
         return typeof this[value] === "boolean";
+    }, this.venueType).map(function (value) {
+        var node = Venue.schema.paths['venueType.' + value]; 
+        return node.options.label;
     }, this.venueType);
 });
 
 Venue.schema.virtual('facilities').get(function() {
     return Object.keys(this.services).filter(function (value) {
         return typeof this[value] === "boolean";
-    }, this.services);
+    }, this.services).map(function (value) {
+        var node = Venue.schema.paths['services.' + value]; 
+        return node.options.label;
+    }, this.venueType);;
 });
 
 Venue.schema.virtual('opens').get(function() {
     return Object.keys(this.openingHours).filter(function (value) {
         return typeof this[value].isOpen === "boolean";
     }, this.openingHours).map(function (value) {
-        return value + ": " + ("0000" + this[value].open.from).substr(-4,4) + " - " + ("0000" + this[value].open.to).substr(-4,4);
+        return value.charAt(0).toUpperCase() + value.slice(1) + ": " + ("0000" + this[value].open.from).substr(-4,4) + " - " + ("0000" + this[value].open.to).substr(-4,4);
     }, this.openingHours);
 });
 
