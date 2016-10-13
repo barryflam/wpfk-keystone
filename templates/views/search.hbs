@@ -1,7 +1,7 @@
 <form id="search" method="get" action="/search">
     <header class="wpfk--search-header">
         <div class="wpfk--wide-container">
-            <h1>{{#if vicinity}}Results for, {{vicinity}}{{else}}Results{{/if}}</h1>
+            <h1>Results{{#if searchQuery}} for {{searchQuery}}{{/if}}</h1>
             <div class="wpfk--custom-select custom-select">
                 <select name="day">
                     <option>Today</option>
@@ -15,6 +15,13 @@
         <aside class="wpfk--search-filters">
             <!--<a href="#">Map view</a>-->
             <h1>Refine by</h1>
+            <hr/>
+            <section class="wpfk--filter-collapse {{#if filterSearchString}}wpfk--form-collapse--expanded{{/if}}">
+                <h2>Containing phrase</h2>
+                <section class="wpfk--form-collapse--more">
+                    <input type="text" class="wpfk--input-location" placeholder="e.g. Knebworth House" name="searchString" value="{{searchString}}" />
+                </section>  
+            </section>
             <hr/>
             <section class="wpfk--filter-collapse wpfk--form-collapse--expanded">
                 <h2>Location</h2>
@@ -85,6 +92,7 @@
                     <li><input type="checkbox" /> <label>Kids menu</label></li>
                 </ul>
             </section>
+            <button type="submit" class="wpfk--form__submit-button">Search</button>
         </aside>
         <section class="wpfk--search-results">
             <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>

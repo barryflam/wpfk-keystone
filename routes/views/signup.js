@@ -2,18 +2,22 @@ var keystone = require('keystone');
 var EmailSignup = keystone.list('EmailSignup');
 var https = require('https');
 
-exports = module.exports = function(req, res) {
-	var view = new keystone.View(req, res);
+exports = module.exports = function(req, res, next) {
 	var locals = res.locals;
+    var redirectTo = '/';
 
-    view.on('post', function(next) {
-        console.log(res);
+    var email = req.body.email;
+
+    var newSignup = new EmailSignup.model(),
+        updater = newSignup.getUpdateHandler(req);
+
+    redirectTo = '/' + (req.body.origin === "home" ? "" : req.body.origin);
+
+    updater.process(req.body, {
+        flashErrors: true,
+        fields: "email",
+        errorMessage: 'There was a problem signing you up'
+    }, function(err) {
+        res.redirect(redirectTo);
     });
-	
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
-	locals.section = 'signup';
-	
-	// Render the view
-	view.render('signup');
 };

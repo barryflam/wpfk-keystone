@@ -50,11 +50,17 @@
             {{#if mainSite}}
             <nav class="wpfk--site-nav">
                 <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/search">Search</a></li>
-                </ul>    
+                    <li><a href="/"{{#ifeq section "home"}} class="selected"{{/ifeq}}>Home</a></li>
+                    <li><a href="/about"{{#ifeq section "about"}} class="selected"{{/ifeq}}>About Us</a></li>
+                    <li><a href="/contact"{{#ifeq section "contact"}} class="selected"{{/ifeq}}>Contact</a></li>
+                    <li class="wpfk--search-nav"><a{{#ifeq section "search"}} class="selected"{{/ifeq}}>Search</a>
+                        <div class="wpfk--search-nav-overlay">
+                            <form action="/search" method="get">
+                                <input type="text" name="searchString" placeholder="Keyword to search for" />
+                            </form>
+                        </div>
+                    </li>
+                </ul>
             </nav>
             {{/if}}
             {{{body}}}
@@ -75,7 +81,9 @@
                         <h1>Be in the know</h1>
                         <p>Enter your email to get our updates</p>
                         <form action="/signup" class="signup-form" method="post">
-                            <input type="email" placeholder="you@email.com" /><input type="submit" value="Join" />
+                            <input type="email" name="email" placeholder="you@email.com" /><input type="submit" value="Join" />
+                            <input type="hidden" name="origin" value="{{section}}" />
+                            <input type="hidden" name="action" value="signup" />
                         </form>
                     </section>
                 </section>

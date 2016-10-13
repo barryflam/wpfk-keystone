@@ -296,6 +296,7 @@ fieldset {
         padding-bottom: 5px;
         letter-spacing: 0.2em;
 
+        &.selected,
         &:hover,
         &:active,
         &:focus {
@@ -1261,6 +1262,39 @@ section.wpfk--inline-input select:active {
     }
 }
 
+.wpfk--search-nav {
+    position: relative;
+
+    &-overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: -50%;
+        padding-top: 20px;
+    }
+
+    form {
+        background: $brand-orange;
+        padding: 15px;        
+    }
+
+    a:not(.selected) {
+        cursor: pointer;
+    }
+
+    input {
+        width: 200px;
+    }
+
+    a:not(.selected):focus + &-overlay,    
+    a:not(.selected):hover + &-overlay,
+    a:not(.selected):active + &-overlay,
+    a:not(.selected) + &-overlay:hover,
+    a:not(.selected) + &-overlay:focus {
+        display: block;
+    }
+}
+
 .wpfk--home-content {
     @extend %wide-container;
     top: -93px;
@@ -1355,6 +1389,22 @@ section.wpfk--inline-input select:active {
                 height: 25px;
                 background: url(/images/tick-blue.svg) no-repeat 50% 50%;
                 background-size: 10px 10px;
+            }
+        }
+
+        .wpfk--venue-activity-notick {
+            display: inline-block;
+            width: 100%;
+            position: relative;
+            text-align: left;
+            padding: 0.5em 1em;
+
+            &:before {
+                position: absolute;
+                left: -15px;
+                content: "·";
+                width: 25px;
+                height: 25px;
             }
         }
     }

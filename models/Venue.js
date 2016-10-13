@@ -194,6 +194,22 @@ Venue.schema.virtual('opens').get(function() {
         return value + ": " + ("0000" + this[value].open.from).substr(-4,4) + " - " + ("0000" + this[value].open.to).substr(-4,4);
     }, this.openingHours);
 });
+
+Venue.schema.index(
+    {
+        venueName: 'text',
+        address: 'text',
+        description: 'text'
+    },
+    {
+        name: 'Venue search text index',
+        weights: {
+            venueName: 10,
+            address: 5,
+            description: 5
+        }
+    }
+);
  
 Venue.defaultColumns = 'name, addedByWPFK|20%, state|20%'
 Venue.register();

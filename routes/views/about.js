@@ -10,6 +10,7 @@ exports = module.exports = function(req, res) {
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
     locals.mainSite = true;
+    locals.section = slug;
 
     view.on('get', function(next) {
         Page.model.findOne({ 'slug': slug }, '', function (err, page) {

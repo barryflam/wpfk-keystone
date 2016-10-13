@@ -192,7 +192,7 @@ fieldset {
     text-decoration: none;
     padding-bottom: 5px;
     letter-spacing: 0.2em; }
-    .wpfk--site-nav a:hover, .wpfk--site-nav a:active, .wpfk--site-nav a:focus {
+    .wpfk--site-nav a.selected, .wpfk--site-nav a:hover, .wpfk--site-nav a:active, .wpfk--site-nav a:focus {
       border-bottom: 2px solid #e53cad; }
 
 .wpfk--hero-image {
@@ -902,6 +902,28 @@ section.wpfk--inline-input select:active {
         color: #2eaaa5;
         font-weight: bold; }
 
+.wpfk--search-nav {
+  position: relative; }
+  .wpfk--search-nav-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    padding-top: 20px; }
+  .wpfk--search-nav form {
+    background: #e29f00;
+    padding: 15px; }
+  .wpfk--search-nav a:not(.selected) {
+    cursor: pointer; }
+  .wpfk--search-nav input {
+    width: 200px; }
+  a:not(.selected):focus + .wpfk--search-nav-overlay,
+  a:not(.selected):hover + .wpfk--search-nav-overlay,
+  a:not(.selected):active + .wpfk--search-nav-overlay,
+  a:not(.selected) + .wpfk--search-nav-overlay:hover,
+  a:not(.selected) + .wpfk--search-nav-overlay:focus {
+    display: block; }
+
 .wpfk--home-content {
   top: -93px;
   position: relative;
@@ -975,6 +997,18 @@ section.wpfk--inline-input select:active {
         height: 25px;
         background: url(/images/tick-blue.svg) no-repeat 50% 50%;
         background-size: 10px 10px; }
+    .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-notick {
+      display: inline-block;
+      width: 100%;
+      position: relative;
+      text-align: left;
+      padding: 0.5em 1em; }
+      .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-notick:before {
+        position: absolute;
+        left: -15px;
+        content: "·";
+        width: 25px;
+        height: 25px; }
   .wpfk--venue-content .wpfk--venue-section {
     width: 100%;
     margin: 5% 0;

@@ -45,17 +45,17 @@
     </section>
     <section class="wpfk--venue-section">
         <h1>Facilities</h1>
-        <ul>
+        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
             {{#each venue.facilities}}
-            <li>{{this}}</li>
+            <li class="wpfk--venue-activity-tick">{{this}}</li>
             {{/each}}
         </ul>
     </section>
         <section class="wpfk--venue-section">
         <h1>Opening Hours</h1>
-        <ul>
+        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
             {{#each venue.opens}}
-            <li>{{this}}</li>
+            <li class="wpfk--venue-activity-notick">{{this}}</li>
             {{/each}}
         </ul>
     </section>

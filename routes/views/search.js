@@ -64,8 +64,10 @@ exports = module.exports = function(req, res) {
         });;
     }
 
-    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next, sortBy) {
-        var andFilterMatcher = fromLatLng !== null && radius !== null ? [{
+    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next, sortBy, searchString) {
+        var locationSearch = fromLatLng !== null && radius !== null;
+
+        var andFilterMatcher = locationSearch ? [{
             'geoLocation.geo': {
                 $near: { 
                     $geometry: { 
@@ -75,7 +77,7 @@ exports = module.exports = function(req, res) {
                     $maxDistance: milesToMeters(locals.radius)
                 }
             }
-        }] : [];
+        }] : [ { $text: { $search: searchString } } ];
  
         venueTypes.forEach(function(type) {
             var emptyObj = {};
@@ -97,13 +99,28 @@ exports = module.exports = function(req, res) {
                 $and: andFilterMatcher
             })
             .sort(sortBy)
-            .limit(50)
             .exec(function(err, venues) {
                 if (venues) {
+                    if (locationSearch) {
+                        venues.forEach(function (venue) {
+                            venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
+                        });
+                    }
+
+                    if (searchString !== '') {
+                        var regex = new RegExp('\\b' + searchString + '\\b', 'i');
+
+                        console.log(regex);
+
+                        venues = venues.filter(function (venue) { 
+                            var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
+                            console.log(string);
+                            console.log(regex.test(string));
+                            return regex.test(string);
+                        });
+                    }
+
                     locals.venueCount = venues.length;
-                    venues.forEach(function (venue) {
-                        venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
-                    });
                 } else {
                     locals.venueCount = 0;
                 }
@@ -118,7 +135,7 @@ exports = module.exports = function(req, res) {
 
     view.on('get', function(next) {
         locals.vicinity = req.query.vicinity;
-        
+        locals.searchString = req.query.searchString || '';
         locals.radius = req.query.radius;
 
         locals.venueType = {};
@@ -170,18 +187,31 @@ exports = module.exports = function(req, res) {
             locals.ageRange[range] = true;
         });
 
-        if(locals.vicinity && locals.vicinity.length > 0) {
+        var hasSearchString = locals.searchString !== '';
+
+        if (hasSearchString) {
+            locals.filterSearchString = true;
+        }
+
+        var hasVicinity = locals.vicinity && locals.vicinity.length > 0;
+
+        if(hasVicinity) {
             locals.filterLocation = true;
             doGeocode(req.query.vicinity, function (geocodeResponse) {
                 if (geocodeResponse.lat && geocodeResponse.lng) {
-                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next, sortBy);
+                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next, sortBy, locals.searchString);
                 } else {
                     next(geocodeResponse);
                 }
             });
         } else {
-            queryVenues(null, null, venueTypes, ageRanges, next, sortBy);
+            queryVenues(null, null, venueTypes, ageRanges, next, sortBy, locals.searchString);
         }
+
+        var searchQuery = hasVicinity ? locals.vicinity : '';
+        searchQuery += hasSearchString ? (hasVicinity ? ' and ' + locals.searchString : locals.searchString) : '';
+
+        locals.searchQuery = searchQuery;
     });
 	
 	// locals.section is used to set the currently selected
