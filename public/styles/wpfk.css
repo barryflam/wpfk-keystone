@@ -873,6 +873,9 @@ section.wpfk--inline-input select:active {
         color: #fff;
         text-transform: uppercase;
         margin: 0; }
+    .wpfk--search-results .wpfk--search-result a {
+      text-decoration: none;
+      color: #000; }
     .wpfk--search-results .wpfk--search-result__details {
       display: inline-block;
       vertical-align: top;
@@ -888,9 +891,6 @@ section.wpfk--inline-input select:active {
         font-weight: normal;
         width: 80%;
         color: #454545; }
-      .wpfk--search-results .wpfk--search-result__details a {
-        text-decoration: none;
-        color: #000; }
       .wpfk--search-results .wpfk--search-result__details .wpfk--search-rating img, .wpfk--search-results .wpfk--search-result__details .wpfk--search-rating span {
         vertical-align: middle; }
       .wpfk--search-results .wpfk--search-result__details .wpfk--search-price {

@@ -1217,6 +1217,11 @@ section.wpfk--inline-input select:active {
             }
         }
 
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
         &__details {
             display: inline-block;
             vertical-align: top;
@@ -1234,11 +1239,6 @@ section.wpfk--inline-input select:active {
                 font-weight: normal;
                 width: 80%;
                 color: $brand-grey;
-            }
-
-            a {
-                text-decoration: none;
-                color: #000;
             }
 
             .wpfk--search-rating {

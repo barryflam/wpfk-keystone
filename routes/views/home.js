@@ -1,10 +1,31 @@
 var keystone = require('keystone');
 var HomePage = keystone.list('HomePage');
+var Venues = keystone.list('Venue');
 
 exports = module.exports = function(req, res) {
-	
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
+    var venueTypePathRegex = new RegExp(/^venueType.*/);
+
+    locals.activityDropdown = function() {
+        var venues = [];
+        
+        var paths = Object.keys(Venues.schema.paths);
+
+        paths.forEach(function (key) {
+            var value = Venues.schema.paths[key];
+
+            if (venueTypePathRegex.test(key)) {
+                var activityType = key.replace('venueType.', '');
+                venues.push({
+                    value: activityType,
+                    label: value.options.label 
+                });
+            }
+        });
+
+        return venues;
+    } 
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.

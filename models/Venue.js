@@ -23,7 +23,7 @@ Venue.add({
         swimming: { type: Boolean, label: 'Swimming and splash parks', index: true },
         outdoors: { type: Boolean, label: 'Parks, walks and outdoor fun', index: true },
         animals: { type: Boolean, label: 'Open farms, safari parks and zoos', index: true },
-        culture: { type: Boolean, label: 'Museums, cultural activites', index: true },
+        culture: { type: Boolean, label: 'Museums and cultural activities', index: true },
         libraries: { type: Boolean, label: 'Libraries', index: true },
         sports: { type: Boolean, label: 'Sports', index: true }
     },
