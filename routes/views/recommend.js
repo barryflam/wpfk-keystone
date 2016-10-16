@@ -8,8 +8,8 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
     locals.mainSite = true;
  
-    var recommendSlug = "recommend",
-        thankYouSlug = "thank-you";
+    var recommendSlug = "recommend-your-wiki-place",
+        thankYouSlug = "thanks-for-adding-your-wiki-place";
 
     view.on('get', function(next) {
         Page.model.findOne({ 'slug': recommendSlug }, '', function (err, page) {
