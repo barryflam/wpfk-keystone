@@ -22,6 +22,21 @@
             <a href="/home"><img src="/images/new-logo.svg" width="250" /></a>
         </header>
         <article role="main">
+            <!-- The content block should contain the body of your template's content-->
+            <nav class="wpfk--site-nav">
+                <ul>
+                    <li><a href="/"{{#ifeq section "home"}} class="selected"{{/ifeq}}>Home</a></li>
+                    <li><a href="/about"{{#ifeq section "about"}} class="selected"{{/ifeq}}>About Us</a></li>
+                    <li><a href="/contact"{{#ifeq section "contact"}} class="selected"{{/ifeq}}>Contact</a></li>
+                    <li class="wpfk--search-nav"><a{{#ifeq section "search"}} class="selected"{{/ifeq}}>Search</a>
+                        <div class="wpfk--search-nav-overlay">
+                            <form action="/search" method="get">
+                                <input type="text" name="searchString" placeholder="Keyword to search for" />
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
             {{#if messages}}
             <div id="flash-messages" class="wpfk--messages">
                 {{#if messages.info}}
@@ -46,25 +61,7 @@
                 {{/if}}
             </div>
             {{/if}}
-            <!-- The content block should contain the body of your template's content-->
-            {{#if mainSite}}
-            <nav class="wpfk--site-nav">
-                <ul>
-                    <li><a href="/"{{#ifeq section "home"}} class="selected"{{/ifeq}}>Home</a></li>
-                    <li><a href="/about"{{#ifeq section "about"}} class="selected"{{/ifeq}}>About Us</a></li>
-                    <li><a href="/contact"{{#ifeq section "contact"}} class="selected"{{/ifeq}}>Contact</a></li>
-                    <li class="wpfk--search-nav"><a{{#ifeq section "search"}} class="selected"{{/ifeq}}>Search</a>
-                        <div class="wpfk--search-nav-overlay">
-                            <form action="/search" method="get">
-                                <input type="text" name="searchString" placeholder="Keyword to search for" />
-                            </form>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            {{/if}}
             {{{body}}}
-            {{#if mainSite}}
             <footer class="wpfk--footer">
                 <section class="wpfk--footer-container">
                     <a href="/home"><img src="/images/new-logo-white.svg" alt="WPFK" width="250" /></a>
@@ -88,7 +85,6 @@
                     </section>
                 </section>
             </footer>
-            {{/if}}
         </article>
 		{{{isAdminEditorJS user}}}
         <script type="text/javascript">

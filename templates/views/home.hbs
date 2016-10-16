@@ -8,20 +8,6 @@
                 {{#each activityDropdown}}
                     <option value="{{value}}">{{label}}</option>
                 {{/each}}
-                <!--<option value="softplay">Softplay</option>
-                <option value="indoorActivities">Indoor activities</option>
-                <option value="outdoorActivities">Outdoor activities</option>
-                <option value="food">Restaurants and food</option>
-                <option value="pubs">Pubs with gardens or play facilities</option>
-                <option value="hotels">Hotels</option>
-                <option value="groups">Toddler groups</option>
-                <option value="classes">Baby classes</option>
-                <option value="swimming">Swimming and splash parks</option>
-                <option value="outdoors">Parks, walks and outdoor fun</option>
-                <option value="animals">Open Farms, safaris and zoos</option>
-                <option value="culture">Museums and cultural activites</option>
-                <option value="libraries">Libraries</option>
-                <option value="sports">Sports</option>-->
             </select>
         </section><input type="text" class="wpfk--input-location wpfk--inline-input" placeholder="Enter a postcode" name="vicinity" value="{{vicinity}}" /><section class="wpfk--custom-select custom-select wpfk--inline-input wpfk--inline-input--narrow">
             <select name="ageRanges">
@@ -70,11 +56,11 @@
         <div class="wpfk--discover-image-boxes">
             <figure class="wpfk--overlayed-image">
                 <img src="{{section2Box1Image.url}}" alt="{{section2Box1Title}}" />
-                <figcaption><a class="addVicinity" href="{{section1Box1Link}}">{{section1Box1Title}}</a></figcaption>
+                <figcaption><a class="addVicinity" href="{{section1Box1Link}}">{{section2Box1Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
                 <img src="{{section2Box2Image.url}}" alt="{{section2Box2Title}}" />
-                <figcaption><a class="addVicinity" href="{{section1Box2Link}}">{{section1Box2Title}}</a></figcaption>
+                <figcaption><a class="addVicinity" href="{{section1Box2Link}}">{{section2Box2Title}}</a></figcaption>
             </figure>
             <figure class="wpfk--overlayed-image">
                 <img src="{{section2Box3Image.url}}" alt="{{section2Box3Title}}" />

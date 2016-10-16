@@ -23,7 +23,7 @@
     <section class="wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
         <h2>Activity Type</h2>
         <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-            {{#each venue.activityType}}
+            {{#each venue.currentActivityTypes}}
             <li class="wpfk--venue-activity-tick">{{this}}</li>
             {{/each}}
         </ul>
@@ -46,7 +46,7 @@
     <section class="wpfk--venue-section">
         <h1>Facilities</h1>
         <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-            {{#each venue.facilities}}
+            {{#each venue.currentFacilities}}
             <li class="wpfk--venue-activity-tick">{{this}}</li>
             {{/each}}
         </ul>

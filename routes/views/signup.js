@@ -18,6 +18,12 @@ exports = module.exports = function(req, res, next) {
         fields: "email",
         errorMessage: 'There was a problem signing you up'
     }, function(err) {
+        if (err) {
+            req.flash('error', { detail: 'Please try again later.' });                        
+        }
+        else {
+            req.flash('success', { detail: 'Thanks for signing up!' });        
+        }
         res.redirect(redirectTo);
     });
 };

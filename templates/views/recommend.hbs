@@ -3,16 +3,16 @@
 </header>   
 {{#if venueSubmitted}}
 <section class="wpfk--form-intro wpfk--form-thank-you">
-    <h1>Thanks for adding your Wiki Place!</h1>
-    <p>Brilliant, thank you for your recommendation, you really are making a difference for thousands of parents, just like you!</p>
-    <p>Each one of your recommendations gives you another chance of being drawn from the hat this month to win £150 to spend on…whatever you like! So go on...</p>
+    <h1>{{title}}</h1>
+    {{{content}}}
     <section class="wpfk--form-actions">
         <a href="/recommend" class="wpfk--form__submit-button">Recommend Another WPFK</a>
     </section>
 </section>
 {{else}}
 <section class="wpfk--about-content">
-    <h1 tabindex="1">Recommend your Wiki Place</h1>
+    <h1 tabindex="1">{{title}}</h1>
+    {{{content}}}
 </section>
 <form class="wpfk--content-box" role="form" method="post" enctype="multipart/form-data">
     <h2 tabindex="3">Venue information</h2>

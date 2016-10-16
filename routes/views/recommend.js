@@ -1,11 +1,29 @@
 var keystone = require('keystone');
 var Venue = keystone.list('Venue');
+var Page = keystone.list('Page');
 
 exports = module.exports = function(req, res) {
 	
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
     locals.mainSite = true;
+ 
+    var recommendSlug = "recommend",
+        thankYouSlug = "thank-you";
+
+    view.on('get', function(next) {
+        Page.model.findOne({ 'slug': recommendSlug }, '', function (err, page) {
+            if (page) {
+                locals.title = page.title;
+                locals.content = page.content;       
+            } else {
+                locals.title = "Page not found";
+                res.status(404);
+            }
+
+            next(err);
+        });
+    });
 	
 	// Set locals
 	locals.section = 'recommend';
@@ -121,6 +139,18 @@ exports = module.exports = function(req, res) {
             
 			if (err) {
 				locals.validationErrors = err.errors;
+
+                Page.model.findOne({ 'slug': recommendSlug }, '', function (err, page) {
+                    if (page) {
+                        locals.title = page.title;
+                        locals.content = page.content;       
+                    } else {
+                        locals.title = "Page not found";
+                        res.status(404);
+                    }
+
+                    next(err);
+                });
 			} else {
                 req.session.user = {};
                 req.session.user.yourName = locals.formData["user.yourName"];
@@ -128,12 +158,22 @@ exports = module.exports = function(req, res) {
                 req.session.user.childName = locals.formData["user.childName"];
                 req.session.user.childAge = locals.formData["user.childAge"];
 				locals.venueSubmitted = true;
+
+                Page.model.findOne({ 'slug': thankYouSlug }, '', function (err, page) {
+                    if (page) {
+                        locals.title = page.title;
+                        locals.content = page.content;       
+                    } else {
+                        locals.title = "Page not found";
+                        res.status(404);
+                    }
+
+                    next();
+                });
 			}
-			next();
 		});
 		
 	});
 	
 	view.render('recommend');
-	
 };

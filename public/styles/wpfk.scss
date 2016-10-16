@@ -178,7 +178,30 @@ article[role='main'] {
 }
 
 .wpfk--messages {
-    @extend %container;
+    width: 100%;
+    text-align: center;
+
+    @media (max-width: $tablet-breakpoint) {
+        position: static;
+    }
+
+    div {
+        text-align: center;
+        width: 100%;
+        padding: 5px 0;
+
+        p, h4, li {
+            color: #fff !important;
+        }
+
+        &.alert-success {
+            background: $brand-turqoise !important;
+        }
+
+        &.alert-danger {
+            background: #f00 !important;
+        }
+    }
 }
 
 .wpfk--content-box {
@@ -1269,8 +1292,14 @@ section.wpfk--inline-input select:active {
         display: none;
         position: absolute;
         top: 0;
-        left: -50%;
+        right: -35px;
         padding-top: 20px;
+
+        @media (max-width: $tablet-breakpoint) {
+            top: 1em;
+            right: 0;
+            left: auto;
+        }
     }
 
     form {
@@ -1284,6 +1313,10 @@ section.wpfk--inline-input select:active {
 
     input {
         width: 200px;
+
+        @media (max-width: $tablet-breakpoint) {
+            width: 300px;
+        }
     }
 
     a:not(.selected):focus + &-overlay,    
@@ -1372,7 +1405,6 @@ section.wpfk--inline-input select:active {
 
     .wpfk--venue-activity-ticks {
         list-style: none;
-        text-align: center;
 
         @media (max-width: $tablet-breakpoint) {
             text-align:left;

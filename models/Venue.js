@@ -138,7 +138,7 @@ Venue.add({
 });
 
 Venue.schema.virtual('childrensAges').get(function () {
-    return this.user.childAge.replace(',', ' and ').replace(' ', ' and ');
+    return this.user.childAge ? this.user.childAge.replace(',', ' and ').replace(' ', ' and ') : '';
 });
 
 Venue.schema.virtual('formattedDate').get(function () {
@@ -187,6 +187,24 @@ Venue.schema.virtual('activityType').get(function() {
 Venue.schema.virtual('facilities').get(function() {
     return Object.keys(this.services).filter(function (value) {
         return typeof this[value] === "boolean";
+    }, this.services).map(function (value) {
+        var node = Venue.schema.paths['services.' + value]; 
+        return node.options.label;
+    }, this.venueType);;
+});
+
+Venue.schema.virtual('currentActivityTypes').get(function() {
+    return Object.keys(this.venueType).filter(function (value) {
+        return typeof this[value] === "boolean" && this[value] === true;
+    }, this.venueType).map(function (value) {
+        var node = Venue.schema.paths['venueType.' + value]; 
+        return node.options.label;
+    }, this.venueType);
+});
+
+Venue.schema.virtual('currentFacilities').get(function() {
+    return Object.keys(this.services).filter(function (value) {
+        return typeof this[value] === "boolean" && this[value] === true;
     }, this.services).map(function (value) {
         var node = Venue.schema.paths['services.' + value]; 
         return node.options.label;
