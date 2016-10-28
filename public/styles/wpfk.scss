@@ -1296,6 +1296,7 @@ section.wpfk--inline-input select:active {
         top: 0;
         right: -35px;
         padding-top: 20px;
+        z-index: 999;
 
         @media (max-width: $tablet-breakpoint) {
             top: 1em;
