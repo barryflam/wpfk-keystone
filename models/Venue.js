@@ -212,11 +212,18 @@ Venue.schema.virtual('currentFacilities').get(function() {
 });
 
 Venue.schema.virtual('opens').get(function() {
-    return Object.keys(this.openingHours).filter(function (value) {
-        return typeof this[value].isOpen === "boolean";
-    }, this.openingHours).map(function (value) {
-        return value.charAt(0).toUpperCase() + value.slice(1) + ": " + ("0000" + this[value].open.from).substr(-4,4) + " - " + ("0000" + this[value].open.to).substr(-4,4);
-    }, this.openingHours);
+    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        out = [];
+
+    days.forEach(function (day) {
+        var today = this.openingHours[day];
+
+        if (this.openingHours[day].isOpen) {
+            out.push(day.charAt(0).toUpperCase() + day.slice(1) + ": " + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4));
+        }
+    }, this);
+
+    return out;
 });
 
 Venue.schema.index(

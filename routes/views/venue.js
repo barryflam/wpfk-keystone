@@ -9,6 +9,7 @@ exports = module.exports = function(req, res) {
 
     view.on('get', function(next) {
         Venue.model.findOne({ 'slug': venueSlug }, '', function (err, venue) {
+            console.log(venue);
             locals.venue = venue;
             next(err);
         })

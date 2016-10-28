@@ -77,7 +77,7 @@ exports = module.exports = function(req, res) {
                     $maxDistance: milesToMeters(locals.radius)
                 }
             }
-        }] : [ { $text: { $search: searchString } } ];
+        }] : (searchString.length > 0 ? [ { $text: { $search: searchString } } ] : [{ venueName: { $exists: true } }]);
  
         venueTypes.forEach(function(type) {
             var emptyObj = {};
