@@ -350,7 +350,6 @@ module.exports = function() {
 	}
 
     _helpers.times = function(n, block) {
-        console.log(n);
         var accum = '';
         for(var i = 0; i < n; ++i)
             accum += block.fn(i);

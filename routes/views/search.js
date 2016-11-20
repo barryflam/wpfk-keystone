@@ -64,7 +64,7 @@ exports = module.exports = function(req, res) {
         });;
     }
 
-    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, next, sortBy, searchString) {
+    var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, services, next, sortBy, searchString) {
         var locationSearch = fromLatLng !== null && radius !== null;
 
         var andFilterMatcher = locationSearch ? [{
@@ -91,6 +91,12 @@ exports = module.exports = function(req, res) {
             andFilterMatcher.push( emptyObj );
         });
 
+        services.forEach(function(ranges) {
+            var emptyObj = {};
+            emptyObj['services.' + ranges] = true;
+            andFilterMatcher.push( emptyObj );
+        });
+
         console.log(andFilterMatcher);
         
         Venue
@@ -110,12 +116,8 @@ exports = module.exports = function(req, res) {
                     if (searchString !== '') {
                         var regex = new RegExp('\\b' + searchString + '\\b', 'i');
 
-                        console.log(regex);
-
                         venues = venues.filter(function (venue) { 
                             var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
-                            console.log(string);
-                            console.log(regex.test(string));
                             return regex.test(string);
                         });
                     }
@@ -126,8 +128,6 @@ exports = module.exports = function(req, res) {
                 }
 
                 locals.venues = venues;
-
-                console.log(venues);
                 
                 next(err);
             });
@@ -169,7 +169,6 @@ exports = module.exports = function(req, res) {
 
         venueTypes.forEach(function(type) {
             locals.filterActivityType = true;
-            console.log(type);
             locals.venueType[type] = true;
         });
 
@@ -183,8 +182,20 @@ exports = module.exports = function(req, res) {
 
         ageRanges.forEach(function(range) {
             locals.filterAgeRanges = true;
-            console.log(range);
             locals.ageRange[range] = true;
+        });
+
+        locals.services = {};
+
+        var services = req.query.services || [];
+
+        if (typeof services !== "object") {
+            var services = [ req.query.services ];
+        }
+
+        services.forEach(function(range) {
+            locals.filterServices = true;
+            locals.services[range] = true;
         });
 
         var hasSearchString = locals.searchString !== '';
@@ -199,13 +210,13 @@ exports = module.exports = function(req, res) {
             locals.filterLocation = true;
             doGeocode(req.query.vicinity, function (geocodeResponse) {
                 if (geocodeResponse.lat && geocodeResponse.lng) {
-                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, next, sortBy, locals.searchString);
+                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, services, next, sortBy, locals.searchString);
                 } else {
                     next(geocodeResponse);
                 }
             });
         } else {
-            queryVenues(null, null, venueTypes, ageRanges, next, sortBy, locals.searchString);
+            queryVenues(null, null, venueTypes, ageRanges, services, next, sortBy, locals.searchString);
         }
 
         var searchQuery = hasVicinity ? locals.vicinity : '';

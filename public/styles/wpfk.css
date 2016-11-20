@@ -8,8 +8,7 @@
 .wpfk--coming-soon, .wpfk--site-header, .wpfk--content-box, .wpfk--site-nav, .wpfk--form-intro, .wpfk--site-description, .wpfk--discover-box, .wpfk--footer .wpfk--footer-container, .wpfk--venue-content, .wpfk--about-content {
   max-width: 820px;
   margin: 0 auto;
-  text-align: center;
-  width: 100%; }
+  text-align: center; }
 
 .wpfk--search {
   display: -ms-flexbox;

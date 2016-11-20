@@ -79,23 +79,27 @@
                 </ul>
             </section>
             <hr/>
-            <section class="wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
+            <section class="wpfk--filter-collapse {{#if filterServices}}wpfk--form-collapse--expanded{{/if}}">
                 <h2>Facilities</h2>
-                <ul class="wpfk--form__checkbox-container wpfk--form-collapse--more">
-                    <li><input type="checkbox" /> <label>Good food for parents</label></input></li>
-                    <li><input type="checkbox" /> <label>Wheelchair access</label></li>
-                    <li><input type="checkbox" /> <label>Pram accessible</label></li>
-                    <li><input type="checkbox" /> <label>Double pram friendly</label></li>
-                    <li><input type="checkbox" /> <label>Breast/Bottle feeding facilities</label></li>
-                    <li><input type="checkbox" /> <label>Venue for children’s parties</label></li>
-                    <li><input type="checkbox" /> <label>Suitable for twins/multiples</label></li>
-                    <li><input type="checkbox" /> <label>High chairs</label></li>
-                    <li><input type="checkbox" /> <label>Kids menu</label></li>
+                <ul class="wpfk--form__checkbox-container-linear checkboxSubmitters wpfk--form-collapse--more">
+                    <li><input type="checkbox" name="services" value="goodFood" id="goodFood" {{#if services.goodFood}}checked="checked"{{/if}} /> <label for="goodFood">Good food for parents</label></input></li>
+                    <li><input type="checkbox" name="services" value="wheelAccessible" id="wheelAccessible" {{#if services.wheelAccessible}}checked="checked"{{/if}} /> <label for="wheelAccessible">Wheelchair access</label></li>
+                    <li><input type="checkbox" name="services" value="doublePramFriendly" id="doublePramFriendly" {{#if services.doublePramFriendly}}checked="checked"{{/if}}/> <label for="doublePramFriendly">Double pram friendly</label></li>
+                    <li><input type="checkbox" name="services" value="kidsParties" id="kidsParties" {{#if services.kidsParties}}checked="checked"{{/if}}/> <label for="kidsParties">Venue for children’s parties</label></li>
+                    <li><input type="checkbox" name="services" value="childrensMenu" id="childrensMenu" {{#if services.childrensMenu}}checked="checked"{{/if}}/> <label for="childrensMenu">Kids menu</label></li>
+                    <li><input type="checkbox" name="services" value="babyChanging" id="babyChanging" {{#if services.babyChanging}}checked="checked"{{/if}}/> <label for="babyChanging">Baby changing facilities</label></li>
+                    <li><input type="checkbox" name="services" value="suitableForMany" id="suitableForMany" {{#if services.suitableForMany}}checked="checked"{{/if}} /> <label for="suitableForMany">Suitable for twins/multiples</label></li>
                 </ul>
             </section>
             <button type="submit" class="wpfk--form__submit-button">Search</button>
         </aside>
         <section class="wpfk--search-results">
+            {{#ifeq venueCount 0}}
+            <h2>Whoops! Nothing here?</h2>
+            <p class="wpfk--search-results__found">We are brand new and are still filling up with ideas.</p>
+            <p class="wpfk--search-results__found">Please help us by adding great places that you love via the big pink button at the top!</p>
+            <p class="wpfk--search-results__found">Thank you!</p>
+            {{else}}
             <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>
             <div class="wpfk--search-results--sort">
                 <label for="sort-by">Sort by</label>
@@ -134,6 +138,7 @@
                 </a>
             </article>
             {{/each}}
+            {{/ifeq}}
         </section>
     </div>    
 </form>

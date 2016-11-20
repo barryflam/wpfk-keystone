@@ -134,9 +134,7 @@ exports = module.exports = function(req, res) {
                 'geoLocation'
             ].join(', '),
 			errorMessage: 'There was a problem submitting your enquiry:'
-		}, function(err) {
-            console.log(locals.formData["user.yourName"]);
-            
+		}, function(err) {            
 			if (err) {
 				locals.validationErrors = err.errors;
 
