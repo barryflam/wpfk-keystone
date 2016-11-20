@@ -307,8 +307,9 @@ fieldset {
         }
 
         @media (max-width: $tablet-breakpoint) {
-            width: auto;
-            padding: 0 3%;
+            width: 100%;
+            text-align: center;
+            padding: 3% 0;
         }
     }
 
@@ -1295,13 +1296,13 @@ section.wpfk--inline-input select:active {
         position: absolute;
         top: 0;
         right: -35px;
-        padding-top: 20px;
+        padding-top: 25px;
         z-index: 999;
 
         @media (max-width: $tablet-breakpoint) {
             top: 1em;
-            right: 0;
-            left: auto;
+            right: auto;
+            left: -150%;
         }
     }
 
@@ -1326,8 +1327,16 @@ section.wpfk--inline-input select:active {
     a:hover + &-overlay,
     a:active + &-overlay,
     a + &-overlay:hover,
-    a + &-overlay:focus {
+    a + &-overlay:focus,
+    a + &-overlay:active {
         display: block;
+    }
+
+    @media (max-width: $tablet-breakpoint) {
+	a:active + &-overlay,
+	a + &overlay:active {
+            display: block;
+        }
     }
 }
 

@@ -35,10 +35,21 @@
             <dd style="white-space: pre-wrap">{{{venue.address}}}</dd>
             <dt>Contact:</dt>
             <dd>{{venue.telephoneNumber}}</dd>
+            {{#if venue.costsMoney}}
+            <dt>Adult price:</dt>
+            <dd>£{{venue.prices.adult}}</dd>            
+            <dt>Child price:</dt>
+            <dd>£{{venue.prices.child}}</dd>            
+            <dt>Infant price:</dt>
+            <dd>£{{venue.prices.infant}}</dd>            
+            <dt>Other price:</dt>
+            <dd>{{venue.prices.otherDescription}}</dd>            
+            {{else}}
             <dt>Price:</dt>
-            <dd>{{#if costsMoney}}Paid{{else}}Free{{/if}}</dd>
-            <dt>Website:</dt>
-            <dd>{{website}}</dd>
+            <dd>Free</dd>
+            {{/if}}
+	    <dt>Website:</dt>
+            <dd><a href="{{venue.website}}" target="_blank">{{venue.website}}</a></dd>
         </dl>
         <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:265px;width:265px;'></div>
         <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng({{venue.latLng}}),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng({{venue.latLng}})});infowindow = new google.maps.InfoWindow({content:"<h3>{{venue.venueName}}</h3><p>{{venue.inlineAddress}}</p>"});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
