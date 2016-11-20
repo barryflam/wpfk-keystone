@@ -162,7 +162,11 @@ Venue.schema.virtual('openToday').get(function () {
 });
 
 Venue.schema.virtual('latLng').get(function() {
-    return this.geoLocation.geo[1] + "," + this.geoLocation.geo[0];
+    if (this.geoLocation.geo) {
+        return this.geoLocation.geo[1] + "," + this.geoLocation.geo[0];
+    }
+    
+    return "51.507414,-0.127692";
 });
 
 Venue.schema.virtual('inlineAddress').get(function() {
