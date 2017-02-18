@@ -187,6 +187,8 @@ module.exports = function() {
 	
 	_helpers.cloudinaryUrl = function(context, options) {
 
+        options.cloud_name = "dlt0udyfs";
+
 		// if we dont pass in a context and just kwargs
 		// then `this` refers to our default scope block and kwargs
 		// are stored in context.hash
