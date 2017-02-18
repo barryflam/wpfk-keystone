@@ -117,7 +117,7 @@
                 <a href="/venue/{{slug}}">
                     <div class="wpfk--search-result__image">
                         {{#if image.url}}
-                        <img src="{{image.url}}" alt="{{venueName}}" width="380" />
+                        <img src="{{cloudinaryUrl image width=412 height=314 crop='fit' gravity='center'}}" alt="{{venueName}}" width="412" />
                         {{else}}
                         <img src="/images/castle.jpg" alt="Sealife" width="380" />
                         {{/if}}
