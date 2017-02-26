@@ -80,12 +80,15 @@
     </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>Do you know the prices?</h3>
-        <ul class="wpfk--form__prices-container wpfk--form-collapse--more">
-            <li><label for="pricesadult">Adult (£)</label> <input type="number" step="0.01" name="prices.adult" id="pricesadult" value="{{formData.[prices.adult]}}" placeholder="0" /></li>
-            <li><label for="priceschild">Child (£)</label> <input type="number" step="0.01" name="prices.child" id="priceschild" value="{{formData.[prices.child]}}" placeholder="0" /></li>
-            <li><label for="pricesinfant">Infant (£)</label> <input type="number" step="0.01" name="prices.infant" id="pricesinfant" value="{{formData.[prices.infant]}}" placeholder="0" /></li>
-            <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.[prices.otherDescription]}}" /></li>
-        </ul>
+        <section class="wpfk--form-collapse--more">
+            <p class="wpfk--price-toggler"><label for="priceIsFree">Is free of charge?</label> <input type="radio" name="prices.isFree" id="priceIsFreeNo" {{#ifeq formData.[prices.isFree] "No"}}checked="checked"{{/ifeq}} value="No" /> No <input type="radio" name="prices.isFree" id="priceIsFreeYes" {{#ifeq formData.[prices.isFree] "Yes"}}checked="checked"{{/ifeq}} value="Yes" /> Yes</p>
+            <ul class="wpfk--form__prices-container wpfk--price-toggled">
+                <li><label for="pricesadult">Adult (£)</label> <input type="number" step="0.01" name="prices.adult" id="pricesadult" value="{{formData.[prices.adult]}}" placeholder="0" /></li>
+                <li><label for="priceschild">Child (£)</label> <input type="number" step="0.01" name="prices.child" id="priceschild" value="{{formData.[prices.child]}}" placeholder="0" /></li>
+                <li><label for="pricesinfant">Infant (£)</label> <input type="number" step="0.01" name="prices.infant" id="pricesinfant" value="{{formData.[prices.infant]}}" placeholder="0" /></li>
+                <li class="wpfk--form__price-wide"><label for="pricesotherDescription">Other prices</label> <input type="text" name="prices.otherDescription" id="pricesotherDescription" value="{{formData.[prices.otherDescription]}}" /></li>
+            </ul>
+        </section>
     </section>
     <section class="wpfk--form-collapse {{#if formData.openingHoursExpanded}}wpfk--form-collapse--expanded{{/if}}">
         <h3>What age of child does it suit?</h3>
@@ -328,6 +331,16 @@
             }
         }, 200);
     }
+
+    function togglePrice(isFree)
+    {
+        var toggled = document.querySelectorAll('.wpfk--price-toggled input');
+
+        for (var i = 0, len = toggled.length; i < len; i++)
+        {
+            toggled[i].disabled = isFree;
+        }
+    }
     
     venueSearchElement.addEventListener("blur", function () {
         suggestionsVisible();
@@ -338,5 +351,20 @@
     });
     
     allAgesCheckbox.addEventListener("change", suitableForAll);
+
+    var priceTogglers = document.querySelectorAll('.wpfk--price-toggler input[type="radio"]');
+
+    for(var i = 0, len = priceTogglers.length; i < len; i++)
+    {
+        console.log(priceTogglers[i]);
+
+        priceTogglers[i].addEventListener('change', function(e) {
+            console.log(e);
+            if (e.target.checked)
+            {
+                togglePrice(e.target.value == "Yes");
+            }
+        });
+    }
 </script>
 {{/if}}

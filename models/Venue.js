@@ -68,6 +68,7 @@ Venue.add({
         kidsParties: { type: Boolean, label: 'Available for kids parties?' }        
     },
     prices: {
+        isFree: { type: Types.Select, label: 'Is free of charge?', required: true, options: 'No, Yes', emptyOption: false, default: 'No' },
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
         child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
         infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },

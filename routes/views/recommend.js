@@ -24,6 +24,17 @@ exports = module.exports = function(req, res) {
             next(err);
         });
     });
+
+    view.on('put', function (next) {
+        var placeId = req.query.place;
+
+        Venue.model.findOne({ 'slug': venueSlug }, '', function (err, venue) {
+            locals.venue = venue;
+            next(err);
+        });
+
+        res.json({exists : true});
+    });
 	
 	// Set locals
 	locals.section = 'recommend';
@@ -97,6 +108,7 @@ exports = module.exports = function(req, res) {
                 'services.doublePramFriendly',  
                 'services.goodFood',   
                 'services.kidsParties',                                           
+                'prices.isFree',                
                 'prices.adult',
                 'prices.child',
                 'prices.infant',
