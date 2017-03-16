@@ -39,6 +39,7 @@ exports = module.exports = function(app) {
 	app.get('/search', routes.views.search);
     app.get('/venue/:slug', routes.views.venue);           
 	app.all('/recommend', routes.views.recommend);
+    app.post('/review', routes.views.review);
     app.post('/signup', routes.views.signup);
     app.get('/:slug', routes.views.about);
 	

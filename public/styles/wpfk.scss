@@ -1578,3 +1578,64 @@ section.wpfk--inline-input select:active {
         }
     }
 }
+
+.wpfk--review-header {
+    p {
+        font-size: em-calc(14);
+        color: #9a9a9a;
+
+        strong {
+            color: $brand-grey;
+        }
+    }
+}
+
+.wpfk--review-form {
+    .wpfk--review-section {
+        p {
+            width: 40%;
+            padding-left: 18%;
+            display: inline-block;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            @media (max-width: $tablet-breakpoint) {
+                padding: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    .wpfk--form__rating {
+        display: flex;
+        justify-content: flex-start;
+        vertical-align: middle;
+
+        h3 {
+            width: 20%;
+            margin: 3% 0;
+        }
+
+        .wpfk--form__rating-container {
+            padding-left: 1%;
+            margin: 3% 0;
+        }
+    }
+
+    .wpfk--more-children {
+            display: none;
+        }
+
+        .wpfk--add-more-children {
+            p {
+                text-align: right;
+                width: 100%;
+            }
+            
+            a {
+                color: $brand-purple;
+            }
+        }
+}

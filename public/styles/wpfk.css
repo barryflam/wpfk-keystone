@@ -1129,3 +1129,41 @@ section.wpfk--inline-input select:active {
     font-weight: bold; }
   .wpfk--about-content a:hover, .wpfk--about-content a:active {
     text-decoration: underline; }
+
+.wpfk--review-header p {
+  font-size: 0.875em;
+  color: #9a9a9a; }
+  .wpfk--review-header p strong {
+    color: #454545; }
+
+.wpfk--review-form .wpfk--review-section p {
+  width: 40%;
+  padding-left: 18%;
+  display: inline-block; }
+  .wpfk--review-form .wpfk--review-section p:first-child {
+    padding-left: 0; }
+  @media (max-width: 800px) {
+    .wpfk--review-form .wpfk--review-section p {
+      padding: 0;
+      width: 100%; } }
+
+.wpfk--review-form .wpfk--form__rating {
+  display: flex;
+  justify-content: flex-start;
+  vertical-align: middle; }
+  .wpfk--review-form .wpfk--form__rating h3 {
+    width: 20%;
+    margin: 3% 0; }
+  .wpfk--review-form .wpfk--form__rating .wpfk--form__rating-container {
+    padding-left: 1%;
+    margin: 3% 0; }
+
+.wpfk--review-form .wpfk--more-children {
+  display: none; }
+
+.wpfk--review-form .wpfk--add-more-children p {
+  text-align: right;
+  width: 100%; }
+
+.wpfk--review-form .wpfk--add-more-children a {
+  color: #e53cad; }

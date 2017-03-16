@@ -70,4 +70,84 @@
             {{/each}}
         </ul>
     </section>
+    </section>
+        <section class="wpfk--venue-section">
+        <h1>Reviews</h1>
+        <p>There are {{reviewCount}} reviews for "{{venue.venueName}}"</p>
+        {{#each reviews}}
+        <section class="wpfk--review-header">
+            <p><strong>Recommended by {{yourName}} {{#if children.child1Name}}{{children.child1Name}} (age {{children.child1Age}}){{/if}}
+                                            {{#if children.child2Name}},{{children.child2Name}} (age {{children.child2Age}}){{/if}}
+                                            {{#if children.child3Name}},{{children.child3Name}} (age {{children.child3Age}}){{/if}}
+                                            {{#if children.child4Name}},{{children.child4Name}} (age {{children.child4Age}}){{/if}}
+                                            {{#if children.child5Name}},{{children.child5Name}} (age {{children.child5Age}}){{/if}} - {{formattedDate}}</strong></p>
+            <p class="wpfk--search-rating">
+            {{#times rating}}
+            <img src="/images/star-filled.svg" />
+            {{/times}}
+            </p>
+            <p>{{{description}}}</p>
+        </section>
+        {{/each}}
+    <form action="/review" method="post"> 
+    <section class="wpfk--venue-section wpfk--review-form">
+        <h1>Add a review</h1>
+        <section class="wpfk--form__rating">
+            <h3>Your rating</h3>
+            <div class="wpfk--form__rating-container">
+                <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
+                <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label>
+                <input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label>
+                <input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label>
+                <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
+            </div>
+        </section>
+        <section class="wpfk--review-section">
+            <p>Your name:<br/><input type="text" name="yourName" id="yourName" value="{{formData.yourName}}" placeholder="Your name" aria-label="Your name" /></p>
+            <p>Email:<br/><input type="email" name="email" id="email" value="{{formData.email}}" placeholder="Email" aria-label="Email" /></p>
+        </section>
+        <section class="wpfk--review-section">
+            <p>Child 1's name:<br/><input type="text" name="children.child1Name" id="childrenChild1Name" value="{{formData.[children.child1Name]}}" placeholder="Child 1's name" aria-label="Child 1's name" /></p>
+            <p>Child 1's age:<br/><input type="number" name="children.child1Age" id="childrenChild1Age" value="{{formData.[children.child1Age]}}" placeholder="Child 1's age" aria-label="Child 1's age" /></p>
+        </section>
+        <section class="wpfk--review-section {{#if formData.[children.child2Name]}}{{else}}wpfk--more-children{{/if}}">
+            <p>Child 2's name:<br/><input type="text" name="children.child2Name" id="childrenChild2Name" value="{{formData.[children.child2Name]}}" placeholder="Child 2's name" aria-label="Child 2's name" /></p>
+            <p>Child 2's age:<br/><input type="number" name="children.child2Age" id="childrenChild2Age" value="{{formData.[children.child2Age]}}" placeholder="Child 2's age" aria-label="Child 2's age" /></p>
+        </section>
+        <section class="wpfk--review-section {{#if formData.[children.child3Name]}}{{else}}wpfk--more-children{{/if}}">
+            <p>Child 3's name:<br/><input type="text" name="children.child3Name" id="childrenChild3Name" value="{{formData.[children.child3Name]}}" placeholder="Child 3's name" aria-label="Child 3's name" /></p>
+            <p>Child 3's age:<br/><input type="number" name="children.child3Age" id="childrenChild3Age" value="{{formData.[children.child3Age]}}" placeholder="Child 3's age" aria-label="Child 3's age" /></p>
+        </section>
+        <section class="wpfk--review-section {{#if formData.[children.child4Name]}}{{else}}wpfk--more-children{{/if}}">
+            <p>Child 4's name:<br/><input type="text" name="children.child4Name" id="childrenChild4Name" value="{{formData.[children.child4Name]}}" placeholder="Child 4's name" aria-label="Child 4's name" /></p>
+            <p>Child 4's age:<br/><input type="number" name="children.child4Age" id="childrenChild4Age" value="{{formData.[children.child4Age]}}" placeholder="Child 4's age" aria-label="Child 4's age" /></p>
+        </section>
+        <section class="wpfk--review-section {{#if formData.[children.child5Name]}}{{else}}wpfk--more-children{{/if}}">
+            <p>Child 5's name:<br/><input type="text" name="children.child5Name" id="childrenChild5Name" value="{{formData.[children.child5Name]}}" placeholder="Child 5's name" aria-label="Child 5's name" /></p>
+            <p>Child 5's age:<br/><input type="number" name="children.child5Age" id="childrenChild5Age" value="{{formData.[children.child5Age]}}" placeholder="Child 5's age" aria-label="Child 5's age" /></p>
+        </section>
+        <section class="wpfk--review-section wpfk--add-more-children">
+            <p><a href="#">Add another child</a></p>
+        </section>
+        <section class="wpfk--form__description">
+            <textarea aria-label="Your review" name="description" placeholder="What's brilliant about this place? (also, add hints and tips for other parents)" rows="4">{{formData.description}}</textarea>
+        </section>
+        <section class="wpfk--form-actions">
+            <input type="hidden" name="venueSlug" value="{{venue.slug}}" />
+            <input type="hidden" name="venueId" value="{{venue.id}}" />
+            <input type="hidden" name="action" value="review" />
+            <button type="submit" class="wpfk--form__submit-button">Submit your review</button>
+        </section>
+    </section>
+    </form>
 </article>
+<script type="text/javascript">
+    document.querySelector('.wpfk--add-more-children').addEventListener('click', function(e) {
+        e.preventDefault();
+
+        var children = document.querySelectorAll('.wpfk--more-children');
+
+        children[0].style.display = 'block';
+        children[0].classList.remove('wpfk--more-children');
+    });
+</script>

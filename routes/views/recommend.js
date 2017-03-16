@@ -28,7 +28,7 @@ exports = module.exports = function(req, res) {
     view.on('put', function (next) {
         var placeId = req.query.place;
 
-        Venue.model.findOne({ 'slug': venueSlug }, '', function (err, venue) {
+        Venue.model.findOne({ 'id': venueSlug }, '', function (err, venue) {
             locals.venue = venue;
             next(err);
         });

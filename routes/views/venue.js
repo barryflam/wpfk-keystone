@@ -1,5 +1,6 @@
 var keystone = require('keystone');
-var Venue = keystone.list('Venue');
+var Venue = keystone.list('Venue'),
+    Review = keystone.list('Review');
 
 exports = module.exports = function(req, res) {
     var venueSlug = req.params.slug;
@@ -10,8 +11,13 @@ exports = module.exports = function(req, res) {
     view.on('get', function(next) {
         Venue.model.findOne({ 'slug': venueSlug }, '', function (err, venue) {
             locals.venue = venue;
-            next(err);
-        })
+
+            Review.model.find({ 'venueSlug': venueSlug }, '', function (err, reviews) {
+                locals.reviews = reviews;
+                locals.reviewCount = reviews.length;
+                next(err);
+            });
+        });
     });
 	
 	view.render('venue');

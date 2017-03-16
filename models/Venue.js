@@ -172,7 +172,7 @@ Venue.schema.virtual('latLng').get(function() {
 
 Venue.schema.virtual('inlineAddress').get(function() {
     var inlineAddress = this.address;
-    inlineAddress = inlineAddress.replace(/\r?\n|\r/g, ', ');
+    inlineAddress = inlineAddress ? inlineAddress.replace(/\r?\n|\r/g, ', ') : '';
     return inlineAddress;
 });
 
