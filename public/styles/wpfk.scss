@@ -1251,7 +1251,9 @@ section.wpfk--inline-input select:active {
             display: inline-block;
             vertical-align: top;
             width: 48%;
-            padding: 2%;
+            padding: 18px 2%;
+            height: 278px;
+            text-overflow: ellipsis;
 
             @media (max-width: $tablet-breakpoint) {
                 display: block;
@@ -1282,6 +1284,10 @@ section.wpfk--inline-input select:active {
                 font-size: em-calc(14);
                 color: $brand-turqoise;
                 font-weight: bold;
+            }
+
+            p {
+                text-overflow: ellipsis;
             }
         }
     }

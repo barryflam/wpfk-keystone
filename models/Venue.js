@@ -177,7 +177,8 @@ Venue.schema.virtual('inlineAddress').get(function() {
 });
 
 Venue.schema.virtual('costsMoney').get(function() {
-    return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
+	return this.prices.isFree === "No";
+//    return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
 });
 
 Venue.schema.virtual('activityType').get(function() {
@@ -212,7 +213,7 @@ Venue.schema.virtual('currentFacilities').get(function() {
         return typeof this[value] === "boolean" && this[value] === true;
     }, this.services).map(function (value) {
         var node = Venue.schema.paths['services.' + value]; 
-        return node.options.label;
+        return node.options.label.replace("?","");
     }, this.venueType);;
 });
 

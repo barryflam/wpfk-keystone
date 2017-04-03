@@ -76,11 +76,11 @@
         <p>There are {{reviewCount}} reviews for "{{venue.venueName}}"</p>
         {{#each reviews}}
         <section class="wpfk--review-header">
-            <p><strong>Recommended by {{yourName}} {{#if children.child1Name}}{{children.child1Name}} (age {{children.child1Age}}){{/if}}
-                                            {{#if children.child2Name}},{{children.child2Name}} (age {{children.child2Age}}){{/if}}
-                                            {{#if children.child3Name}},{{children.child3Name}} (age {{children.child3Age}}){{/if}}
-                                            {{#if children.child4Name}},{{children.child4Name}} (age {{children.child4Age}}){{/if}}
-                                            {{#if children.child5Name}},{{children.child5Name}} (age {{children.child5Age}}){{/if}} - {{formattedDate}}</strong></p>
+            <p><strong>Recommended by {{yourName}} {{#if children.child1Name}}with {{children.child1Name}}{{#if children.child1Age}} (age {{children.child1Age}}){{/if}}{{/if}}
+                                            {{#if children.child2Name}}, {{children.child2Name}}{{#if children.child2Age}} (age {{children.child2Age}}){{/if}}{{/if}}
+                                            {{#if children.child3Name}}, {{children.child3Name}}{{#if children.child3Age}} (age {{children.child3Age}}){{/if}}{{/if}}
+                                            {{#if children.child4Name}}, {{children.child4Name}}{{#if children.child4Age}} (age {{children.child4Age}}){{/if}}{{/if}}
+                                            {{#if children.child5Name}}, {{children.child5Name}}{{#if children.child5Age}} (age {{children.child5Age}}){{/if}}{{/if}} - {{formattedDate}}</strong></p>
             <p class="wpfk--search-rating">
             {{#times rating}}
             <img src="/images/star-filled.svg" />

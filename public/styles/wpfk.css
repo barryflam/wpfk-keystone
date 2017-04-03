@@ -899,7 +899,9 @@ section.wpfk--inline-input select:active {
       display: inline-block;
       vertical-align: top;
       width: 48%;
-      padding: 2%; }
+      padding: 18px 2%;
+      height: 278px;
+      text-overflow: ellipsis; }
       @media (max-width: 800px) {
         .wpfk--search-results .wpfk--search-result__details {
           display: block;
@@ -920,6 +922,8 @@ section.wpfk--inline-input select:active {
         font-size: 0.875em;
         color: #2eaaa5;
         font-weight: bold; }
+      .wpfk--search-results .wpfk--search-result__details p {
+        text-overflow: ellipsis; }
 
 .wpfk--search-nav {
   position: relative; }
