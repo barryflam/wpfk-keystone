@@ -13,7 +13,6 @@
     </header>
     <div class="wpfk--search">
         <aside class="wpfk--search-filters">
-            <!--<a href="#">Map view</a>-->
             <h1>Refine by</h1>
             <hr/>
             <section class="wpfk--filter-collapse {{#if filterSearchString}}wpfk--form-collapse--expanded{{/if}}">
@@ -128,12 +127,16 @@
                             {{#times rating}}
                             <img src="/images/star-filled.svg" />
                             {{/times}}
+                            {{#if distance}}
                             <span class="wpfk--search-distance">{{distance}} miles</span>
+                            {{/if}}
                         </p>
                         <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
                         <p class="wpfk--search-result__address">{{address}}</p>
-                        <p class="wpfk--search-price">Price: {{#if costsMoney}}{{else}}Free{{/if}}</p>
-                        <p>{{{description}}}</p>
+                        {{#if costsMoney}}{{else}}<p class="wpfk--search-price">Price: Free</p>{{/if}}
+                        <div class="wpfk--search-result__description">
+                            {{{description}}}
+                        </div>
                     </div>
                 </a>
             </article>
@@ -165,4 +168,23 @@
             onChangeSubmit(e);
         });
     };
+
+    function ellipsizeTextBox() {
+        var results = document.querySelectorAll('.wpfk--search-result');
+
+        for (var i = 0, len = results.length; i < len; i++)
+        {
+            var containerEl = results[i].querySelector('.wpfk--search-result__details'),
+                textEl = results[i].querySelector('.wpfk--search-result__description p');
+            var wordArray = textEl.innerHTML.split(' ');
+
+            while(containerEl.scrollHeight > (containerEl.offsetHeight)) {
+                console.log(containerEl.scrollHeight, containerEl.offsetHeight);
+                wordArray.pop();
+                textEl.innerHTML = wordArray.join(' ') + "...";
+            }
+        }
+    }
+
+    //ellipsizeTextBox();
 </script>
