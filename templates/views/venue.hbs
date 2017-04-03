@@ -1,7 +1,7 @@
 <header class="wpfk--venue-header">
     <div class="wpfk--venue-image-container">
         {{#if venue.image.url}}
-        <img src="{{cloudinaryUrl venue.image width=1200 height=421 crop='fit' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" />
+        <img src="{{cloudinaryUrl venue.image width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" />
         {{else}}
         <img src="/images/castle-wide.jpg" width="1200" />
         {{/if}}
