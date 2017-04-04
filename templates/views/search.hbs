@@ -176,10 +176,9 @@
         {
             var textEl = results[i].querySelector('.wpfk--search-result__description p'),
                 linkEl = results[i].querySelector('.wpfk--search-result a'),
-                wordArray = [],
                 words = textEl.innerHTML.split(' ');
 
-            for (var i = 0, len = words.length; i < len && wordArray.length < len && textEl.height < 70; i++)
+            for (var i = 0, len = words.length; i < len && && textEl.height < 70; i++)
             {
                 textEl.innerHTML += " " + words[i];
             }
