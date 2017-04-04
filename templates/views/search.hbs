@@ -175,16 +175,17 @@
         for (var i = 0, len = results.length; i < len; i++)
         {
             var containerEl = results[i].querySelector('.wpfk--search-result__details'),
-                textEl = results[i].querySelector('.wpfk--search-result__description p');
+                textEl = results[i].querySelector('.wpfk--search-result__description p'),
+                linkEl = results[i].querySelector('.wpfk--search-result a');
             var wordArray = textEl.innerHTML.split(' ');
 
             while(containerEl.scrollHeight > (containerEl.offsetHeight)) {
                 console.log(containerEl.scrollHeight, containerEl.offsetHeight);
                 wordArray.pop();
-                textEl.innerHTML = wordArray.join(' ') + "...";
+                textEl.innerHTML = wordArray.join(' ') + "…";
             }
         }
     }
 
-    //ellipsizeTextBox();
+    ellipsizeTextBox();
 </script>

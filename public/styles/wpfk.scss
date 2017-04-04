@@ -1215,6 +1215,11 @@ section.wpfk--inline-input select:active {
         background: #fff;
         margin: 0 0 20px 0;
         position: relative;
+
+        .wpfk--read-more {
+            color: $brand-purple;
+            display: block;
+        }
         
         &__image {
             display: inline-block;
@@ -1252,7 +1257,8 @@ section.wpfk--inline-input select:active {
             vertical-align: top;
             width: 48%;
             padding: 18px 2%;
-            //height: 238px;
+            height: 238px;
+            overflow: hidden;
 
             @media (max-width: $tablet-breakpoint) {
                 display: block;

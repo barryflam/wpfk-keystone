@@ -873,6 +873,9 @@ section.wpfk--inline-input select:active {
     background: #fff;
     margin: 0 0 20px 0;
     position: relative; }
+    .wpfk--search-results .wpfk--search-result .wpfk--read-more {
+      color: #e53cad;
+      display: block; }
     .wpfk--search-results .wpfk--search-result__image {
       display: inline-block;
       vertical-align: top;
@@ -900,7 +903,8 @@ section.wpfk--inline-input select:active {
       vertical-align: top;
       width: 48%;
       padding: 18px 2%;
-      height: 238px; }
+      height: 238px;
+      overflow: hidden; }
       @media (max-width: 800px) {
         .wpfk--search-results .wpfk--search-result__details {
           display: block;
