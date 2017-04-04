@@ -174,13 +174,11 @@
 
         for (var i = 0, len = results.length; i < len; i++)
         {
-            var containerEl = results[i].querySelector('.wpfk--search-result__details'),
-                textEl = results[i].querySelector('.wpfk--search-result__description p'),
+            var textEl = results[i].querySelector('.wpfk--search-result__description p'),
                 linkEl = results[i].querySelector('.wpfk--search-result a');
             var wordArray = textEl.innerHTML.split(' ');
 
-            while(containerEl.scrollHeight > (containerEl.offsetHeight)) {
-                console.log(containerEl.scrollHeight, containerEl.offsetHeight);
+            while(textEl.offsetHeight > 70) {
                 wordArray.pop();
                 textEl.innerHTML = wordArray.join(' ') + "…";
             }
