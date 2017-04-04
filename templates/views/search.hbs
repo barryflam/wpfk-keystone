@@ -180,9 +180,17 @@
 
             textEl.innerHTML = "";
 
-            for (var i = 0, len = words.length; i < len && && textEl.offsetHeight < 70; i++)
+            for (var i = 0, len = words.length; i < len; i++)
             {
-                textEl.innerHTML += " " + words[i];
+                if (textEl.offsetHeight < 70)
+                {
+                    textEl.innerHTML += " " + words[i];
+                }
+                else
+                {
+                    textEl.innerHTML += "...";
+                    break;
+                }
             }
         }
     }
