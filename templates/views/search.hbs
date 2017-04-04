@@ -178,6 +178,8 @@
                 linkEl = results[i].querySelector('.wpfk--search-result a'),
                 words = textEl.innerHTML.split(' ');
 
+            textEl.innerHTML = "";
+
             for (var i = 0, len = words.length; i < len && && textEl.height < 70; i++)
             {
                 textEl.innerHTML += " " + words[i];
