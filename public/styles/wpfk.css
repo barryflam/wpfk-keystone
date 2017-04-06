@@ -903,12 +903,12 @@ section.wpfk--inline-input select:active {
       vertical-align: top;
       width: 48%;
       padding: 18px 2%;
-      height: 238px;
       overflow: hidden; }
       @media (max-width: 800px) {
         .wpfk--search-results .wpfk--search-result__details {
           display: block;
-          width: 96%; } }
+          width: 96%;
+          height: auto; } }
       .wpfk--search-results .wpfk--search-result__details h1 {
         font-family: LatoRegular, Arial, Helvetica, sans-serif;
         font-size: 1.375em;
