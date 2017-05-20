@@ -89,7 +89,7 @@
             <p>{{{description}}}</p>
         </section>
         {{/each}}
-    <!--<form action="/review" method="post"> 
+    <form id="wpfk-review-form" action="/review" method="post"> 
     <section class="wpfk--venue-section wpfk--review-form">
         <h1>Add a review</h1>
         <section class="wpfk--form__rating">
@@ -136,12 +136,17 @@
             <input type="hidden" name="venueSlug" value="{{venue.slug}}" />
             <input type="hidden" name="venueId" value="{{venue.id}}" />
             <input type="hidden" name="action" value="review" />
-            <button type="submit" class="wpfk--form__submit-button">Submit your review</button>
+            <button type="submit" class="wpfk--form__submit-button g-recaptcha" data-sitekey="6LcnOiIUAAAAAAWjnfn4DP2LA_1oX-g0OsZDBeW-" data-callback="validateRecaptcha">Submit your review</button>
         </section>
     </section>
-    </form>-->
+    </form>
 </article>
 <script type="text/javascript">
+    function validateRecaptcha(token)
+    {
+        document.getElementById('wpfk-review-form').submit();
+    }
+
     document.querySelector('.wpfk--add-more-children').addEventListener('click', function(e) {
         e.preventDefault();
 

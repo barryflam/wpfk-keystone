@@ -17,10 +17,12 @@
  * See the Express application routing documentation for more information:
  * http://expressjs.com/api.html#app.VERB
  */
+require('dotenv').load();
 
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
+var ReCaptchaMiddleware = require('express-recaptcha-middleware')(process.env.GOOGLE_RECAPTCHA_KEY);
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
@@ -39,7 +41,15 @@ exports = module.exports = function(app) {
 	app.get('/search', routes.views.search);
     app.get('/venue/:slug', routes.views.venue);           
 	app.all('/recommend', routes.views.recommend);
-    app.post('/review', routes.views.review);
+    app.post('/review', ReCaptchaMiddleware('g-recaptcha-response'), routes.views.review, function(err, req, res, next) {
+        if (err.name === 'NotFoundReCaptcha' || err.name === 'InvalidRecaptcha') {
+            var venueSlug = req.body.venueSlug;
+            req.flash('error', { detail: 'Invalid recaptcha' });
+            res.redirect('/venue/' + venueSlug);
+        }
+
+        next();
+    });
     app.post('/signup', routes.views.signup);
     app.get('/:slug', routes.views.about);
 	

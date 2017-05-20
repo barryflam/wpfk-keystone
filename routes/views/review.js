@@ -4,7 +4,7 @@ var Venue = keystone.list('Venue');
 
 exports = module.exports = function(req, res) {
 	
-/*	var view = new keystone.View(req, res);
+	var view = new keystone.View(req, res);
 	var locals = res.locals;
     locals.mainSite = true;
 	
@@ -48,5 +48,5 @@ exports = module.exports = function(req, res) {
             req.flash('success', { detail: 'Thanks for sending your review!' });        
         }
         res.redirect('/venue/' + venueSlug);
-    });*/
+    });
 };
