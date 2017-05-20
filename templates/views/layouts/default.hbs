@@ -65,8 +65,11 @@
             {{{body}}}
             <footer class="wpfk--footer">
                 <section class="wpfk--footer-container">
-                    <a href="/home"><img src="/images/new-logo-white.svg" alt="WPFK" width="250" /></a>
-                    <section>
+		    <section class="wpfk--footer-logo-copyright">
+                        <a href="/home"><img src="/images/new-logo-white.svg" alt="WPFK" width="250" /></a>
+                        <p class="wpfk--copyright">© 2017 Wiki Places For Kids. All rights reserved.</p>
+		    </section>
+		    <section>
                         <h1>Wiki places for kids</h1>
                         <ul>
                             <li><a href="/contact">Contact us</a></li>
@@ -90,6 +93,12 @@
         <script type="text/javascript">
             window.wpfk = {};
 
+            function isWPFKLink(url) {
+                if (url.substr(0,4) === "http") return false;
+
+		return true;
+            }
+
             function geoFindMe() {
                 function success(position) {
                     var geocoder = new google.maps.Geocoder;
@@ -106,7 +115,7 @@
                                     for(var i = 0, len = vicinityLinks.length; i < len; i++) {
                                         var href = vicinityLinks[i].getAttribute('href');
 
-                                        if(href.indexOf('vicinity') === -1) {
+                                        if(href.indexOf('vicinity') === -1 && isWPFKLink(href)) {
                                             vicinityLinks[i].setAttribute('href', href + "&vicinity=" + encodeURIComponent(sessionStorage.getItem('vicinity')) + "&radius=100");
                                         }
                                     }

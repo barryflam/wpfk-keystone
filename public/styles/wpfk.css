@@ -307,6 +307,17 @@ fieldset {
         .wpfk--footer .wpfk--footer-container section {
           display: block;
           width: 80%; } }
+      .wpfk--footer .wpfk--footer-container section.wpfk--footer-logo-copyright {
+        display: inline-block;
+        width: 25%;
+        padding: 0; }
+        @media (max-width: 800px) {
+          .wpfk--footer .wpfk--footer-container section.wpfk--footer-logo-copyright {
+            display: block;
+            width: 80%; } }
+      .wpfk--footer .wpfk--footer-container section .wpfk--copyright {
+        padding-left: 67px;
+        font-size: 0.625em; }
       .wpfk--footer .wpfk--footer-container section h1 {
         font-family: LatoBold, Arial, Helvetica, sans-serif;
         font-size: 0.875em;

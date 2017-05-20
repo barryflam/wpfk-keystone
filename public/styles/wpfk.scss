@@ -459,6 +459,22 @@ fieldset {
                 width: 80%;
             }
 
+	    &.wpfk--footer-logo-copyright {
+                display: inline-block;
+                width: 25%;
+		padding: 0;
+
+                @media (max-width: $tablet-breakpoint) {
+                    display: block;
+                    width: 80%;
+                }
+
+            }
+                .wpfk--copyright {
+                    padding-left: 67px;
+                    font-size: em-calc(10);
+                }
+
             h1 {
                 font-family: LatoBold, Arial, Helvetica, sans-serif;
                 font-size: em-calc(14);
