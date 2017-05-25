@@ -37,7 +37,15 @@ keystone.init({
 	'user model': 'User',
     'google api key': process.env.GOOGLE_API_KEY,
     'google server api key': process.env.GOOGLE_SERVER_API_KEY,
-    'default region': 'gb'
+    'default region': 'gb',
+    's3 config': { 
+        bucket: process.env.AWS_BUCKET, 
+        key: process.env.AWS_ACCESS_KEY, 
+        secret: process.env.AWS_SECRET_KEY,
+        'default headers':  {
+            'x-amz-meta-X-Default-Header': 'Custom Default Value'
+        }
+    }
 });
 
 // Load your project's Models
