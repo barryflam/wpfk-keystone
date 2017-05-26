@@ -196,10 +196,12 @@
         </section>
     </section>
     <section id="wpfk--add-review-section" style="display: none">
-        <h2>We already know about this place!</h2>
-        <p>We'd love you to <a id="venueSlug">add a review</a> for this place instead.</p>
+        <h2>Great suggestion! We love this Wiki Place!</h2>
+        <p>Please <a id="venueSlug">add your review to their listing now &gt;</a></p>
     </section>
-    
+    <section id="wpfk--not-found" style="display: none">
+        <p>Your Wiki Place not coming up? <a id="add-venue" href="#">Click here</a>.</p>
+    </section>
 </form>
 <script type="text/javascript">
     document.body.classList.add('js-enabled');
@@ -213,6 +215,13 @@
     }
 </script>
 <script type="text/javascript">
+    var venueName = "{{formData.venueName}}";
+    
+    if (venueName !== "")
+    {
+        document.getElementById("wpfk--add-recommendation-section").style.display = "block";
+    }
+
     function validateRecaptcha(token)
     {
         document.getElementById('wpfk-recommend-form').submit();
@@ -241,6 +250,11 @@
     var openToSelectorPattern = "input[name='openingHours.[[day]].open.to']";
     
     var allAgesCheckbox = document.getElementById('suitableForAgesAll');
+    document.getElementById("add-venue").addEventListener("click", function(e) {
+        e.preventDefault();
+        document.getElementById("add-venue").style.display = "none";
+        document.getElementById("wpfk--add-recommendation-section").style.display = "block";
+    });
 
     function checkVenue(venueId, existsCallback, doesntExistCallback) {
         var oReq = new XMLHttpRequest();  
@@ -265,6 +279,8 @@
     } 
 
     function getVenueDetails(place) {
+        document.getElementById("wpfk--not-found").style.display = "none";
+
         var doesntExist = function() {
             console.log("doesnt exist");
 
@@ -378,6 +394,8 @@
                     })(place);
                     out.appendChild(liEl);
                 }
+
+                document.getElementById("wpfk--not-found").style.display = "block";
             });
         }
     }
@@ -409,6 +427,7 @@
         
         document.getElementById('wpfk--add-review-section').style.display = 'none';
         document.getElementById('wpfk--add-recommendation-section').style.display = 'none';
+        document.getElementById("wpfk--not-found").style.display = "none";
     });
     
     allAgesCheckbox.addEventListener("change", suitableForAll);
