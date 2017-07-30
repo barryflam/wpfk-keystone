@@ -112,7 +112,7 @@
                 </div>
             </div>
             {{#each venues}}
-            <article class="wpfk--search-result">
+            <article class="wpfk--search-result {{#if isPremiumListing}}premium{{/if}}">
                 <a href="/venue/{{slug}}">
                     <div class="wpfk--search-result__image">
                         {{#if image.url}}
@@ -137,6 +137,11 @@
                         <div class="wpfk--search-result__description">
                             {{{description}}}
                         </div>
+                        {{#if isPremiumListing}}
+                        <div class="wpfk--search-result__promo">
+                            {{premium.promoTitle}}{{{premium.promoText}}}
+                        </div>
+                        {{/if}}
                     </div>
                 </a>
             </article>

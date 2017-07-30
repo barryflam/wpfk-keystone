@@ -4,7 +4,8 @@ var Venue = keystone.list('Venue'),
 
 exports = module.exports = function(req, res) {
     var venueSlug = req.params.slug;
-	var view = new keystone.View(req, res);
+    var view = new keystone.View(req, res);
+    var renderer = view.render;
 	var locals = res.locals;
     locals.mainSite = true;
 
@@ -14,11 +15,25 @@ exports = module.exports = function(req, res) {
 
             Review.model.find({ 'venueSlug': venueSlug }, '', function (err, reviews) {
                 locals.reviews = reviews;
+                locals.reviewSpotlight = reviews[reviews.length-1];
                 locals.reviewCount = reviews.length;
                 next(err);
             });
         });
     });
-	
-	view.render('venue');
+
+    view.render(function(err, request, response) {
+        var templateName;
+
+        if (res.locals.venue.isPremiumListing)
+        {
+            templateName = "premium-venue";
+        }
+        else
+        {
+            templateName = "venue";
+        }
+
+        view.res.render(templateName, res.locals, null);
+    });
 };

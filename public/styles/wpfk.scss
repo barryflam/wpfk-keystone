@@ -1236,6 +1236,11 @@ section.wpfk--inline-input select:active {
         margin: 0 0 20px 0;
         position: relative;
 
+        &.premium {
+            background: $brand-turqoise;
+            padding-bottom: 60px;
+        }
+
         .wpfk--read-more {
             color: $brand-purple;
             display: block;
@@ -1272,6 +1277,12 @@ section.wpfk--inline-input select:active {
             color: #000;
         }
 
+        &.premium a,
+        &.premium p,
+        &.premium h1 {
+            color: #fff;
+        }
+
         &__details {
             display: inline-block;
             vertical-align: top;
@@ -1282,7 +1293,7 @@ section.wpfk--inline-input select:active {
             @media (max-width: $tablet-breakpoint) {
                 display: block;
                 width: 96%;
-		height: auto;
+		        height: auto;
             }
 
             h1 {
@@ -1309,6 +1320,26 @@ section.wpfk--inline-input select:active {
                 font-size: em-calc(14);
                 color: $brand-turqoise;
                 font-weight: bold;
+            }
+        }
+
+        &.premium .wpfk--search-result__opening-times {
+            color: $brand-dark-blue;
+        }
+
+        &.premium .wpfk--search-result__promo {
+            background: #fff;
+            color: #000;
+            padding: 1%;
+            position: absolute;
+            bottom: 6%;
+            right: 3%;
+            width: 46%;
+
+            p {
+                margin: 0 0 0 1%;
+                color: #000;
+                display: inline;
             }
         }
     }
@@ -1417,6 +1448,176 @@ section.wpfk--inline-input select:active {
     padding: 38px;
     box-sizing: border-box;
     text-align: left;
+
+    &.wpfk--premium-venue {
+        @extend %wide-container;
+        max-width: 1160px;
+
+        h1 {
+            margin: 0;
+        }
+
+        .wpfk--premium-website-link {
+            position: absolute;
+            top: 38px;
+            right: 38px;
+            font-family: LatoBold, Arial, Helvetica, sans-serif;
+            font-size: em-calc(14);
+            text-decoration: none;
+            text-transform: uppercase;
+            color: #fff;
+            letter-spacing: 0.2em;
+            background: $brand-purple;
+            border: 1px solid $brand-purple;
+            border-radius: 2px;
+            padding: 1% 2%;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background: #fff;
+                color: $brand-purple;
+                transition: 0.2s background;
+            }
+        }
+
+        .wpfk--premium-suitable,
+        .wpfk--search-result__opening-times {
+            display: inline-block;
+            margin-top: 8px;
+            padding-right: 20px;
+            font-size: em-calc(16);
+        }
+
+        .wpfk--venue-premium-nav {
+            width: 100%;
+            display: block;
+
+            ol {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: -webkit-flex;
+                display: flex;
+
+                li {
+                    flex: 1 0;
+                    text-align: center;
+                    padding: 0;
+                    margin: 0;
+                    white-space: nowrap;
+
+                    &:first-child a {
+                        border-top-left-radius: 4px;
+                        border-bottom-left-radius: 4px;
+                    }
+
+                    &:last-child a {
+                        border-top-right-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                        border-width: 1px;
+                    }
+                }
+
+                a {
+                    background: $page-background-color;
+                    color: $brand-grey;
+                    padding: 16px 0;
+                    display: block;
+                    text-decoration: none;
+                    border: 0 solid $border-grey;
+                    border-width: 1px 0 1px 1px;
+                    position: relative;
+
+                    &:after {
+                        font-family: LatoRegular, Arial, Helvetica, sans-serif;
+                        font-size: em-calc(20);
+                        content: ">" !important;
+                        color: $brand-purple;
+                        position: relative;
+                        right: -10px;
+                        top: 1px;
+                    }
+                }
+            }
+        }
+
+        .wpfk--venue-premium-content {
+            display: flex;
+            justify-content: stretch;
+        }
+
+        .wpfk--venue-description {
+            background: none;
+            flex: 2 0;
+            text-align: left;
+            vertical-align: top;
+            padding: 1em 0;
+        }
+
+        .wpfk--venue-premium-sidebar {
+            width: 30%;
+            text-align: right;
+            flex: 1 0;
+            padding-left: 30px;
+        }
+
+        .wpfk--venue-promo {
+            margin-top: 2em;
+            background: $brand-turqoise;
+            text-align: left;
+            padding: 10px;
+            vertical-align: top;
+
+            h1, p, li {
+                color: #fff;
+            }
+
+            h1 {
+                font-family: LatoBold, Arial, Helvetica, sans-serif;
+                font-size: em-calc(14);
+                text-decoration: none;
+                text-transform: uppercase;
+                color: #fff;
+                letter-spacing: 0.2em;
+                margin-bottom: 0;
+            }
+
+            p {
+                font-size: em-calc(14);
+                margin: 1em 0 0;
+            }
+        }
+
+        .wpfk--venue-review-spotlight {
+            margin: 1em 0;
+            text-align: left;
+            background: $page-background-color;
+            padding: 10px;
+        }
+
+        .wpfk--venue-activity {
+            margin-top: 1em;
+            border-top: 1px solid $border-grey;
+        }
+
+        .wpfk--venue-map {
+            margin: 2% 0 0 0;
+            width: 100%;
+            height: 350px;
+            display: block;
+
+            #gmap_canvas {
+                @media (max-width: $tablet-breakpoint) {
+                    width: 100% !important;
+                }
+            }
+
+            @media (max-width: $tablet-breakpoint) {
+                width: 100%;
+            }
+        }
+    }
 
     @media (max-width: $tablet-breakpoint) {
         position: static;

@@ -72,7 +72,9 @@ Venue.add({
         adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
         child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
         infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
-        otherDescription: { type: String, label: 'Other price description', currency: 'en-gb' }
+        senior: { type: Types.Money, label: 'Senior price amount (£)', currency: 'en-gb' },
+        family: { type: Types.Money, label: 'Family price amount (£)', currency: 'en-gb' },
+        otherDescription: { type: Types.Html, label: 'Other price description', wysiwyg: true, height: 150, initial: false, required: false },
     },
     openingHours: {
         monday: {
@@ -134,6 +136,84 @@ Venue.add({
         childName: { type: String, label: "Your childrens name" },
         childAge: { type: String, label: "Your childrens age" },
         agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
+    },
+    isPremiumListing: { type: Boolean, label: 'Is a premium listing?', initial: false, default: false },
+    premium: {
+        websiteText: { type: String, label: "Website button text", default: "Visit website" },
+        websiteLink: { type: Types.Url, label: "Website button link" },
+        additionalImage1: { type: Types.CloudinaryImage, label: "Image 2 for carousel" },
+        additionalImage2: { type: Types.CloudinaryImage, label: "Image 3 for carousel" },
+        additionalImage3: { type: Types.CloudinaryImage, label: "Image 4 for carousel" },
+        additionalImage4: { type: Types.CloudinaryImage, label: "Image 5 for carousel" },
+        additionalImage5: { type: Types.CloudinaryImage, label: "Image 6 for carousel" },
+        additionalImage6: { type: Types.CloudinaryImage, label: "Image 7 for carousel" },
+        additionalImage7: { type: Types.CloudinaryImage, label: "Image 8 for carousel" },
+        additionalImage8: { type: Types.CloudinaryImage, label: "Image 9 for carousel" },
+        additionalImage9: { type: Types.CloudinaryImage, label: "Image 10 for carousel" },
+        promoTitle: { type: String, label: "Promo title" },
+        promoText: { type: Types.Html, label: "Promo text", wysiwyg: true, height: 150, initial: false },
+        priceTier1Title: { type: String, label: "Price tier 1 title" },
+        priceTier2Title: { type: String, label: "Price tier 2 title" },
+        tier2prices: {
+            isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', emptyOption: false, default: 'No' },
+            adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
+            child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
+            infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
+            senior: { type: Types.Money, label: 'Senior price amount (£)', currency: 'en-gb' },
+            family: { type: Types.Money, label: 'Family price amount (£)', currency: 'en-gb' },
+            otherDescription: { type: Types.Html, label: 'Other price description', wysiwyg: true, height: 150, initial: false, required: false },
+        },
+        tier2openingHours: {
+            monday: {
+                isOpen: { type: Boolean, label: 'Open Monday?' },
+                open: {
+                    from: { type: Number, label: 'Monday Open From' },
+                    to: { type: Number, label: 'Monday Open To' }
+                }
+            },
+            tuesday: {
+                isOpen: { type: Boolean, label: 'Open Tuesday?' },
+                open: {
+                    from: { type: Number, label: 'Tuesday Open From' },
+                    to: { type: Number, label: 'Tuesday Open To' }
+                }
+            },
+            wednesday: {
+                isOpen: { type: Boolean, label: 'Open Wednesday?' },
+                open: {
+                    from: { type: Number, label: 'Wednesday Open From' },
+                    to: { type: Number, label: 'Wednesday Open To' }
+                }
+            },
+            thursday: {
+                isOpen: { type: Boolean, label: 'Open Thursday?' },
+                open: {
+                    from: { type: Number, label: 'Thursday Open From' },
+                    to: { type: Number, label: 'Thursday Open To' }
+                }
+            },
+            friday: {
+                isOpen: { type: Boolean, label: 'Open Friday?' },
+                open: {
+                    from: { type: Number, label: 'Friday Open From' },
+                    to: { type: Number, label: 'Friday Open To' }
+                }
+            },
+            saturday: {
+                isOpen: { type: Boolean, label: 'Open Saturday?' },
+                open: {
+                    from: { type: Number, label: 'Saturday Open From' },
+                    to: { type: Number, label: 'Saturday Open To' }
+                }
+            },
+            sunday: {
+                isOpen: { type: Boolean, label: 'Open Sunday?' },
+                open: {
+                    from: { type: Number, label: 'Sunday Open From' },
+                    to: { type: Number, label: 'Sunday Open To' }
+                }
+            }
+        },
     },
     addedOn: { type: Date, default: Date.now }
 });
@@ -230,6 +310,118 @@ Venue.schema.virtual('opens').get(function() {
     }, this);
 
     return out;
+});
+
+/*
+suitableForAges: { 
+        to6M:  { type: Boolean, label: 'Suitable for 0-6m?', index: true },
+        from6Mto1Y:  { type: Boolean, label: 'Suitable for 6m-1y?', index: true },
+        from1Yto2Y:  { type: Boolean, label: 'Suitable for 1-2y?', index: true },
+        from2Yto3Y:  { type: Boolean, label: 'Suitable for 2-3y?', index: true },
+        from3Yto4Y:  { type: Boolean, label: 'Suitable for 3-4y?', index: true },
+        from4Yto5Y:  { type: Boolean, label: 'Suitable for 4-5y?', index: true },
+        from5Yto6Y:  { type: Boolean, label: 'Suitable for 5-6y?', index: true },
+        from6Yto7Y:  { type: Boolean, label: 'Suitable for 6-7y?', index: true },
+        from7Yto8Y:  { type: Boolean, label: 'Suitable for 7-8y?', index: true },
+        from8Yto9Y:  { type: Boolean, label: 'Suitable for 8-9y?', index: true },
+        from9Yto10Y:  { type: Boolean, label: 'Suitable for 9-10y?', index: true },
+        from10Yto12Y:  { type: Boolean, label: 'Suitable for 10-12y?', index: true },
+        from12Y:  { type: Boolean, label: 'Suitable for 12y+?', index: true },   
+*/
+
+Venue.schema.virtual('suitableForPremium').get(function() {
+    var minimumAge = "to6M",
+        maximumAge = "from12Y",
+        orderedAges = [
+            "to6M", 
+            "from6Mto1Y",
+            "from1Yto2Y",
+            "from2Yto3Y",
+            "from3Yto4Y",
+            "from4Yto5Y",
+            "from5Yto6Y",
+            "from6Yto7Y",
+            "from7Yto8Y",
+            "from8Yto9Y",
+            "from9Yto10Y",
+            "from10Yto12Y",
+            "from12Y"];
+
+    function stringToAgeMapper(minAge, maxAge)
+    {
+        var ageMapper = {
+            "to6M": {
+                min: "birth",
+                max: "to 6 months"
+            },
+            "from6Mto1Y": {
+                min: "6 months",
+                max: "to 1 year"
+            },
+            "from1Yto2Y": {
+                min: "1 year",
+                max: "to 2 years"
+            },
+            "from2Yto3Y": {
+                min: "2 years",
+                max: "to 3 years"
+            },
+            "from3Yto4Y": {
+                min: "3 years",
+                max: "to 4 years"
+            },
+            "from4Yto5Y": {
+                min: "4 years",
+                max: "to 5 years"
+            },
+            "from5Yto6Y": {
+                min: "5 years",
+                max: "to 6 years"
+            },
+            "from6Yto7Y": {
+                min: "6 years",
+                max: "to 7 years"
+            },
+            "from7Yto8Y": {
+                min: "7 years",
+                max: "to 8 years"
+            },
+            "from8Yto9Y": {
+                min: "8 years",
+                max: "to 9 years"
+            },
+            "from9Yto10Y": {
+                min: "9 years",
+                max: "to 10 years"
+            },
+            "from10Yto12Y": {
+                min: "10 years",
+                max: "to 12 years"
+            },
+            "from12Y": {
+                min: "12 years",
+                max: "and above"
+            }
+        }
+
+        return ageMapper[minAge]["min"] + " " + ageMapper[maxAge]["max"];
+    }
+
+    orderedAges.forEach(function (value) {
+        var checked = typeof this[value] === "boolean" && this[value] === true;
+        var minimumChecked = typeof this["from6M"] === "boolean" && this["from6M"] === true;
+
+        if (checked) {
+            if(minimumAge === "from6M" && !minimumChecked)
+            {
+                minimumAge = value;
+            }
+
+            maximumAge = value;
+        }
+    }, this.suitableForAges);
+
+    return stringToAgeMapper(minimumAge, maximumAge);
 });
 
 Venue.schema.index(
