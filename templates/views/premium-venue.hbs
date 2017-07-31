@@ -1,7 +1,9 @@
 <header class="wpfk--venue-header">
     <div class="wpfk--venue-image-container">
-        {{#if venue.image.url}}
-        <img src="{{cloudinaryUrl venue.image width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" />
+        {{#if venue.premiumVenueCarousel}}
+            {{#each venue.premiumVenueCarousel}}
+            <img src="{{cloudinaryUrl venue.image width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" />
+            {{/each}}
         {{else}}
         <img src="/images/castle-wide.jpg" width="1200" />
         {{/if}}
@@ -60,8 +62,9 @@
     </section>
     <section class="wpfk--venue-section">
         <h1 id="directions">Directions</h1>
-        <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:350px;width:100%;'></div>
+        <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:350px;width:100%;'></div></div>
         <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng({{venue.latLng}}),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng({{venue.latLng}})});infowindow = new google.maps.InfoWindow({content:"<h3>{{venue.venueName}}</h3><p>{{venue.inlineAddress}}</p>"});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
+        <p class="wpfk--venue-inline-address"><strong>Address:</strong> {{venue.inlineAddress}}</p>
     </section>
     <section class="wpfk--venue-section">
         <h1 id="facilities">Facilities</h1>
@@ -105,14 +108,29 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
         <h1 id="prices">Prices</h1>
         <section class="wpfk--premium-tier-column">
             <h1>{{venue.premium.priceTier1Title}}</h1>
+            <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.prices.adult}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.prices.child}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.prices.infant}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.prices.senior}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.prices.family}}</span></li>
+            </ul>
         </section>
         {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
             <h1>{{venue.premium.priceTier2Title}}</h1>
+            <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+                <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.adult}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.child}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.infant}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.senior}}</span></li>
+                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.family}}</span></li>
+            </ul>
         </section>
         {{/if}}
     </section>
-    <section class="wpfk--venue-section">
+    <section class="wpfk--venue-section wpfk--venue-review-section">
         <h1>Reviews</h1>
         <p>There are {{reviewCount}} reviews for "{{venue.venueName}}"</p>
         {{#each reviews}}
@@ -130,56 +148,57 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
             <p>{{{description}}}</p>
         </section>
         {{/each}}
-    <form id="wpfk-review-form" action="/review" method="post"> 
-    <section class="wpfk--venue-section wpfk--review-form">
-        <h1 id="add-a-review">Add a review</h1>
-        <section class="wpfk--form__rating">
-            <h3>Your rating</h3>
-            <div class="wpfk--form__rating-container">
-                <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
-                <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label>
-                <input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label>
-                <input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label>
-                <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
-            </div>
+        <form id="wpfk-review-form" action="/review" method="post"> 
+            <section class="wpfk--venue-section wpfk--review-form">
+                <h1 id="add-a-review">Add a review</h1>
+                <section class="wpfk--form__rating">
+                    <h3>Your rating</h3>
+                    <div class="wpfk--form__rating-container">
+                        <input type="radio" name="rating" id="rating5" value="5" {{#ifeq formData.rating 5}}checked="checked"{{/ifeq}} /> <label for="rating5">5</label>
+                        <input type="radio" name="rating" id="rating4" value="4" {{#ifeq formData.rating 4}}checked="checked"{{/ifeq}} /> <label for="rating4">4</label>
+                        <input type="radio" name="rating" id="rating3" value="3" {{#ifeq formData.rating 3}}checked="checked"{{/ifeq}} /> <label for="rating3">3</label>
+                        <input type="radio" name="rating" id="rating2" value="2" {{#ifeq formData.rating 2}}checked="checked"{{/ifeq}} /> <label for="rating2">2</label>
+                        <input type="radio" name="rating" id="rating1" value="1" {{#ifeq formData.rating 1}}checked="checked"{{/ifeq}} /> <label for="rating1">1</label>
+                    </div>
+                </section>
+                <section class="wpfk--review-section">
+                    <p>Your name:<br/><input type="text" name="yourName" id="yourName" value="{{formData.yourName}}" placeholder="Your name" aria-label="Your name" /></p>
+                    <p>Email:<br/><input type="email" name="email" id="email" value="{{formData.email}}" placeholder="Email" aria-label="Email" /></p>
+                </section>
+                <section class="wpfk--review-section">
+                    <p>Child 1's name:<br/><input type="text" name="children.child1Name" id="childrenChild1Name" value="{{formData.[children.child1Name]}}" placeholder="Child 1's name" aria-label="Child 1's name" /></p>
+                    <p>Child 1's age:<br/><input type="number" name="children.child1Age" id="childrenChild1Age" value="{{formData.[children.child1Age]}}" placeholder="Child 1's age" aria-label="Child 1's age" /></p>
+                </section>
+                <section class="wpfk--review-section {{#if formData.[children.child2Name]}}{{else}}wpfk--more-children{{/if}}">
+                    <p>Child 2's name:<br/><input type="text" name="children.child2Name" id="childrenChild2Name" value="{{formData.[children.child2Name]}}" placeholder="Child 2's name" aria-label="Child 2's name" /></p>
+                    <p>Child 2's age:<br/><input type="number" name="children.child2Age" id="childrenChild2Age" value="{{formData.[children.child2Age]}}" placeholder="Child 2's age" aria-label="Child 2's age" /></p>
+                </section>
+                <section class="wpfk--review-section {{#if formData.[children.child3Name]}}{{else}}wpfk--more-children{{/if}}">
+                    <p>Child 3's name:<br/><input type="text" name="children.child3Name" id="childrenChild3Name" value="{{formData.[children.child3Name]}}" placeholder="Child 3's name" aria-label="Child 3's name" /></p>
+                    <p>Child 3's age:<br/><input type="number" name="children.child3Age" id="childrenChild3Age" value="{{formData.[children.child3Age]}}" placeholder="Child 3's age" aria-label="Child 3's age" /></p>
+                </section>
+                <section class="wpfk--review-section {{#if formData.[children.child4Name]}}{{else}}wpfk--more-children{{/if}}">
+                    <p>Child 4's name:<br/><input type="text" name="children.child4Name" id="childrenChild4Name" value="{{formData.[children.child4Name]}}" placeholder="Child 4's name" aria-label="Child 4's name" /></p>
+                    <p>Child 4's age:<br/><input type="number" name="children.child4Age" id="childrenChild4Age" value="{{formData.[children.child4Age]}}" placeholder="Child 4's age" aria-label="Child 4's age" /></p>
+                </section>
+                <section class="wpfk--review-section {{#if formData.[children.child5Name]}}{{else}}wpfk--more-children{{/if}}">
+                    <p>Child 5's name:<br/><input type="text" name="children.child5Name" id="childrenChild5Name" value="{{formData.[children.child5Name]}}" placeholder="Child 5's name" aria-label="Child 5's name" /></p>
+                    <p>Child 5's age:<br/><input type="number" name="children.child5Age" id="childrenChild5Age" value="{{formData.[children.child5Age]}}" placeholder="Child 5's age" aria-label="Child 5's age" /></p>
+                </section>
+                <section class="wpfk--review-section wpfk--add-more-children">
+                    <p><a href="#">Add another child</a></p>
+                </section>
+                <section class="wpfk--form__description">
+                    <textarea aria-label="Your review" name="description" placeholder="What's brilliant about this place? (also, add hints and tips for other parents)" rows="4">{{formData.description}}</textarea>
+                </section>
+                <section class="wpfk--form-actions">
+                    <input type="hidden" name="venueSlug" value="{{venue.slug}}" />
+                    <input type="hidden" name="venueId" value="{{venue.id}}" />
+                    <input type="hidden" name="action" value="review" />
+                    <button type="submit" class="wpfk--form__submit-button g-recaptcha" data-sitekey="6LcnOiIUAAAAAAWjnfn4DP2LA_1oX-g0OsZDBeW-" data-callback="validateRecaptcha">Submit your review</button>
+                </section>
+            </section>
         </section>
-        <section class="wpfk--review-section">
-            <p>Your name:<br/><input type="text" name="yourName" id="yourName" value="{{formData.yourName}}" placeholder="Your name" aria-label="Your name" /></p>
-            <p>Email:<br/><input type="email" name="email" id="email" value="{{formData.email}}" placeholder="Email" aria-label="Email" /></p>
-        </section>
-        <section class="wpfk--review-section">
-            <p>Child 1's name:<br/><input type="text" name="children.child1Name" id="childrenChild1Name" value="{{formData.[children.child1Name]}}" placeholder="Child 1's name" aria-label="Child 1's name" /></p>
-            <p>Child 1's age:<br/><input type="number" name="children.child1Age" id="childrenChild1Age" value="{{formData.[children.child1Age]}}" placeholder="Child 1's age" aria-label="Child 1's age" /></p>
-        </section>
-        <section class="wpfk--review-section {{#if formData.[children.child2Name]}}{{else}}wpfk--more-children{{/if}}">
-            <p>Child 2's name:<br/><input type="text" name="children.child2Name" id="childrenChild2Name" value="{{formData.[children.child2Name]}}" placeholder="Child 2's name" aria-label="Child 2's name" /></p>
-            <p>Child 2's age:<br/><input type="number" name="children.child2Age" id="childrenChild2Age" value="{{formData.[children.child2Age]}}" placeholder="Child 2's age" aria-label="Child 2's age" /></p>
-        </section>
-        <section class="wpfk--review-section {{#if formData.[children.child3Name]}}{{else}}wpfk--more-children{{/if}}">
-            <p>Child 3's name:<br/><input type="text" name="children.child3Name" id="childrenChild3Name" value="{{formData.[children.child3Name]}}" placeholder="Child 3's name" aria-label="Child 3's name" /></p>
-            <p>Child 3's age:<br/><input type="number" name="children.child3Age" id="childrenChild3Age" value="{{formData.[children.child3Age]}}" placeholder="Child 3's age" aria-label="Child 3's age" /></p>
-        </section>
-        <section class="wpfk--review-section {{#if formData.[children.child4Name]}}{{else}}wpfk--more-children{{/if}}">
-            <p>Child 4's name:<br/><input type="text" name="children.child4Name" id="childrenChild4Name" value="{{formData.[children.child4Name]}}" placeholder="Child 4's name" aria-label="Child 4's name" /></p>
-            <p>Child 4's age:<br/><input type="number" name="children.child4Age" id="childrenChild4Age" value="{{formData.[children.child4Age]}}" placeholder="Child 4's age" aria-label="Child 4's age" /></p>
-        </section>
-        <section class="wpfk--review-section {{#if formData.[children.child5Name]}}{{else}}wpfk--more-children{{/if}}">
-            <p>Child 5's name:<br/><input type="text" name="children.child5Name" id="childrenChild5Name" value="{{formData.[children.child5Name]}}" placeholder="Child 5's name" aria-label="Child 5's name" /></p>
-            <p>Child 5's age:<br/><input type="number" name="children.child5Age" id="childrenChild5Age" value="{{formData.[children.child5Age]}}" placeholder="Child 5's age" aria-label="Child 5's age" /></p>
-        </section>
-        <section class="wpfk--review-section wpfk--add-more-children">
-            <p><a href="#">Add another child</a></p>
-        </section>
-        <section class="wpfk--form__description">
-            <textarea aria-label="Your review" name="description" placeholder="What's brilliant about this place? (also, add hints and tips for other parents)" rows="4">{{formData.description}}</textarea>
-        </section>
-        <section class="wpfk--form-actions">
-            <input type="hidden" name="venueSlug" value="{{venue.slug}}" />
-            <input type="hidden" name="venueId" value="{{venue.id}}" />
-            <input type="hidden" name="action" value="review" />
-            <button type="submit" class="wpfk--form__submit-button g-recaptcha" data-sitekey="6LcnOiIUAAAAAAWjnfn4DP2LA_1oX-g0OsZDBeW-" data-callback="validateRecaptcha">Submit your review</button>
-        </section>
-    </section>
     </form>
 </article>
 <script type="text/javascript">

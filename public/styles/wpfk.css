@@ -1149,6 +1149,8 @@ section.wpfk--inline-input select:active {
     padding-top: 3%; }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section h1 {
       margin: 0 0 1em; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-review-section {
+    width: 75%; }
   .wpfk--venue-content.wpfk--premium-venue h1 {
     margin: 0;
     color: #2eaaa5;

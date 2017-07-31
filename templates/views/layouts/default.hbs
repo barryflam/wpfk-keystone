@@ -5,13 +5,18 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="google-site-verification" content="UE0iT38XV-rm7K_Z0aW8xdm67C2GSvLDEc4Ey8O7f8k" />
-		<title>Wiki Places for Kids</title>
+		<title>Wiki Places for Kids{{#if pageTitle}}: {{pageTitle}}{{/if}}</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link href="/styles/wpfk.css" rel="stylesheet" />
 		<link href="/styles/select-css.css" rel="stylesheet">
 		<link href="/styles/select-css-compat.css" rel="stylesheet" />
         <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBBWZIQ-18garx9-_7Iv06ZqJ5ISC0oDw&libraries=places"></script>
         <script src='https://www.google.com/recaptcha/api.js'></script>
+        
+        {{#if carousel}}
+        <link href="/styles/tiny-slider.css" rel="stylesheet" />
+        <script text="text/javscript" src="/js/tiny-slider.js"></script>
+        {{/if}}
 
 		{{!-- This file provides the default styling for the KeystoneJS Content Editor
 			- only renders when user is logged in and admin--}}

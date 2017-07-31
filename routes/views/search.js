@@ -8,6 +8,7 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
     locals.mainSite = true;
+    locals.pageTitle = "Search for a Wiki Place";
 
     var milesToMeters = function(miles) {
         return (miles / 0.62137) * 1000;

@@ -16,9 +16,11 @@ exports = module.exports = function(req, res) {
         Page.model.findOne({ 'slug': slug }, '', function (err, page) {
             if (page) {
                 locals.title = page.title;
+                locals.pageTitle = page.title;
                 locals.content = page.content;
             } else {
                 locals.title = "Page not found";
+                locals.pageTitle = "Page not found";
                 res.status(404);
             }
 

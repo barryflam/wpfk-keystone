@@ -7,6 +7,7 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
     locals.mainSite = true;
+    locals.pageTitle = "Recommend your Wiki Place";
  
     var recommendSlug = "recommend-your-wiki-place",
         thankYouSlug = "thanks-for-adding-your-wiki-place";

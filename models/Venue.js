@@ -138,6 +138,7 @@ Venue.add({
         agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" } 
     },
     isPremiumListing: { type: Boolean, label: 'Is a premium listing?', initial: false, default: false },
+    openingHoursType: { type: Types.Select, options: 'Tier 1, Tier 2', label: 'Use Tier 1 or Tier 2 opening hours?', default: 'Tier 1' },
     premium: {
         websiteText: { type: String, label: "Website button text", default: "Visit website" },
         websiteLink: { type: Types.Url, label: "Website button link" },
@@ -165,49 +166,49 @@ Venue.add({
         },
         tier2openingHours: {
             monday: {
-                isOpen: { type: Boolean, label: 'Open Monday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Monday?' },
                 open: {
                     from: { type: Number, label: 'Monday Open From' },
                     to: { type: Number, label: 'Monday Open To' }
                 }
             },
             tuesday: {
-                isOpen: { type: Boolean, label: 'Open Tuesday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Tuesday?' },
                 open: {
                     from: { type: Number, label: 'Tuesday Open From' },
                     to: { type: Number, label: 'Tuesday Open To' }
                 }
             },
             wednesday: {
-                isOpen: { type: Boolean, label: 'Open Wednesday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Wednesday?' },
                 open: {
                     from: { type: Number, label: 'Wednesday Open From' },
                     to: { type: Number, label: 'Wednesday Open To' }
                 }
             },
             thursday: {
-                isOpen: { type: Boolean, label: 'Open Thursday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Thursday?' },
                 open: {
                     from: { type: Number, label: 'Thursday Open From' },
                     to: { type: Number, label: 'Thursday Open To' }
                 }
             },
             friday: {
-                isOpen: { type: Boolean, label: 'Open Friday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Friday?' },
                 open: {
                     from: { type: Number, label: 'Friday Open From' },
                     to: { type: Number, label: 'Friday Open To' }
                 }
             },
             saturday: {
-                isOpen: { type: Boolean, label: 'Open Saturday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Saturday?' },
                 open: {
                     from: { type: Number, label: 'Saturday Open From' },
                     to: { type: Number, label: 'Saturday Open To' }
                 }
             },
             sunday: {
-                isOpen: { type: Boolean, label: 'Open Sunday?' },
+                isOpen: { type: Boolean, label: 'Tier 2 Open Sunday?' },
                 open: {
                     from: { type: Number, label: 'Sunday Open From' },
                     to: { type: Number, label: 'Sunday Open To' }
@@ -231,11 +232,12 @@ Venue.schema.virtual('openToday').get(function () {
     const days = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
     const todayIndex = new Date().getDay();
     const today = days[todayIndex];
+    const openingHours = this.openingHoursType === "Tier 1" ? this.openingHours : this.premium.tier2openingHours;
 
-    if (this.openingHours[today].isOpen) {
+    if (openingHours[today].isOpen) {
         return {
-            from: ("0000" + this.openingHours[today].open.from).substr(-4,4),
-            to: ("0000" + this.openingHours[today].open.to).substr(-4,4) 
+            from: ("0000" + openingHours[today].open.from).substr(-4,4),
+            to: ("0000" + openingHours[today].open.to).substr(-4,4) 
         };
     }   
 
@@ -306,6 +308,8 @@ Venue.schema.virtual('opens').get(function() {
 
         if (this.openingHours[day].isOpen) {
             out.push('<span class="wpfk--venue-kv-key">' + day.charAt(0).toUpperCase() + day.slice(1) + '</span> <span class="wpfk--venue-kv-value">' + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4) + '</span>');
+        } else {
+            out.push('<span class="wpfk--venue-kv-key">' + day.charAt(0).toUpperCase() + day.slice(1) + '</span> <span class="wpfk--venue-kv-value">Closed</span>');
         }
     }, this);
 
@@ -320,7 +324,9 @@ Venue.schema.virtual('opensTier2').get(function() {
         var today = this.premium.tier2openingHours[day];
 
         if (this.premium.tier2openingHours[day].isOpen) {
-            out.push(day.charAt(0).toUpperCase() + day.slice(1) + ": " + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4));
+            out.push('<span class="wpfk--venue-kv-key">' + day.charAt(0).toUpperCase() + day.slice(1) + '</span> <span class="wpfk--venue-kv-value">' + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4) + '</span>');
+        } else {
+            out.push('<span class="wpfk--venue-kv-key">' + day.charAt(0).toUpperCase() + day.slice(1) + '</span> <span class="wpfk--venue-kv-value">Closed</span>');
         }
     }, this);
 
@@ -454,6 +460,25 @@ Venue.schema.index(
         }
     }
 );
+
+Venue.schema.virtual('premiumVenueCarousel').get(function() {
+    const images = [
+        this.image,
+        this.premium.additionalImage1,
+        this.premium.additionalImage2,
+        this.premium.additionalImage3,
+        this.premium.additionalImage4,
+        this.premium.additionalImage5,
+        this.premium.additionalImage6,
+        this.premium.additionalImage7,
+        this.premium.additionalImage8,
+        this.premium.additionalImage9
+    ];
+
+    images.forEach(function (image) {
+        console.log(image);
+    });
+});
  
 Venue.defaultColumns = 'name, addedByWPFK|20%, state|20%'
 Venue.register();

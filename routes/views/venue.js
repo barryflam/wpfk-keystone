@@ -12,6 +12,7 @@ exports = module.exports = function(req, res) {
     view.on('get', function(next) {
         Venue.model.findOne({ 'slug': venueSlug }, '', function (err, venue) {
             locals.venue = venue;
+            locals.pageTitle = venue.venueName;
 
             Review.model.find({ 'venueSlug': venueSlug }, '', function (err, reviews) {
                 locals.reviews = reviews;
@@ -28,10 +29,12 @@ exports = module.exports = function(req, res) {
         if (res.locals.venue.isPremiumListing)
         {
             templateName = "premium-venue";
+            res.locals.carousel = true;
         }
         else
         {
             templateName = "venue";
+            res.locals.carousel = false;
         }
 
         view.res.render(templateName, res.locals, null);
