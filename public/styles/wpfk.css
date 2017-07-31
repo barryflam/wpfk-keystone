@@ -1182,6 +1182,19 @@ section.wpfk--inline-input select:active {
     height: 25px;
     background: url(/images/tick-blue-large.svg) no-repeat 50% 40%;
     background-size: 10px 10px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick {
+    font-size: 0.875em;
+    padding: 0.5em 0;
+    margin: 0; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick:before {
+      display: none; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-key {
+      display: inline-block;
+      width: 20%;
+      font-weight: bold; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-value {
+      display: inline-block;
+      width: 20%; }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-suitable,
   .wpfk--venue-content.wpfk--premium-venue .wpfk--search-result__opening-times {
     display: inline-block;
@@ -1281,6 +1294,13 @@ section.wpfk--inline-input select:active {
     @media (max-width: 800px) {
       .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map {
         width: 100%; } }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-tier-column {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-tier-column h1 {
+      font-size: 1em;
+      color: #454545; }
 
 .wpfk--about-header {
   background: #2eaaa5;

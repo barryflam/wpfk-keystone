@@ -305,7 +305,7 @@ Venue.schema.virtual('opens').get(function() {
         var today = this.openingHours[day];
 
         if (this.openingHours[day].isOpen) {
-            out.push(day.charAt(0).toUpperCase() + day.slice(1) + ": " + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4));
+            out.push('<span class="wpfk--venue-kv-key">' + day.charAt(0).toUpperCase() + day.slice(1) + '</span> <span class="wpfk--venue-kv-value">' + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4) + '</span>');
         }
     }, this);
 

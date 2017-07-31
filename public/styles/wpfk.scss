@@ -1651,6 +1651,29 @@ section.wpfk--inline-input select:active {
             background: url(/images/tick-blue-large.svg) no-repeat 50% 40%;
             background-size: 10px 10px;
         }
+
+        .wpfk--venue-activity-notick {
+            font-size: em-calc(14);
+            padding: 0.5em 0;
+            margin: 0;
+
+            &:before {
+                display: none;
+            }
+
+            .wpfk--venue-kv {
+                &-key {
+                    display: inline-block;
+                    width: 20%;
+                    font-weight: bold;
+                }
+
+                &-value {
+                    display: inline-block;
+                    width: 20%;
+                }
+            }
+        }
     }
 
     .wpfk--premium-suitable,
@@ -1789,6 +1812,17 @@ section.wpfk--inline-input select:active {
 
         @media (max-width: $tablet-breakpoint) {
             width: 100%;
+        }
+    }
+
+    .wpfk--premium-tier-column {
+        display: inline-block;
+        width: 48%;
+        vertical-align: top;
+
+        h1 {
+            font-size: em-calc(16);
+            color: $brand-grey;
         }
     }
 }

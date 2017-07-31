@@ -86,7 +86,7 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
             <h1>{{venue.premium.priceTier1Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#each venue.opens}}
-                <li class="wpfk--venue-activity-notick">{{this}}</li>
+                <li class="wpfk--venue-activity-notick">{{{this}}}</li>
                 {{/each}}
             </ul>
         </section>
@@ -95,7 +95,7 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
             <h1>{{venue.premium.priceTier2Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#each venue.opensTier2}}
-                <li class="wpfk--venue-activity-notick">{{this}}</li>
+                <li class="wpfk--venue-activity-notick">{{{this}}}</li>
                 {{/each}}
             </ul>
         </section>
