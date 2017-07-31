@@ -1036,125 +1036,6 @@ section.wpfk--inline-input select:active {
   padding: 38px;
   box-sizing: border-box;
   text-align: left; }
-  .wpfk--venue-content.wpfk--premium-venue {
-    max-width: 1160px; }
-    .wpfk--venue-content.wpfk--premium-venue h1 {
-      margin: 0; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link {
-      position: absolute;
-      top: 38px;
-      right: 38px;
-      font-family: LatoBold, Arial, Helvetica, sans-serif;
-      font-size: 0.875em;
-      text-decoration: none;
-      text-transform: uppercase;
-      color: #fff;
-      letter-spacing: 0.2em;
-      background: #e53cad;
-      border: 1px solid #e53cad;
-      border-radius: 2px;
-      padding: 1% 2%; }
-      .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:hover, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:focus, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:active {
-        background: #fff;
-        color: #e53cad;
-        transition: 0.2s background; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-suitable,
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--search-result__opening-times {
-      display: inline-block;
-      margin-top: 8px;
-      padding-right: 20px;
-      font-size: 1em; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav {
-      width: 100%;
-      display: block; }
-      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: -webkit-flex;
-        display: flex; }
-        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li {
-          flex: 1 0;
-          text-align: center;
-          padding: 0;
-          margin: 0;
-          white-space: nowrap; }
-          .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li:first-child a {
-            border-top-left-radius: 4px;
-            border-bottom-left-radius: 4px; }
-          .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li:last-child a {
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-            border-width: 1px; }
-        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol a {
-          background: #f5f5f5;
-          color: #454545;
-          padding: 16px 0;
-          display: block;
-          text-decoration: none;
-          border: 0 solid #ddd;
-          border-width: 1px 0 1px 1px;
-          position: relative; }
-          .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol a:after {
-            font-family: LatoRegular, Arial, Helvetica, sans-serif;
-            font-size: 1.25em;
-            content: ">" !important;
-            color: #e53cad;
-            position: relative;
-            right: -10px;
-            top: 1px; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-content {
-      display: flex;
-      justify-content: stretch; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-description {
-      background: none;
-      flex: 2 0;
-      text-align: left;
-      vertical-align: top;
-      padding: 1em 0; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-sidebar {
-      width: 30%;
-      text-align: right;
-      flex: 1 0;
-      padding-left: 30px; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo {
-      margin-top: 2em;
-      background: #2eaaa5;
-      text-align: left;
-      padding: 10px;
-      vertical-align: top; }
-      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo h1, .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo p, .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo li {
-        color: #fff; }
-      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo h1 {
-        font-family: LatoBold, Arial, Helvetica, sans-serif;
-        font-size: 0.875em;
-        text-decoration: none;
-        text-transform: uppercase;
-        color: #fff;
-        letter-spacing: 0.2em;
-        margin-bottom: 0; }
-      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo p {
-        font-size: 0.875em;
-        margin: 1em 0 0; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-review-spotlight {
-      margin: 1em 0;
-      text-align: left;
-      background: #f5f5f5;
-      padding: 10px; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity {
-      margin-top: 1em;
-      border-top: 1px solid #ddd; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map {
-      margin: 2% 0 0 0;
-      width: 100%;
-      height: 350px;
-      display: block; }
-      @media (max-width: 800px) {
-        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map #gmap_canvas {
-          width: 100% !important; } }
-      @media (max-width: 800px) {
-        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map {
-          width: 100%; } }
   @media (max-width: 800px) {
     .wpfk--venue-content {
       position: static; } }
@@ -1172,7 +1053,9 @@ section.wpfk--inline-input select:active {
     background: #f5f5f5;
     padding: 1em; }
   .wpfk--venue-content .wpfk--venue-activity-ticks {
-    list-style: none; }
+    list-style: none;
+    margin: 0;
+    padding: 0; }
     @media (max-width: 800px) {
       .wpfk--venue-content .wpfk--venue-activity-ticks {
         text-align: left;
@@ -1183,13 +1066,13 @@ section.wpfk--inline-input select:active {
       width: 40%;
       position: relative;
       text-align: left;
-      padding: 0.5em 1em; }
+      padding: 0.5em 1.5em; }
       @media (max-width: 800px) {
         .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
           width: 100%; } }
       .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
         position: absolute;
-        left: -15px;
+        left: -5px;
         content: " ";
         width: 25px;
         height: 25px;
@@ -1200,7 +1083,8 @@ section.wpfk--inline-input select:active {
       width: 100%;
       position: relative;
       text-align: left;
-      padding: 0.5em 1em; }
+      padding: 0.5em 1em;
+      margin-left: 1em; }
       .wpfk--venue-content .wpfk--venue-activity-ticks .wpfk--venue-activity-notick:before {
         position: absolute;
         left: -15px;
@@ -1212,8 +1096,8 @@ section.wpfk--inline-input select:active {
             left: 0; } }
   .wpfk--venue-content .wpfk--venue-section {
     width: 100%;
-    margin: 5% 0;
-    padding: 5% 0;
+    margin: 5% 0 0;
+    padding: 5% 0 0;
     border-top: 1px solid #ddd; }
     .wpfk--venue-content .wpfk--venue-section h1 {
       font-family: LatoBold, Arial, Helvetica, sans-serif;
@@ -1257,6 +1141,146 @@ section.wpfk--inline-input select:active {
       .wpfk--venue-content .wpfk--venue-map {
         width: 100%;
         margin: 5% 0; } }
+
+.wpfk--venue-content.wpfk--premium-venue {
+  max-width: 1160px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section {
+    margin-top: 3%;
+    padding-top: 3%; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section h1 {
+      margin: 0 0 1em; }
+  .wpfk--venue-content.wpfk--premium-venue h1 {
+    margin: 0;
+    color: #2eaaa5;
+    font-weight: normal; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link {
+    position: absolute;
+    top: 38px;
+    right: 38px;
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+    font-size: 0.875em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.2em;
+    background: #e53cad;
+    border: 1px solid #e53cad;
+    border-radius: 2px;
+    padding: 1% 2%; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:hover, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:focus, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:active {
+      background: #fff;
+      color: #e53cad;
+      transition: 0.2s background; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
+    width: 20%;
+    font-size: 0.875em; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
+    position: absolute;
+    content: " ";
+    transform: scale(1.4, 1.4);
+    width: 25px;
+    height: 25px;
+    background: url(/images/tick-blue-large.svg) no-repeat 50% 40%;
+    background-size: 10px 10px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-suitable,
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--search-result__opening-times {
+    display: inline-block;
+    margin-top: 8px;
+    padding-right: 20px;
+    font-size: 1em; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav {
+    width: 100%;
+    display: block; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: -webkit-flex;
+      display: flex; }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li {
+        flex: 1 0;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        white-space: nowrap; }
+        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li:first-child a {
+          border-top-left-radius: 4px;
+          border-bottom-left-radius: 4px; }
+        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol li:last-child a {
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+          border-width: 1px; }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol a {
+        background: #f5f5f5;
+        color: #454545;
+        padding: 16px 0;
+        display: block;
+        text-decoration: none;
+        border: 0 solid #ddd;
+        border-width: 1px 0 1px 1px;
+        position: relative; }
+        .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol a:after {
+          font-family: LatoRegular, Arial, Helvetica, sans-serif;
+          font-size: 1.25em;
+          content: ">" !important;
+          color: #e53cad;
+          position: relative;
+          right: -10px;
+          top: 1px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-content {
+    display: flex;
+    justify-content: stretch; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-description {
+    background: none;
+    flex: 2 0;
+    text-align: left;
+    vertical-align: top;
+    padding: 1em 0;
+    font-size: 0.875em; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-sidebar {
+    width: 30%;
+    text-align: right;
+    flex: 1 0;
+    padding-left: 30px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo {
+    margin-top: 2em;
+    background: #2eaaa5;
+    text-align: left;
+    padding: 10px;
+    vertical-align: top; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo h1, .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo p, .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo li {
+      color: #fff; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo h1 {
+      font-family: LatoBold, Arial, Helvetica, sans-serif;
+      font-size: 0.875em;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: 0.2em;
+      margin-bottom: 0; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo p {
+      font-size: 0.875em;
+      margin: 1em 0 0; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-review-spotlight {
+    margin: 1em 0;
+    text-align: left;
+    background: #f5f5f5;
+    padding: 10px;
+    font-size: 0.875em; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity {
+    margin-top: 1em;
+    border-top: 1px solid #ddd; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map {
+    margin: 2% 0 0 0;
+    width: 100%;
+    height: 350px;
+    display: block; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map #gmap_canvas {
+        width: 100% !important; } }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-map {
+        width: 100%; } }
 
 .wpfk--about-header {
   background: #2eaaa5;

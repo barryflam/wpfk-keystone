@@ -50,8 +50,8 @@
             {{/if}}
         </section>
     </section>
-    <section class="wpfk--venue-activity wpfk--filter-collapse {{#if filterFacilities}}wpfk--form-collapse--expanded{{/if}}">
-        <h2>Activity Type</h2>
+    <section class="wpfk--venue-section">
+        <h1>Activity Type</h1>
         <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
             {{#each venue.currentActivityTypes}}
             <li class="wpfk--venue-activity-tick">{{this}}</li>
@@ -59,28 +59,60 @@
         </ul>
     </section>
     <section class="wpfk--venue-section">
-        <h1>Directions</h1>
+        <h1 id="directions">Directions</h1>
         <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:350px;width:100%;'></div>
         <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng({{venue.latLng}}),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng({{venue.latLng}})});infowindow = new google.maps.InfoWindow({content:"<h3>{{venue.venueName}}</h3><p>{{venue.inlineAddress}}</p>"});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
     </section>
     <section class="wpfk--venue-section">
-        <h1>Facilities</h1>
+        <h1 id="facilities">Facilities</h1>
         <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
             {{#each venue.currentFacilities}}
             <li class="wpfk--venue-activity-tick">{{this}}</li>
             {{/each}}
         </ul>
     </section>
-        <section class="wpfk--venue-section">
-        <h1>Opening Hours</h1>
-        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-            {{#each venue.opens}}
-            <li class="wpfk--venue-activity-notick">{{this}}</li>
-            {{/each}}
-        </ul>
+    <!--
+isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', emptyOption: false, default: 'No' },
+            adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
+            child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
+            infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
+            senior: { type: Types.Money, label: 'Senior price amount (£)', currency: 'en-gb' },
+            family: { type: Types.Money, label: 'Family price amount (£)', currency: 'en-gb' },
+            otherDescription: { type: Types.Html, label: 'Other price description', wysiwyg: true, height: 150, initial: false, required: false },
+    -->
+    <section class="wpfk--venue-section">
+        <h1 id="opening-hours">Opening Hours</h1>
+        <section class="wpfk--premium-tier-column">
+            <h1>{{venue.premium.priceTier1Title}}</h1>
+            <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+                {{#each venue.opens}}
+                <li class="wpfk--venue-activity-notick">{{this}}</li>
+                {{/each}}
+            </ul>
+        </section>
+        {{#if venue.premium.priceTier2Title}}
+        <section class="wpfk--premium-tier-column">
+            <h1>{{venue.premium.priceTier2Title}}</h1>
+            <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+                {{#each venue.opensTier2}}
+                <li class="wpfk--venue-activity-notick">{{this}}</li>
+                {{/each}}
+            </ul>
+        </section>
+        {{/if}}
     </section>
+    <section class="wpfk--venue-section">
+        <h1 id="prices">Prices</h1>
+        <section class="wpfk--premium-tier-column">
+            <h1>{{venue.premium.priceTier1Title}}</h1>
+        </section>
+        {{#if venue.premium.priceTier2Title}}
+        <section class="wpfk--premium-tier-column">
+            <h1>{{venue.premium.priceTier2Title}}</h1>
+        </section>
+        {{/if}}
     </section>
-        <section class="wpfk--venue-section">
+    <section class="wpfk--venue-section">
         <h1>Reviews</h1>
         <p>There are {{reviewCount}} reviews for "{{venue.venueName}}"</p>
         {{#each reviews}}

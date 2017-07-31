@@ -312,6 +312,21 @@ Venue.schema.virtual('opens').get(function() {
     return out;
 });
 
+Venue.schema.virtual('opensTier2').get(function() {
+    var days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+        out = [];
+
+    days.forEach(function (day) {
+        var today = this.premium.tier2openingHours[day];
+
+        if (this.premium.tier2openingHours[day].isOpen) {
+            out.push(day.charAt(0).toUpperCase() + day.slice(1) + ": " + ("0000" + today.open.from).substr(-4,4) + " - " + ("0000" + today.open.to).substr(-4,4));
+        }
+    }, this);
+
+    return out;
+});
+
 /*
 suitableForAges: { 
         to6M:  { type: Boolean, label: 'Suitable for 0-6m?', index: true },
