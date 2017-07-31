@@ -138,9 +138,11 @@
                             {{{description}}}
                         </div>
                         {{#if isPremiumListing}}
+                            {{#if venue.premium.promoTitle}}
                         <div class="wpfk--search-result__promo">
                             {{premium.promoTitle}}{{{premium.promoText}}}
                         </div>
+                            {{/if}}
                         {{/if}}
                     </div>
                 </a>

@@ -33,10 +33,12 @@
             <p><strong>Recommended by {{venue.user.yourName}} with {{venue.user.childName}} (age {{venue.childrensAges}})</strong> - {{venue.formattedDate}}</p>
         </section>
         <section class="wpfk--venue-premium-sidebar">
+            {{#if venue.premium.promoTitle}}
             <section class="wpfk--venue-promo">
                 <h1>{{venue.premium.promoTitle}}</h1>
                 {{{venue.premium.promoText}}}
             </section>
+            {{/if}}
             {{#if reviewSpotlight}}
             <section class="wpfk--venue-review-spotlight">
                 <p class="wpfk--search-rating">

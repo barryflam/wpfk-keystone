@@ -141,25 +141,26 @@ exports = module.exports = function(req, res) {
 
         locals.venueType = {};
 
-        var sortBy;
+        var sortBy = {
+            "isPremiumListing": -1
+        };
 
         switch (req.query.sortBy) {
             case "popularity":
                 locals.sortByPopularity = true;
-                sortBy = "-rating";
+                sortBy["rating"] = -1;
                 break;
             case "added":
                 locals.sortByAdded = true;
-                sortBy = "-addedOn";
+                sortBy["addedOn"] = -1;
                 break;
             case "open-today":
                 locals.sortByOpenToday = true;
-                sortBy = "-openToday";
+                sortBy["openToday"] = -1;
                 break;
             case "nearest": 
             default:
                 locals.sortByNearest = true;
-                sortBy = null;
         }
 
         var venueTypes = req.query.venueTypes || [];
