@@ -1437,6 +1437,30 @@ section.wpfk--inline-input select:active {
         height: 421px;
         object-fit: cover;
     }
+
+    div[data-tns-role="nav"] {
+        position: absolute;
+        width: 100%;
+        bottom: 100px;
+        text-align: center;
+    }
+
+    button[data-nav] {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin: 0 5px;
+        border-radius: 50%;
+        background: #999;
+    }
+
+    button[aria-selected="true"] {
+        background: #ddd;
+    }
+
+    button[data-action="stop"] {
+        display: none;
+    }
 }
 
 .wpfk--venue-content {
@@ -1597,6 +1621,10 @@ section.wpfk--inline-input select:active {
     @extend %wide-container;
     max-width: 1160px;
 
+    .stars {
+        white-space: nowrap;
+    }
+
     .wpfk--venue-section {
         margin-top: 3%;
         padding-top: 3%;
@@ -1631,6 +1659,12 @@ section.wpfk--inline-input select:active {
         border-radius: 2px;
         padding: 1% 2%;
 
+        @media (max-width: $tablet-breakpoint) {
+            position: static;
+            display: block;
+            margin: 2% 0;
+        }
+
         &:hover,
         &:focus,
         &:active {
@@ -1641,6 +1675,8 @@ section.wpfk--inline-input select:active {
     }
 
     .wpfk--venue-activity-ticks {
+        padding-left: 0;
+
         .wpfk--venue-activity-tick {
             width: 20%;
             font-size: em-calc(14);
@@ -1668,13 +1704,21 @@ section.wpfk--inline-input select:active {
             .wpfk--venue-kv {
                 &-key {
                     display: inline-block;
-                    width: 20%;
+                    width: 23%;
                     font-weight: bold;
+
+                    @media (max-width: $tablet-breakpoint) {
+                        width: 40%;
+                    }
                 }
 
                 &-value {
                     display: inline-block;
-                    width: 20%;
+                    width: 23%;
+
+                    @media (max-width: $tablet-breakpoint) {
+                        width: 40%;
+                    }
                 }
             }
         }
@@ -1691,6 +1735,10 @@ section.wpfk--inline-input select:active {
     .wpfk--venue-premium-nav {
         width: 100%;
         display: block;
+
+        @media (max-width: $tablet-breakpoint) {
+            display: none;
+        }
 
         ol {
             list-style: none;
@@ -1744,6 +1792,10 @@ section.wpfk--inline-input select:active {
     .wpfk--venue-premium-content {
         display: flex;
         justify-content: stretch;
+
+        @media (max-width: $tablet-breakpoint) {
+            display: block;
+        }
     }
 
     .wpfk--venue-description {
@@ -1760,6 +1812,11 @@ section.wpfk--inline-input select:active {
         text-align: right;
         flex: 1 0;
         padding-left: 30px;
+
+        @media (max-width: $tablet-breakpoint) {
+            padding-left: 0;
+            width: 100%;
+        }
     }
 
     .wpfk--venue-promo {
@@ -1823,6 +1880,12 @@ section.wpfk--inline-input select:active {
         display: inline-block;
         width: 48%;
         vertical-align: top;
+
+        @media (max-width: $tablet-breakpoint) {
+            width: 100%;
+            margin-top: 2%;
+            display: block;
+        }
 
         h1 {
             font-size: em-calc(16);

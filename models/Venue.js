@@ -475,8 +475,8 @@ Venue.schema.virtual('premiumVenueCarousel').get(function() {
         this.premium.additionalImage9
     ];
 
-    images.forEach(function (image) {
-        console.log(image);
+    return images.filter(function(image) {
+        return image.exists;
     });
 });
  

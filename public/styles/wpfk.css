@@ -1028,6 +1028,26 @@ section.wpfk--inline-input select:active {
   height: 421px;
   object-fit: cover; }
 
+.wpfk--venue-header div[data-tns-role="nav"] {
+  position: absolute;
+  width: 100%;
+  bottom: 100px;
+  text-align: center; }
+
+.wpfk--venue-header button[data-nav] {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: #999; }
+
+.wpfk--venue-header button[aria-selected="true"] {
+  background: #ddd; }
+
+.wpfk--venue-header button[data-action="stop"] {
+  display: none; }
+
 .wpfk--venue-content {
   top: -93px;
   position: relative;
@@ -1144,6 +1164,8 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-content.wpfk--premium-venue {
   max-width: 1160px; }
+  .wpfk--venue-content.wpfk--premium-venue .stars {
+    white-space: nowrap; }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section {
     margin-top: 3%;
     padding-top: 3%; }
@@ -1169,34 +1191,47 @@ section.wpfk--inline-input select:active {
     border: 1px solid #e53cad;
     border-radius: 2px;
     padding: 1% 2%; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link {
+        position: static;
+        display: block;
+        margin: 2% 0; } }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:hover, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:focus, .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-website-link:active {
       background: #fff;
       color: #e53cad;
       transition: 0.2s background; }
-  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
-    width: 20%;
-    font-size: 0.875em; }
-  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
-    position: absolute;
-    content: " ";
-    transform: scale(1.4, 1.4);
-    width: 25px;
-    height: 25px;
-    background: url(/images/tick-blue-large.svg) no-repeat 50% 40%;
-    background-size: 10px 10px; }
-  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick {
-    font-size: 0.875em;
-    padding: 0.5em 0;
-    margin: 0; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick:before {
-      display: none; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-key {
-      display: inline-block;
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks {
+    padding-left: 0; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
       width: 20%;
-      font-weight: bold; }
-    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-value {
-      display: inline-block;
-      width: 20%; }
+      font-size: 0.875em; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
+      position: absolute;
+      content: " ";
+      transform: scale(1.4, 1.4);
+      width: 25px;
+      height: 25px;
+      background: url(/images/tick-blue-large.svg) no-repeat 50% 40%;
+      background-size: 10px 10px; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick {
+      font-size: 0.875em;
+      padding: 0.5em 0;
+      margin: 0; }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick:before {
+        display: none; }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-key {
+        display: inline-block;
+        width: 23%;
+        font-weight: bold; }
+        @media (max-width: 800px) {
+          .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-key {
+            width: 40%; } }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-value {
+        display: inline-block;
+        width: 23%; }
+        @media (max-width: 800px) {
+          .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-notick .wpfk--venue-kv-value {
+            width: 40%; } }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-suitable,
   .wpfk--venue-content.wpfk--premium-venue .wpfk--search-result__opening-times {
     display: inline-block;
@@ -1206,6 +1241,9 @@ section.wpfk--inline-input select:active {
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav {
     width: 100%;
     display: block; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav {
+        display: none; } }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-nav ol {
       list-style: none;
       margin: 0;
@@ -1245,6 +1283,9 @@ section.wpfk--inline-input select:active {
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-content {
     display: flex;
     justify-content: stretch; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-content {
+        display: block; } }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-description {
     background: none;
     flex: 2 0;
@@ -1257,6 +1298,10 @@ section.wpfk--inline-input select:active {
     text-align: right;
     flex: 1 0;
     padding-left: 30px; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-premium-sidebar {
+        padding-left: 0;
+        width: 100%; } }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-promo {
     margin-top: 2em;
     background: #2eaaa5;
@@ -1300,6 +1345,11 @@ section.wpfk--inline-input select:active {
     display: inline-block;
     width: 48%;
     vertical-align: top; }
+    @media (max-width: 800px) {
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-tier-column {
+        width: 100%;
+        margin-top: 2%;
+        display: block; } }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--premium-tier-column h1 {
       font-size: 1em;
       color: #454545; }

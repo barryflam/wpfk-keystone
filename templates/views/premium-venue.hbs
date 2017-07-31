@@ -1,8 +1,10 @@
 <header class="wpfk--venue-header">
-    <div class="wpfk--venue-image-container">
+    <div class="wpfk--venue-image-container slider">
         {{#if venue.premiumVenueCarousel}}
             {{#each venue.premiumVenueCarousel}}
-            <img src="{{cloudinaryUrl venue.image width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" />
+            {{#if this}}
+            <div><img src="{{cloudinaryUrl this width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" /></div>
+            {{/if}}
             {{/each}}
         {{else}}
         <img src="/images/castle-wide.jpg" width="1200" />
@@ -10,9 +12,9 @@
     </div>
 </header>
 <article class="wpfk--venue-content wpfk--premium-venue">
-    <h1>{{venue.venueName}}{{#times venue.rating}}
+    <h1>{{venue.venueName}}<span class="stars">{{#times venue.rating}}
         <img src="/images/star-filled.svg" />
-        {{/times}}</h1>
+        {{/times}}</span></h1>
     <p class="wpfk--premium-suitable">Suitable for {{venue.suitableForPremium}}</p>
     <p class="wpfk--search-result__opening-times">{{#if venue.openToday}}Open today from {{venue.openToday.from}} until {{venue.openToday.to}}{{else}}Closed{{/if}}</p>
     <a href="{{{venue.premium.websiteLink}}}" class="wpfk--button-link wpfk--premium-website-link" target="_blank">{{venue.premium.websiteText}}</a>
@@ -214,5 +216,17 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
 
         children[0].style.display = 'block';
         children[0].classList.remove('wpfk--more-children');
+    });
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var slider = tns({
+            container: document.querySelector('.slider'),
+            items: 1,
+            slideBy: 'page',
+            autoplay: true,
+            autoplayButton: false,
+            mode: 'carousel',
+            controls: false
+        });
     });
 </script>
