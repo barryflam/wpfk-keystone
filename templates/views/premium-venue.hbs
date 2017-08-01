@@ -247,11 +247,13 @@
 
                 if (el.classList.contains('read-more')) {
                     description.classList.remove('wpfk--description-half');
-                    el.classList.replace('read-more', 'read-less');
+                    el.classList.remove('read-more');
+                    el.classList.add('read-less');
                     el.innerHTML = "Read less";
                 } else {
                     description.classList.add('wpfk--description-half');
-                    el.classList.replace('read-less', 'read-more');
+                    el.classList.remove('read-less');
+                    el.classList.add('read-more');
                     el.innerHTML = "Read more";
                 }
             });
