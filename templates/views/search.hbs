@@ -176,17 +176,10 @@
         });
     };
 
-    var done = false;
-
     function summarizeTextWithReadMore(rootElement, linkURL, numberOfLines)
     {
         const originalText = rootElement.innerHTML;
         const text = originalText.replace(/(<([^>]+)>)/ig, "").split(/[\s|\n]/);
-
-        if  (!done) {
-            console.log(text);
-            done = true;
-        }
 
         rootElement.innerHTML = '<p class="wpfk--search-summary-text"><span class="wpfk--search-summary-preview">' + text[0] + '</span> <span class="wpfk--search-summary-readmore">... <a href="' + linkURL + '">Read more &gt;</a></span></p>';
 
@@ -198,11 +191,11 @@
         {
             if(text[i] === "") continue;
 
-            var oldText = textNode.innerText;
-            textNode.innerText += " " + text[i];
+            var oldText = textNode.innerHTML;
+            textNode.innerHTML += " " + text[i];
 
             if (paragraphRoot.offsetHeight > maxHeight) {
-                 textNode.innerText = oldText;
+                 textNode.innerHTML = oldText;
                 break;
             }
 
@@ -210,8 +203,6 @@
                 rootElement.innerHTML = originalText;
             }
         }
-
-        console.log(rootElement.innerText);
     }
 
     function ellipsizeTextBox() {
@@ -273,8 +264,6 @@
     {
 	    var descriptionEl = venues[i].querySelector('.wpfk--search-result__description'),
                 linkEl = venues[i].querySelector('.wpfk--search-result a');
-
-        console.log(descriptionEl, linkEl.href, 3);
 
         summarizeTextWithReadMore(descriptionEl, linkEl.href, 10);
     }
