@@ -19,7 +19,7 @@ exports = module.exports = function(req, res) {
                 .sort({addedOn: -1})
                 .exec(function (err, reviews) {
                     locals.reviews = reviews;
-                    locals.reviewSpotlight = reviews[reviews.length-1];
+                    locals.reviewSpotlight = reviews[0];
                     locals.reviewCount = reviews.length;
                     next(err);
                 });
