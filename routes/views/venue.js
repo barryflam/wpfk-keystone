@@ -19,7 +19,7 @@ exports = module.exports = function(req, res) {
                 locals.reviewSpotlight = reviews[reviews.length-1];
                 locals.reviewCount = reviews.length;
                 next(err);
-            });
+            }).sort({addedOn: -1});
         });
     });
 

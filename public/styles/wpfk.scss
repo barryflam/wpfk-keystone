@@ -1414,6 +1414,7 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-header {
     @extend %wide-container;
+    max-width: none;
 
     h1 {
         width: 100%;
@@ -1433,7 +1434,7 @@ section.wpfk--inline-input select:active {
 
     img {
         display: block;
-        width: 100%;
+        max-width: 100%;
         height: 421px;
         object-fit: cover;
     }
@@ -1631,6 +1632,16 @@ section.wpfk--inline-input select:active {
 
         h1 {
             margin: 0 0 1em;
+        }
+
+        a {
+            color: $brand-purple;
+            font-weight: bold;
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 

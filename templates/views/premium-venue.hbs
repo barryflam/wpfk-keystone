@@ -3,7 +3,7 @@
         {{#if venue.premiumVenueCarousel}}
             {{#each venue.premiumVenueCarousel}}
             {{#if this}}
-            <div><img src="{{cloudinaryUrl this width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="1200" /></div>
+            <div><img src="{{cloudinaryUrl this width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="100%" /></div>
             {{/if}}
             {{/each}}
         {{else}}
@@ -71,22 +71,10 @@
         <p class="wpfk--venue-inline-address"><strong>Address:</strong> {{venue.inlineAddress}}</p>
     </section>
     <section class="wpfk--venue-section">
-        <h1 id="facilities">Facilities</h1>
-        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-            {{#each venue.currentFacilities}}
-            <li class="wpfk--venue-activity-tick">{{this}}</li>
-            {{/each}}
-        </ul>
+        <h1 id="directions">Get in touch</h1>
+        <p class="wpfk--venue-inline-address"><strong>Telephone:</strong> {{venue.telephoneNumber}}</p>
+        <p class="wpfk--venue-inline-address"><strong>Website:</strong> <a href="{{venue.website}}" target="_blank">{{venue.website}}</a></p>
     </section>
-    <!--
-isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', emptyOption: false, default: 'No' },
-            adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
-            child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
-            infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
-            senior: { type: Types.Money, label: 'Senior price amount (£)', currency: 'en-gb' },
-            family: { type: Types.Money, label: 'Family price amount (£)', currency: 'en-gb' },
-            otherDescription: { type: Types.Html, label: 'Other price description', wysiwyg: true, height: 150, initial: false, required: false },
-    -->
     <section class="wpfk--venue-section">
         <h1 id="opening-hours">Opening Hours</h1>
         <section class="wpfk--premium-tier-column">
@@ -109,7 +97,7 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
         {{/if}}
     </section>
     <section class="wpfk--venue-section">
-        <h1 id="prices">Prices</h1>
+        <h1 id="price">Price</h1>
         <section class="wpfk--premium-tier-column">
             <h1>{{venue.premium.priceTier1Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
@@ -134,7 +122,15 @@ isFree: { type: Types.Select, label: 'Is free of charge?', options: 'No, Yes', e
         </section>
         {{/if}}
     </section>
-    <section class="wpfk--venue-section wpfk--venue-review-section">
+    <section class="wpfk--venue-section">
+        <h1 id="facilities">Facilities</h1>
+        <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
+            {{#each venue.currentFacilities}}
+            <li class="wpfk--venue-activity-tick">{{this}}</li>
+            {{/each}}
+        </ul>
+    </section>
+    <section class="wpfk--venue-section">
         <h1>Reviews</h1>
         <p>There are {{reviewCount}} reviews for "{{venue.venueName}}"</p>
         {{#each reviews}}

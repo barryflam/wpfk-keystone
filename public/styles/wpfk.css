@@ -1008,45 +1008,42 @@ section.wpfk--inline-input select:active {
     .wpfk--home-content {
       position: static; } }
 
-.wpfk--venue-header h1 {
-  width: 100%;
-  height: 100%;
-  font-family: LatoBold, Arial, Helvetica, sans-serif;
-  font-size: 3.75em;
-  color: #fff;
-  vertical-align: middle;
-  text-align: center;
-  position: absolute;
-  top: 30%; }
-  @media (max-width: 800px) {
-    .wpfk--venue-header h1 {
-      font-size: 2.5em; } }
-
-.wpfk--venue-header img {
-  display: block;
-  width: 100%;
-  height: 421px;
-  object-fit: cover; }
-
-.wpfk--venue-header div[data-tns-role="nav"] {
-  position: absolute;
-  width: 100%;
-  bottom: 100px;
-  text-align: center; }
-
-.wpfk--venue-header button[data-nav] {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  margin: 0 5px;
-  border-radius: 50%;
-  background: #999; }
-
-.wpfk--venue-header button[aria-selected="true"] {
-  background: #ddd; }
-
-.wpfk--venue-header button[data-action="stop"] {
-  display: none; }
+.wpfk--venue-header {
+  max-width: none; }
+  .wpfk--venue-header h1 {
+    width: 100%;
+    height: 100%;
+    font-family: LatoBold, Arial, Helvetica, sans-serif;
+    font-size: 3.75em;
+    color: #fff;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    top: 30%; }
+    @media (max-width: 800px) {
+      .wpfk--venue-header h1 {
+        font-size: 2.5em; } }
+  .wpfk--venue-header img {
+    display: block;
+    max-width: 100%;
+    height: 421px;
+    object-fit: cover; }
+  .wpfk--venue-header div[data-tns-role="nav"] {
+    position: absolute;
+    width: 100%;
+    bottom: 100px;
+    text-align: center; }
+  .wpfk--venue-header button[data-nav] {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #999; }
+  .wpfk--venue-header button[aria-selected="true"] {
+    background: #ddd; }
+  .wpfk--venue-header button[data-action="stop"] {
+    display: none; }
 
 .wpfk--venue-content {
   top: -93px;
@@ -1171,6 +1168,12 @@ section.wpfk--inline-input select:active {
     padding-top: 3%; }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section h1 {
       margin: 0 0 1em; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section a {
+      color: #e53cad;
+      font-weight: bold;
+      text-decoration: none; }
+      .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section a:hover {
+        text-decoration: underline; }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-review-section {
     width: 75%; }
   .wpfk--venue-content.wpfk--premium-venue h1 {
