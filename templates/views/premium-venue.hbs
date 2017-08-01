@@ -226,4 +226,35 @@
             autoplayTimeout: 10000
         });
     });
+
+    window.onload = function() {
+        var descriptionContainer = document.querySelector(".wpfk--venue-description");
+        var descriptionHTML = descriptionContainer.innerHTML;
+
+        document.querySelector(".wpfk--venue-description").innerHTML = '<div class="wpfk--description-read-container">' + descriptionHTML + '</div>';
+
+        var description = document.querySelector(".wpfk--description-read-container");
+
+        if (description.offsetHeight > 250)
+        {
+            console.log(description.offsetHeight);
+
+            description.classList.add('wpfk--description-half');
+            descriptionContainer.innerHTML += '<a class="wpfk--venue-read-more-less read-more">Read more</a>';   
+            document.querySelector('.wpfk--venue-read-more-less').addEventListener('click', function(ev) {
+                var description = document.querySelector(".wpfk--description-read-container");
+                var el = ev.target;
+
+                if (el.classList.contains('read-more')) {
+                    description.classList.remove('wpfk--description-half');
+                    el.classList.replace('read-more', 'read-less');
+                    el.innerHTML = "Read less";
+                } else {
+                    description.classList.add('wpfk--description-half');
+                    el.classList.replace('read-less', 'read-more');
+                    el.innerHTML = "Read more";
+                }
+            });
+        }
+    };
 </script>

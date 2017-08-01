@@ -1655,6 +1655,50 @@ section.wpfk--inline-input select:active {
     @extend %wide-container;
     max-width: 1160px;
 
+    .wpfk--description-read-container {
+        overflow: hidden;
+        max-height: auto;
+
+        &.wpfk--description-half {
+            max-height: 250px;
+        }
+    }
+
+    .wpfk--venue-read-more-less {
+        cursor: pointer;
+        color: $brand-turqoise;
+        font-size: em-calc(14);
+        text-transform: uppercase;
+        top: 20px;
+        padding: 5px 16px 5px 5px;
+        border: 2px solid $brand-turqoise;
+        position: relative;
+
+        &.read-more:after {
+            font-family: LatoRegular, Arial, Helvetica, sans-serif;
+            font-size: em-calc(16);
+            font-weight: 100;
+            content: ">" !important;
+            transform: scale(1.4,1.4) rotate(90deg);
+            color: $brand-turqoise;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+
+        &.read-less:after {
+            font-family: LatoRegular, Arial, Helvetica, sans-serif;
+            font-size: em-calc(16);
+            font-weight: 100;
+            content: ">" !important;
+            transform: scale(1.4,1.4) rotate(270deg);
+            color: $brand-turqoise;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+        }
+    }
+
     .stars {
         white-space: nowrap;
     }

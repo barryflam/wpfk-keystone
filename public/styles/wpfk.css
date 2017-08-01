@@ -1183,6 +1183,40 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-content.wpfk--premium-venue {
   max-width: 1160px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--description-read-container {
+    overflow: hidden;
+    max-height: auto; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--description-read-container.wpfk--description-half {
+      max-height: 250px; }
+  .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-read-more-less {
+    cursor: pointer;
+    color: #2eaaa5;
+    font-size: 0.875em;
+    text-transform: uppercase;
+    top: 20px;
+    padding: 5px 16px 5px 5px;
+    border: 2px solid #2eaaa5;
+    position: relative; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-read-more-less.read-more:after {
+      font-family: LatoRegular, Arial, Helvetica, sans-serif;
+      font-size: 1em;
+      font-weight: 100;
+      content: ">" !important;
+      transform: scale(1.4, 1.4) rotate(90deg);
+      color: #2eaaa5;
+      position: absolute;
+      right: 5px;
+      top: 5px; }
+    .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-read-more-less.read-less:after {
+      font-family: LatoRegular, Arial, Helvetica, sans-serif;
+      font-size: 1em;
+      font-weight: 100;
+      content: ">" !important;
+      transform: scale(1.4, 1.4) rotate(270deg);
+      color: #2eaaa5;
+      position: absolute;
+      right: 5px;
+      top: 5px; }
   .wpfk--venue-content.wpfk--premium-venue .stars {
     white-space: nowrap; }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-section {
