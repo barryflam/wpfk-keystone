@@ -14,12 +14,15 @@ exports = module.exports = function(req, res) {
             locals.venue = venue;
             locals.pageTitle = venue.venueName;
 
-            Review.model.find({ 'venueSlug': venueSlug }, '', function (err, reviews) {
-                locals.reviews = reviews;
-                locals.reviewSpotlight = reviews[reviews.length-1];
-                locals.reviewCount = reviews.length;
-                next(err);
-            }).sort({addedOn: -1});
+            Review.model.find()
+                .where({ 'venueSlug': venueSlug })
+                .sort({addedOn: -1})
+                .exec(function (err, reviews) {
+                    locals.reviews = reviews;
+                    locals.reviewSpotlight = reviews[reviews.length-1];
+                    locals.reviewCount = reviews.length;
+                    next(err);
+                });
         });
     });
 
