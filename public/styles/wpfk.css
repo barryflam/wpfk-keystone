@@ -886,9 +886,22 @@ section.wpfk--inline-input select:active {
     background: #fff;
     margin: 0 0 20px 0;
     position: relative; }
+    .wpfk--search-results .wpfk--search-result .wpfk--search-summary-readmore a {
+      color: #002655;
+      font-size: 0.875em;
+      text-transform: uppercase;
+      font-weight: 600; }
+      .wpfk--search-results .wpfk--search-result .wpfk--search-summary-readmore a:hover {
+        text-transform: underline; }
     .wpfk--search-results .wpfk--search-result.premium {
-      background: #2eaaa5;
-      padding-bottom: 60px; }
+      background: #2eaaa5; }
+      .wpfk--search-results .wpfk--search-result.premium .wpfk--search-summary-readmore a {
+        color: #002655;
+        font-size: 0.875em;
+        text-transform: uppercase;
+        font-weight: 600; }
+        .wpfk--search-results .wpfk--search-result.premium .wpfk--search-summary-readmore a:hover {
+          text-transform: underline; }
     .wpfk--search-results .wpfk--search-result .wpfk--read-more {
       color: #e53cad;
       display: block; }
@@ -911,6 +924,8 @@ section.wpfk--inline-input select:active {
         color: #fff;
         text-transform: uppercase;
         margin: 0; }
+    .wpfk--search-results .wpfk--search-result.premium .wpfk--search-result__image img {
+      height: 371px; }
     .wpfk--search-results .wpfk--search-result a {
       text-decoration: none;
       color: #000; }
@@ -949,15 +964,21 @@ section.wpfk--inline-input select:active {
       color: #002655; }
     .wpfk--search-results .wpfk--search-result.premium .wpfk--search-result__promo {
       background: #fff;
-      color: #000;
+      color: #002655;
       padding: 1%;
       position: absolute;
       bottom: 6%;
       right: 3%;
       width: 46%; }
+      @media (max-width: 800px) {
+        .wpfk--search-results .wpfk--search-result.premium .wpfk--search-result__promo {
+          position: static;
+          display: block;
+          width: 96%;
+          height: auto; } }
       .wpfk--search-results .wpfk--search-result.premium .wpfk--search-result__promo p {
         margin: 0 0 0 1%;
-        color: #000;
+        color: #002655;
         display: inline; }
 
 .wpfk--search-nav {
@@ -1039,9 +1060,10 @@ section.wpfk--inline-input select:active {
     height: 12px;
     margin: 0 5px;
     border-radius: 50%;
-    background: #999; }
+    background: #999;
+    opacity: 0.6; }
   .wpfk--venue-header button[aria-selected="true"] {
-    background: #ddd; }
+    background: #fff; }
   .wpfk--venue-header button[data-action="stop"] {
     display: none; }
 

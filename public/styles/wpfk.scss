@@ -1236,9 +1236,30 @@ section.wpfk--inline-input select:active {
         margin: 0 0 20px 0;
         position: relative;
 
+        .wpfk--search-summary-readmore a {
+            color: $brand-dark-blue;
+            font-size: em-calc(14);
+            text-transform: uppercase;
+            font-weight: 600;
+
+            &:hover {
+                text-transform: underline;
+            }
+        }
+
         &.premium {
             background: $brand-turqoise;
-            padding-bottom: 60px;
+
+            .wpfk--search-summary-readmore a {
+                color: $brand-dark-blue;
+                font-size: em-calc(14);
+                text-transform: uppercase;
+                font-weight: 600;
+
+                &:hover {
+                    text-transform: underline;
+                }
+            }
         }
 
         .wpfk--read-more {
@@ -1270,6 +1291,10 @@ section.wpfk--inline-input select:active {
                 text-transform: uppercase;
                 margin: 0;
             }
+        }
+
+        &.premium .wpfk--search-result__image img {
+            height: 371px;
         }
 
         a {
@@ -1329,16 +1354,23 @@ section.wpfk--inline-input select:active {
 
         &.premium .wpfk--search-result__promo {
             background: #fff;
-            color: #000;
+            color: $brand-dark-blue;
             padding: 1%;
             position: absolute;
             bottom: 6%;
             right: 3%;
             width: 46%;
 
+            @media (max-width: $tablet-breakpoint) {
+                position: static;
+                display: block;
+                width: 96%;
+		        height: auto;
+            }
+
             p {
                 margin: 0 0 0 1%;
-                color: #000;
+                color: $brand-dark-blue;;
                 display: inline;
             }
         }
@@ -1453,10 +1485,11 @@ section.wpfk--inline-input select:active {
         margin: 0 5px;
         border-radius: 50%;
         background: #999;
+        opacity: 0.6;
     }
 
     button[aria-selected="true"] {
-        background: #ddd;
+        background: #fff;
     }
 
     button[data-action="stop"] {

@@ -132,7 +132,7 @@
                             {{/if}}
                         </p>
                         <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
-                        <p class="wpfk--search-result__address">{{address}}</p>
+                        {{#if isPremiumListing}}{{else}}<p class="wpfk--search-result__address">{{address}}</p>{{/if}}
                         {{#if costsMoney}}{{else}}<p class="wpfk--search-price">FREE</p>{{/if}}
                         <div class="wpfk--search-result__description">
                             {{{description}}}
@@ -175,6 +175,44 @@
             onChangeSubmit(e);
         });
     };
+
+    var done = false;
+
+    function summarizeTextWithReadMore(rootElement, linkURL, numberOfLines)
+    {
+        const originalText = rootElement.innerHTML;
+        const text = originalText.replace(/(<([^>]+)>)/ig, "").split(/[\s|\n]/);
+
+        if  (!done) {
+            console.log(text);
+            done = true;
+        }
+
+        rootElement.innerHTML = '<p class="wpfk--search-summary-text"><span class="wpfk--search-summary-preview">' + text[0] + '</span> <span class="wpfk--search-summary-readmore">... <a href="' + linkURL + '">Read more &gt;</a></span></p>';
+
+        const paragraphRoot = rootElement.querySelector(".wpfk--search-summary-text");
+        const textNode = paragraphRoot.querySelector(".wpfk--search-summary-preview");
+        const lineHeight = paragraphRoot.offsetHeight;
+
+        for (var i = 1, len = text.length, maxHeight = lineHeight * numberOfLines; i < len; i++)
+        {
+            if(text[i] === "") continue;
+
+            var oldText = textNode.innerText;
+            textNode.innerText += " " + text[i];
+
+            if (paragraphRoot.offsetHeight > maxHeight) {
+                 textNode.innerText = oldText;
+                break;
+            }
+
+            if (i === len-1) {
+                rootElement.innerHTML = originalText;
+            }
+        }
+
+        console.log(rootElement.innerText);
+    }
 
     function ellipsizeTextBox() {
         var results = document.querySelectorAll('.wpfk--search-result');
@@ -227,5 +265,17 @@
         }
     }
 
-    ellipsizeTextBox();
+    //ellipsizeTextBox();
+
+    var venues = document.querySelectorAll('.wpfk--search-result');
+
+    for (var i = 0, len = venues.length; i < len; i++)
+    {
+	    var descriptionEl = venues[i].querySelector('.wpfk--search-result__description'),
+                linkEl = venues[i].querySelector('.wpfk--search-result a');
+
+        console.log(descriptionEl, linkEl.href, 3);
+
+        summarizeTextWithReadMore(descriptionEl, linkEl.href, 10);
+    }
 </script>

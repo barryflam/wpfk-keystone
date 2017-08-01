@@ -100,23 +100,22 @@
         <section class="wpfk--premium-tier-column">
             <h1>{{venue.premium.priceTier1Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.prices.adult}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.prices.child}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.prices.infant}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.prices.senior}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.prices.family}}</span></li>
+                {{#if venue.prices.adult}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.prices.adult}}</span></li>{{/if}}
+                {{#if venue.prices.child}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.prices.child}}</span></li>{{/if}}
+                {{#if venue.prices.infant}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.prices.infant}}</span></li>{{/if}}
+                {{#if venue.prices.senior}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.prices.senior}}</span></li>{{/if}}
+                {{#if venue.prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.prices.family}}</span></li>{{/if}}
             </ul>
         </section>
         {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
             <h1>{{venue.premium.priceTier2Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-                <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.adult}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.child}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.infant}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.senior}}</span></li>
-                <li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.family}}</span></li>
+                {{#if venue.premium.tier2prices.adult}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.adult}}</span></li>{{/if}}
+                {{#if venue.premium.tier2prices.child}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.child}}</span></li>{{/if}}
+                {{#if venue.premium.tier2prices.infant}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Infant</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.infant}}</span></li>{{/if}}
+                {{#if venue.premium.tier2prices.senior}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Senior</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.senior}}</span></li>{{/if}}
+                {{#if venue.premium.tier2prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.family}}</span></li>{{/if}}
             </ul>
         </section>
         {{/if}}
