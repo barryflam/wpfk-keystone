@@ -1,9 +1,9 @@
-<header class="wpfk--venue-header">
+<header class="wpfk--venue-header wpfk--premium-venue">
     <div class="wpfk--venue-image-container slider">
         {{#if venue.premiumVenueCarousel}}
             {{#each venue.premiumVenueCarousel}}
             {{#if this}}
-            <div><img src="{{cloudinaryUrl this width=1200 height=421 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="100%" /></div>
+            <div><img src="{{cloudinaryUrl this width=1440 height=477 crop='lfill' gravity='center'}}" alt="{{venueName}}" alt="{{venue.venueName}}" width="100%" /></div>
             {{/if}}
             {{/each}}
         {{else}}
@@ -12,7 +12,7 @@
     </div>
 </header>
 <article class="wpfk--venue-content wpfk--premium-venue">
-    <h1>{{venue.venueName}}<span class="stars">{{#times venue.rating}}
+    <h1 class="wpfk--venue-name">{{venue.venueName}}<span class="stars">{{#times venue.rating}}
         <img src="/images/star-filled.svg" />
         {{/times}}</span></h1>
     <p class="wpfk--premium-suitable">Suitable for {{venue.suitableForPremium}}</p>
@@ -93,6 +93,7 @@
             </ul>
         </section>
         {{/if}}
+        {{{venue.premium.tier2prices.otherDescription}}}
     </section>
     <section class="wpfk--venue-section">
         <h1 id="price">Price</h1>

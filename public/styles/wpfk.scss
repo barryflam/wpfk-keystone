@@ -1,4 +1,4 @@
-$brand-purple: #e53cad;
+$brand-purple: rgb(227,66,172);
 $brand-orange: #e29f00;
 $brand-light-blue: #008dcd;
 $brand-dark-blue: #002655;
@@ -1446,7 +1446,10 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-header {
     @extend %wide-container;
-    max-width: none;
+    
+    &.wpfk--premium-venue {
+        max-width: none;
+    }
 
     h1 {
         width: 100%;
@@ -1467,7 +1470,7 @@ section.wpfk--inline-input select:active {
     img {
         display: block;
         max-width: 100%;
-        height: 421px;
+        height: 477px;
         object-fit: cover;
     }
 
@@ -1507,6 +1510,11 @@ section.wpfk--inline-input select:active {
     padding: 38px;
     box-sizing: border-box;
     text-align: left;
+
+    &.wpfk--premium-venue {
+        top: -84px;
+        padding: 20px 38px;
+    }
 
     @media (max-width: $tablet-breakpoint) {
         position: static;
@@ -1654,7 +1662,7 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-content.wpfk--premium-venue {
     @extend %wide-container;
-    max-width: 1160px;
+    max-width: 1066px;
 
     .wpfk--description-read-container {
         overflow: hidden;
@@ -1731,11 +1739,15 @@ section.wpfk--inline-input select:active {
         margin: 0;
         color: $brand-turqoise;
         font-weight: normal;
+
+        &.wpfk--venue-name {
+            color: #000;
+        }
     }
 
     .wpfk--premium-website-link {
         position: absolute;
-        top: 38px;
+        top: 28px;
         right: 38px;
         font-family: LatoBold, Arial, Helvetica, sans-serif;
         font-size: em-calc(14);
@@ -1746,7 +1758,7 @@ section.wpfk--inline-input select:active {
         background: $brand-purple;
         border: 1px solid $brand-purple;
         border-radius: 2px;
-        padding: 1% 2%;
+        padding: 1.5% 3.5%;
 
         @media (max-width: $tablet-breakpoint) {
             position: static;
