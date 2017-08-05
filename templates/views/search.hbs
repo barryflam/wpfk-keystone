@@ -138,9 +138,9 @@
                             {{{description}}}
                         </div>
                         {{#if isPremiumListing}}
-                            {{#if premium.promoTitle}}
+                            {{#if premium.promoListing}}
                             <div class="wpfk--search-result__promo">
-                                {{premium.promoTitle}}{{{premium.promoText}}}
+                                <p>{{premium.promoListing}}</p>
                             </div>
                             {{/if}}
                         {{/if}}
@@ -205,59 +205,6 @@
         }
     }
 
-    function ellipsizeTextBox() {
-        var results = document.querySelectorAll('.wpfk--search-result');
-
-        for (var i = 0, len = results.length; i < len; i++)
-        {
-	    var descriptionEl = results[i].querySelector('.wpfk--search-result__description'),
-                textEl = results[i].querySelectorAll('.wpfk--search-result__description p'),
-                linkEl = results[i].querySelector('.wpfk--search-result a');
-
-	    if (textEl.length === 0)
-	    {
-		textEl = [descriptionEl];
-	    }
-
-            var overHeight = false;
-
-            textEl.forEach(function(e) {
-                e.style.display = "none";
-            });
-
-            for (var j = 0, plen = textEl.length; j < plen; j++)
-            {
-                var words = textEl[j].innerHTML.split(' ');
-		textEl[j].innerHTML = "";
-
-                for (var i = 0, len = words.length; i < len; i++)
-                {
-		    var oldText = textEl[j].innerHTML;
-		    textEl[j].innerHTML += " " + words[i];
-
-                    if (descriptionEl.offsetHeight < 70)
-                    {
-                        textEl[j].style.display = "block";
-                    }
-                    else
-                    {
-                        textEl[j].innerHTML = oldText + "...";
-			textEl[j].style.marginBottom = 0;
-                        overHeight = true;
-                        break;
-                    }
-                }
-
-                if (overHeight)
-                {
-                    break;
-                }
-            }
-        }
-    }
-
-    //ellipsizeTextBox();
-
     var venues = document.querySelectorAll('.wpfk--search-result');
 
     for (var i = 0, len = venues.length; i < len; i++)
@@ -265,6 +212,6 @@
 	    var descriptionEl = venues[i].querySelector('.wpfk--search-result__description'),
                 linkEl = venues[i].querySelector('.wpfk--search-result a');
 
-        summarizeTextWithReadMore(descriptionEl, linkEl.href, 10);
+        summarizeTextWithReadMore(descriptionEl, linkEl.href, 6);
     }
 </script>

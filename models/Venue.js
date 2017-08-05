@@ -151,6 +151,7 @@ Venue.add({
         additionalImage7: { type: Types.CloudinaryImage, label: "Image 8 for carousel" },
         additionalImage8: { type: Types.CloudinaryImage, label: "Image 9 for carousel" },
         additionalImage9: { type: Types.CloudinaryImage, label: "Image 10 for carousel" },
+        promoListing: { type: String, label: "Promo for search listing" },
         promoTitle: { type: String, label: "Promo title" },
         promoText: { type: Types.Html, label: "Promo text", wysiwyg: true, height: 150, initial: false },
         priceTier1Title: { type: String, label: "Price tier 1 title" },
