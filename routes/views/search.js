@@ -106,25 +106,28 @@ exports = module.exports = function(req, res) {
                 $and: andFilterMatcher
             })
             .sort(sortBy)
-            .limit(20)
             .exec(function(err, venues) {
                 if (venues) {
+                    locals.venueCount = venues.length;
+
+                    venues = venues.slice(0,20)
+
                     if (locationSearch) {
                         venues.forEach(function (venue) {
                             venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
                         });
                     }
 
-                    if (searchString !== '') {
+                    /*if (searchString !== '') {
                         var regex = new RegExp('\\b' + searchString + '\\b', 'i');
 
                         venues = venues.filter(function (venue) { 
                             var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
-                            return regex.test(string);
+                            var match = regex.test(string);
+                            if (!match) console.log(venue.venueName);
+                            return match;
                         });
-                    }
-
-                    locals.venueCount = venues.length;
+                    }*/
                 } else {
                     locals.venueCount = 0;
                 }
