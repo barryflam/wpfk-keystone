@@ -1,4 +1,4 @@
-<form id="search" method="get" action="/search">
+<form id="search" method="get" action="/search-results">
     <header class="wpfk--search-header">
         <div class="wpfk--wide-container">
             <h1>Results{{#if searchQuery}} for {{searchQuery}}{{/if}}</h1>
@@ -90,65 +90,12 @@
                     <li><input type="checkbox" name="services" value="suitableForMany" id="suitableForMany" {{#if services.suitableForMany}}checked="checked"{{/if}} /> <label for="suitableForMany">Suitable for twins/multiples</label></li>
                 </ul>
             </section>
+            <input type="hidden" id="pagination-page" name="page" value="1" />
             <button type="submit" class="wpfk--form__submit-button">Search</button>
         </aside>
         <section class="wpfk--search-results">
-            {{#ifeq venueCount 0}}
-            <h2>Whoops! Nothing here?</h2>
-            <p class="wpfk--search-results__found">We are brand new and are still filling up with ideas.</p>
-            <p class="wpfk--search-results__found">Please help us by adding great places that you love via the big pink button at the top!</p>
-            <p class="wpfk--search-results__found">Thank you!</p>
-            {{else}}
-            <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>
-            <div class="wpfk--search-results--sort">
-                <label for="sort-by">Sort by</label>
-                <div class="wpfk--custom-select custom-select">
-                    <select name="sortBy" class="selectSubmitter">
-                        <option {{#if sortByNearest}}selected="selected" {{/if}}value="nearest">Nearest</option>
-                        <option {{#if sortByPopularity}}selected="selected" {{/if}}value="popularity">Most popular</option>
-                        <option {{#if sortByAdded}}selected="selected" {{/if}}value="added">Recently added</option>
-                        <option {{#if sortByOpenToday}}selected="selected" {{/if}}value="open-today">Open today</option>
-                    </select>
-                </div>
-            </div>
-            {{#each venues}}
-            <article class="wpfk--search-result {{#if isPremiumListing}}premium{{/if}}">
-                <a href="/venue/{{slug}}">
-                    <div class="wpfk--search-result__image">
-                        {{#if image.url}}
-                        <img src="{{cloudinaryUrl image width=412 height=314 crop='lfill' gravity='center'}}" alt="{{venueName}}" width="412" />
-                        {{else}}
-                        <img src="/images/castle.jpg" alt="Sealife" width="380" />
-                        {{/if}}
-                    </div><div class="wpfk--search-result__details">
-                        {{#if addedByWPFK}}{{else}}<span class="addedByWPFK"></span>{{/if}}
-                        <h1>{{venueName}}</h1>
-                        <p class="wpfk--search-rating">
-                            {{#times rating}}
-                            <img src="/images/star-filled.svg" />
-                            {{/times}}
-                            {{#if distance}}
-                            <span class="wpfk--search-distance">{{distance}} miles</span>
-                            {{/if}}
-                        </p>
-                        <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
-                        {{#if isPremiumListing}}{{else}}<p class="wpfk--search-result__address">{{address}}</p>{{/if}}
-                        {{#if costsMoney}}{{else}}<p class="wpfk--search-price">FREE</p>{{/if}}
-                        <div class="wpfk--search-result__description">
-                            {{{description}}}
-                        </div>
-                        {{#if isPremiumListing}}
-                            {{#if premium.promoListing}}
-                            <div class="wpfk--search-result__promo">
-                                <p>{{premium.promoListing}}</p>
-                            </div>
-                            {{/if}}
-                        {{/if}}
-                    </div>
-                </a>
-            </article>
-            {{/each}}
-            {{/ifeq}}
+            <div id="search-results" class="wpfk--search-results-content"></div>
+            <div id="loading-spinner" class="wpfk--search-results-spinner animate-flicker" style="display: none;"><h2>Loading</h2></div>
         </section>
     </div>    
 </form>
@@ -164,17 +111,66 @@
     }
 </script>
 <script type="text/javascript">
-    function onChangeSubmit (event) {
-        document.getElementById('search').submit();
+    var loading = false;
+    var page = 1;
+
+    function startLoading() {
+        loading = true;
+        document.getElementById('loading-spinner').style.display = "block";
     }
 
-    var submitters = document.querySelectorAll(".selectSubmitter, .checkboxSubmitters input[type='checkbox']");
+    function stopLoading() {
+        loading = false;
+        document.getElementById('loading-spinner').style.display = "none";
+    }
 
-    for (i = 0, len = submitters.length; i < len; ++i) {        
-        submitters[i].addEventListener('change', function (e) {
-            onChangeSubmit(e);
-        });
-    };
+    function onChangeSubmit (event, nextPage) {
+        var nextPage = nextPage || 1;
+        document.getElementById('pagination-page').value = nextPage;
+        startLoading();
+        var formElement = document.getElementById("search");
+        var formData = new FormData(formElement);
+        if (nextPage === 1) {
+            document.getElementById('search-results').innerHTML = "";
+            page = 1;
+        }
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function (oEvent) {  
+            if (request.readyState === XMLHttpRequest.DONE) {
+                stopLoading();
+                if (request.status === 200) {
+                    var wrapper = document.createElement('div');
+                    wrapper.innerHTML = request.responseText;
+                    if (nextPage === 1) document.getElementById('search-results').innerHTML = "";
+                    document.getElementById('search-results').appendChild(wrapper);
+                    summarizeAll(wrapper);
+                    registerSelectSubmitters();
+                } else {
+                    console.log("error", request.responseTest)
+                }
+            }
+        };
+        request.open("POST", formElement.getAttribute("action"));
+        request.send(formData);
+    }
+
+    function registerSelectSubmitters() {
+        var submitters = document.querySelectorAll(".selectSubmitter, .checkboxSubmitters input[type='checkbox']");
+
+        for (i = 0, len = submitters.length; i < len; ++i) {        
+            submitters[i].addEventListener('change', function (e) {
+                onChangeSubmit(e);
+            });
+        };
+    }
+
+    registerSelectSubmitters();
+
+    var formElement = document.getElementById("search");
+    formElement.addEventListener("submit", function (event) {
+        event.preventDefault();
+        onChangeSubmit(event);
+    });
 
     function summarizeTextWithReadMore(rootElement, linkURL, numberOfLines)
     {
@@ -205,13 +201,35 @@
         }
     }
 
-    var venues = document.querySelectorAll('.wpfk--search-result');
+    function summarizeAll(rootElement) {
+        var venues = rootElement.querySelectorAll('.wpfk--search-result');
 
-    for (var i = 0, len = venues.length; i < len; i++)
-    {
-	    var descriptionEl = venues[i].querySelector('.wpfk--search-result__description'),
-                linkEl = venues[i].querySelector('.wpfk--search-result a');
+        for (var i = 0, len = venues.length; i < len; i++)
+        {
+            var descriptionEl = venues[i].querySelector('.wpfk--search-result__description'),
+                    linkEl = venues[i].querySelector('.wpfk--search-result a');
 
-        summarizeTextWithReadMore(descriptionEl, linkEl.href, 6);
+            summarizeTextWithReadMore(descriptionEl, linkEl.href, 6);
+        }
     }
+
+    function onScrollPaginate(event) {
+        window.addEventListener("scroll", function (event) {
+            var hasNext = document.querySelector("input[data-hasnext]:last-child");
+            if(hasNext && hasNext.value === "yes") {
+                if((window.pageYOffset + window.innerHeight) > (document.body.clientHeight * 0.9) && !loading) {
+                    onChangeSubmit(event, ++page);
+                }
+            }
+        });
+    }
+
+    function onGeo() {
+        onChangeSubmit(event);
+        onScrollPaginate(event);
+    }
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        startLoading();
+    });
 </script>

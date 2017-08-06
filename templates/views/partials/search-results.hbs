@@ -1,0 +1,61 @@
+{{#ifeq venueCount 0}}
+    {{#ifeq page 1}}
+    <h2>Whoops! Nothing here?</h2>
+    <p class="wpfk--search-results__found">We are brand new and are still filling up with ideas.</p>
+    <p class="wpfk--search-results__found">Please help us by adding great places that you love via the big pink button at the top!</p>
+    <p class="wpfk--search-results__found">Thank you!</p>
+    {{/ifeq}}
+{{else}}
+    {{#ifeq page 1}}
+    <p class="wpfk--search-results__found">We have found <strong>{{venueCount}} results</strong></p>
+    <div class="wpfk--search-results--sort">
+        <label for="sort-by">Sort by</label>
+        <div class="wpfk--custom-select custom-select">
+            <select id="sortByInput" name="sortBy" class="selectSubmitter">
+                <option {{#if sortByNearest}}selected="selected" {{/if}}value="nearest">Nearest</option>
+                <option {{#if sortByPopularity}}selected="selected" {{/if}}value="popularity">Most popular</option>
+                <option {{#if sortByAdded}}selected="selected" {{/if}}value="added">Recently added</option>
+                <option {{#if sortByOpenToday}}selected="selected" {{/if}}value="open-today">Open today</option>
+            </select>
+        </div>
+    </div>
+    {{/ifeq}}
+    {{#each venues}}
+    <article class="wpfk--search-result {{#if isPremiumListing}}premium{{/if}}">
+        <a href="/venue/{{slug}}">
+            <div class="wpfk--search-result__image">
+                {{#if image.url}}
+                <img src="{{cloudinaryUrl image width=412 height=314 crop='lfill' gravity='center'}}" alt="{{venueName}}" width="412" />
+                {{else}}
+                <img src="/images/castle.jpg" alt="Sealife" width="380" />
+                {{/if}}
+            </div><div class="wpfk--search-result__details">
+                {{#if addedByWPFK}}{{else}}<span class="addedByWPFK"></span>{{/if}}
+                <h1>{{venueName}}</h1>
+                <p class="wpfk--search-rating">
+                    {{#times rating}}
+                    <img src="/images/star-filled.svg" />
+                    {{/times}}
+                    {{#if distance}}
+                    <span class="wpfk--search-distance">{{distance}} miles</span>
+                    {{/if}}
+                </p>
+                <p class="wpfk--search-result__opening-times">{{#if openToday}}Open today {{openToday.from}} - {{openToday.to}}{{else}}Closed right now, see opening hours{{/if}}</p>
+                {{#if isPremiumListing}}{{else}}<p class="wpfk--search-result__address">{{address}}</p>{{/if}}
+                {{#if costsMoney}}{{else}}<p class="wpfk--search-price">FREE</p>{{/if}}
+                <div class="wpfk--search-result__description">
+                    {{{description}}}
+                </div>
+                {{#if isPremiumListing}}
+                    {{#if premium.promoListing}}
+                    <div class="wpfk--search-result__promo">
+                        <p>{{premium.promoListing}}</p>
+                    </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </a>
+    </article>
+    {{/each}}
+    <input type="hidden" data-hasnext="hasnext" value="{{hasNext}}" />
+{{/ifeq}}

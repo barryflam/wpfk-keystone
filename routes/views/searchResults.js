@@ -3,12 +3,9 @@ var Venue = keystone.list('Venue');
 var https = require('https');
 
 exports = module.exports = function(req, res) {
-    var googleApiKey = process.env.GOOGLE_SERVER_API_KEY;
-
-	var view = new keystone.View(req, res);
+    var view = new keystone.View(req, res);
 	var locals = res.locals;
-    locals.mainSite = true;
-    locals.pageTitle = "Search for a Wiki Place";
+    var googleApiKey = process.env.GOOGLE_SERVER_API_KEY;
 
     var milesToMeters = function(miles) {
         return (miles / 0.62137) * 1000;
@@ -106,29 +103,25 @@ exports = module.exports = function(req, res) {
                 $and: andFilterMatcher
             })
             .sort(sortBy)
-            .skip(page * 20)
             .exec(function(err, venues) {
                 if (venues) {
                     locals.venueCount = venues.length;
 
-                    venues = venues.slice(0,20)
+                    var maxIndex = (page * 20);
+
+                    venues = venues.slice(maxIndex - 20, maxIndex)
+
+                    if (maxIndex >= locals.venueCount) {
+                        locals.hasNext = "no";
+                    } else {
+                        locals.hasNext = "yes";
+                    }
 
                     if (locationSearch) {
                         venues.forEach(function (venue) {
                             venue.distance = getDistanceFromLatLonInMiles(fromLatLng.lat, fromLatLng.lng, venue.geoLocation.geo[1], venue.geoLocation.geo[0]);
                         });
                     }
-
-                    /*if (searchString !== '') {
-                        var regex = new RegExp('\\b' + searchString + '\\b', 'i');
-
-                        venues = venues.filter(function (venue) { 
-                            var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
-                            var match = regex.test(string);
-                            if (!match) console.log(venue.venueName);
-                            return match;
-                        });
-                    }*/
                 } else {
                     locals.venueCount = 0;
                 }
@@ -139,11 +132,11 @@ exports = module.exports = function(req, res) {
             });
     }
 
-    view.on('get', function(next) {
-        locals.vicinity = req.query.vicinity;
-        locals.searchString = req.query.searchString || '';
-        locals.radius = req.query.radius;
-        locals.page = req.query.page || 1;
+    view.on('post', function(next) {
+        locals.vicinity = req.body.vicinity;
+        locals.searchString = req.body.searchString || '';
+        locals.radius = req.body.radius;
+        locals.page = req.body.page || 1;
 
         locals.venueType = {};
 
@@ -151,7 +144,7 @@ exports = module.exports = function(req, res) {
             "isPremiumListing": -1
         };
 
-        switch (req.query.sortBy) {
+        switch (req.body.sortBy) {
             case "popularity":
                 locals.sortByPopularity = true;
                 sortBy["rating"] = -1;
@@ -169,10 +162,10 @@ exports = module.exports = function(req, res) {
                 locals.sortByNearest = true;
         }
 
-        var venueTypes = req.query.venueTypes || [];
+        var venueTypes = req.body.venueTypes || [];
 
         if (typeof venueTypes !== "object") {
-            var venueTypes = [ req.query.venueTypes ];
+            var venueTypes = [ req.body.venueTypes ];
         }
 
         venueTypes.forEach(function(type) {
@@ -182,10 +175,10 @@ exports = module.exports = function(req, res) {
 
         locals.ageRange = {};
 
-        var ageRanges = req.query.ageRanges || [];
+        var ageRanges = req.body.ageRanges || [];
 
         if (typeof ageRanges !== "object") {
-            var ageRanges = [ req.query.ageRanges ];
+            var ageRanges = [ req.body.ageRanges ];
         }
 
         ageRanges.forEach(function(range) {
@@ -195,10 +188,10 @@ exports = module.exports = function(req, res) {
 
         locals.services = {};
 
-        var services = req.query.services || [];
+        var services = req.body.services || [];
 
         if (typeof services !== "object") {
-            var services = [ req.query.services ];
+            var services = [ req.body.services ];
         }
 
         services.forEach(function(range) {
@@ -216,9 +209,9 @@ exports = module.exports = function(req, res) {
 
         if(hasVicinity) {
             locals.filterLocation = true;
-            doGeocode(req.query.vicinity, function (geocodeResponse) {
+            doGeocode(req.body.vicinity, function (geocodeResponse) {
                 if (geocodeResponse.lat && geocodeResponse.lng) {
-                    queryVenues(geocodeResponse, req.query.radius, venueTypes, ageRanges, services, next, sortBy, locals.searchString, locals.page);
+                    queryVenues(geocodeResponse, req.body.radius, venueTypes, ageRanges, services, next, sortBy, locals.searchString, locals.page);
                 } else {
                     next(geocodeResponse);
                 }
@@ -233,10 +226,6 @@ exports = module.exports = function(req, res) {
         locals.searchQuery = searchQuery;
     });
 	
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
-	locals.section = 'search';
-	
 	// Render the view
-	view.render('search');
+	view.render('partials/search-results', {layout: ''});
 };

@@ -859,6 +859,10 @@ section.wpfk--inline-input select:active {
   position: relative;
   margin-left: 2%;
   box-sizing: border-box; }
+  .wpfk--search-results .wpfk--search-results-content,
+  .wpfk--search-results .wpfk--search-results-spinner {
+    display: block;
+    width: 100%; }
   @media (max-width: 800px) {
     .wpfk--search-results {
       display: block;
@@ -1512,3 +1516,42 @@ section.wpfk--inline-input select:active {
 
 .wpfk--review-form .wpfk--add-more-children a {
   color: #e342ac; }
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-o-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+.animate-flicker {
+  -webkit-animation: flickerAnimation 1s infinite;
+  -moz-animation: flickerAnimation 1s infinite;
+  -o-animation: flickerAnimation 1s infinite;
+  animation: flickerAnimation 1s infinite;
+  text-align: center; }

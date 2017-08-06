@@ -38,7 +38,8 @@ exports = module.exports = function(app) {
 	
 	// Views
 	app.get('/', routes.views.home);
-	app.get('/search', routes.views.search);
+    app.get('/search', routes.views.search);
+    app.post('/search-results', routes.views.searchResults);
     app.get('/venue/:slug', routes.views.venue);           
 	app.all('/recommend', routes.views.recommend);
     app.post('/review', ReCaptchaMiddleware('g-recaptcha-response'), routes.views.review, function(err, req, res, next) {
