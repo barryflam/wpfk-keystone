@@ -1081,9 +1081,6 @@ section.wpfk--inline-input select:active {
   outline: none;
   font-weight: 500;
   top: 200px; }
-  @media (max-width: 800px) {
-    .wpfk--venue-header button[data-controls] {
-      top: 180px; } }
 
 .wpfk--venue-header button[data-controls="prev"] {
   left: 20px; }

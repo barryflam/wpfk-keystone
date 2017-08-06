@@ -106,6 +106,7 @@ exports = module.exports = function(req, res) {
                 $and: andFilterMatcher
             })
             .sort(sortBy)
+            .limit(20)
             .exec(function(err, venues) {
                 if (venues) {
                     if (locationSearch) {
