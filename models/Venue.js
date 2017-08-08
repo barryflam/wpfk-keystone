@@ -68,13 +68,13 @@ Venue.add({
         kidsParties: { type: Boolean, label: 'Available for kids parties?' }        
     },
     prices: {
-        isFree: { type: Types.Select, label: 'Is free of charge?', required: true, options: 'No, Yes', emptyOption: false, default: 'No' },
-        adult: { type: Types.Money, label: 'Adult price amount (£)', currency: 'en-gb' },
-        child: { type: Types.Money, label: 'Child price amount (£)', currency: 'en-gb' },
-        infant: { type: Types.Money, label: 'Infant price amount (£)', currency: 'en-gb' },
-        senior: { type: Types.Money, label: 'Senior price amount (£)', currency: 'en-gb' },
-        family: { type: Types.Money, label: 'Family price amount (£)', currency: 'en-gb' },
-        otherDescription: { type: Types.Html, label: 'Other price description', wysiwyg: true, height: 150, initial: false, required: false },
+        isFree: { type: Types.Select, label: 'Tier 2 price: Is free of charge?', required: true, options: 'No, Yes', emptyOption: false, default: 'No' },
+        adult: { type: Types.Money, label: 'Tier 2 price: Adult price amount (£)', currency: 'en-gb' },
+        child: { type: Types.Money, label: 'Tier 2 price: Child price amount (£)', currency: 'en-gb' },
+        infant: { type: Types.Money, label: 'Tier 2 price: Infant price amount (£)', currency: 'en-gb' },
+        senior: { type: Types.Money, label: 'Tier 2 price: Senior price amount (£)', currency: 'en-gb' },
+        family: { type: Types.Money, label: 'Tier 2 price: Family price amount (£)', currency: 'en-gb' },
+        otherDescription: { type: Types.Html, label: 'Premium other price', wysiwyg: true, height: 150, initial: false, required: false },
     },
     openingHours: {
         monday: {

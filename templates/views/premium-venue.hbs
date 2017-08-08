@@ -76,29 +76,26 @@
     <section class="wpfk--venue-section">
         <h1 id="opening-hours">Opening Hours</h1>
         <section class="wpfk--premium-tier-column">
-            <h1>{{venue.premium.priceTier1Title}}</h1>
+            {{#if venue.premium.priceTier1Title}}<h1>{{venue.premium.priceTier1Title}}</h1>{{/if}}
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#each venue.opens}}
                 <li class="wpfk--venue-activity-notick">{{{this}}}</li>
                 {{/each}}
             </ul>
         </section>
-        {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
-            <h1>{{venue.premium.priceTier2Title}}</h1>
+            {{#if venue.premium.priceTier2Title}}<h1>{{venue.premium.priceTier2Title}}</h1>{{/if}}
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#each venue.opensTier2}}
                 <li class="wpfk--venue-activity-notick">{{{this}}}</li>
                 {{/each}}
             </ul>
         </section>
-        {{/if}}
-        {{{venue.premium.tier2prices.otherDescription}}}
     </section>
     <section class="wpfk--venue-section">
         <h1 id="price">Price</h1>
         <section class="wpfk--premium-tier-column">
-            <h1>{{venue.premium.priceTier1Title}}</h1>
+            {{#if venue.premium.priceTier1Title}}<h1>{{venue.premium.priceTier1Title}}</h1>{{/if}}
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#if venue.prices.adult}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.prices.adult}}</span></li>{{/if}}
                 {{#if venue.prices.child}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.prices.child}}</span></li>{{/if}}
@@ -107,9 +104,8 @@
                 {{#if venue.prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.prices.family}}</span></li>{{/if}}
             </ul>
         </section>
-        {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
-            <h1>{{venue.premium.priceTier2Title}}</h1>
+            {{#if venue.premium.priceTier2Title}}<h1>{{venue.premium.priceTier2Title}}</h1>{{/if}}
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#if venue.premium.tier2prices.adult}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.adult}}</span></li>{{/if}}
                 {{#if venue.premium.tier2prices.child}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.child}}</span></li>{{/if}}
@@ -118,7 +114,7 @@
                 {{#if venue.premium.tier2prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.family}}</span></li>{{/if}}
             </ul>
         </section>
-        {{/if}}
+        {{{venue.premium.tier2prices.otherDescription}}}
     </section>
     <section class="wpfk--venue-section">
         <h1 id="facilities">Facilities</h1>
