@@ -83,14 +83,16 @@
                 {{/each}}
             </ul>
         </section>
+        {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
-            {{#if venue.premium.priceTier2Title}}<h1>{{venue.premium.priceTier2Title}}</h1>{{/if}}
+            <h1>{{venue.premium.priceTier2Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#each venue.opensTier2}}
                 <li class="wpfk--venue-activity-notick">{{{this}}}</li>
                 {{/each}}
             </ul>
         </section>
+        {{/if}}
     </section>
     <section class="wpfk--venue-section">
         <h1 id="price">Price</h1>
@@ -104,8 +106,9 @@
                 {{#if venue.prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.prices.family}}</span></li>{{/if}}
             </ul>
         </section>
+        {{#if venue.premium.priceTier2Title}}
         <section class="wpfk--premium-tier-column">
-            {{#if venue.premium.priceTier2Title}}<h1>{{venue.premium.priceTier2Title}}</h1>{{/if}}
+            <h1>{{venue.premium.priceTier2Title}}</h1>
             <ul class="wpfk--venue-activity-ticks wpfk--form-collapse--more">
                 {{#if venue.premium.tier2prices.adult}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Adult</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.adult}}</span></li>{{/if}}
                 {{#if venue.premium.tier2prices.child}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Child</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.child}}</span></li>{{/if}}
@@ -114,6 +117,7 @@
                 {{#if venue.premium.tier2prices.family}}<li class="wpfk--venue-activity-notick"><span class="wpfk--venue-kv-key">Family</span> <span class="wpfk--venue-kv-value">£{{venue.premium.tier2prices.family}}</span></li>{{/if}}
             </ul>
         </section>
+        {{/if}}
         {{{venue.premium.tier2prices.otherDescription}}}
     </section>
     <section class="wpfk--venue-section">
