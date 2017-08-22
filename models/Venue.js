@@ -434,7 +434,7 @@ Venue.schema.virtual('suitableForPremium').get(function() {
         var minimumChecked = typeof this["from6M"] === "boolean" && this["from6M"] === true;
 
         if (checked) {
-            if(minimumAge === "from6M" && !minimumChecked)
+            if(minimumAge === "to6M" && !minimumChecked)
             {
                 minimumAge = value;
             }

@@ -105,6 +105,15 @@ exports = module.exports = function(req, res) {
             .sort(sortBy)
             .exec(function(err, venues) {
                 if (venues) {
+		    if (searchString !== '') {
+                        var regex = new RegExp('\\b' + searchString + '\\b', 'i');
+
+                        venues = venues.filter(function (venue) { 
+                            var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
+                            return regex.test(string);
+                        });
+                    }
+
                     locals.venueCount = venues.length;
 
                     var maxIndex = (page * 20);
