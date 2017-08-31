@@ -8,7 +8,7 @@ exports = module.exports = function(req, res) {
     locals.mainSite = true;
     locals.pageTitle = "Search for a Wiki Place";
 
-    view.on('get', function(next) {
+    view.on('get', function() {
         locals.vicinity = req.query.vicinity;
         locals.searchString = req.query.searchString || '';
         locals.radius = req.query.radius;
@@ -84,6 +84,8 @@ exports = module.exports = function(req, res) {
         searchQuery += hasSearchString ? (hasVicinity ? ' and ' + locals.searchString : locals.searchString) : '';
 
         locals.searchQuery = searchQuery;
+
+        next()
     });
 	
 	// locals.section is used to set the currently selected
