@@ -64,6 +64,8 @@ exports = module.exports = function(req, res) {
         });
 
         if (locationSearch) {
+            sortBy["distance"] = 1;
+
             query = Venue.model.aggregate({
                 $geoNear: {
                     near: { type: "Point", coordinates: [fromLatLng.lng, fromLatLng.lat] },
