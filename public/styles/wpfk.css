@@ -1221,7 +1221,7 @@ section.wpfk--inline-input select:active {
     overflow: hidden;
     max-height: auto; }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--description-read-container.wpfk--description-half {
-      max-height: 250px; }
+      max-height: 300px; }
   .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-read-more-less {
     cursor: pointer;
     color: #2eaaa5;
