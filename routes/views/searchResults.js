@@ -115,7 +115,9 @@ exports = module.exports = function(req, res) {
                 locals.venues = venues.map(function(venue) {
                     if (venue.distance) {
                         venue.distance = venue.distance.toFixed(2);
-                    }                        
+                    }            
+                             
+                    return venue;   
                 });
                 
                 next(err);
