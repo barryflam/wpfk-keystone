@@ -64,8 +64,6 @@ exports = module.exports = function(req, res) {
         });
 
         if (locationSearch) {
-            sortBy["distance"] = 1;
-
             query = Venue.model.aggregate({
                 $geoNear: {
                     near: { type: "Point", coordinates: [fromLatLng.lng, fromLatLng.lat] },
@@ -103,7 +101,7 @@ exports = module.exports = function(req, res) {
 
                     var maxIndex = (page * 20);
 
-                    venues = venues.slice(maxIndex - 20, maxIndex)
+                    venues = venues.slice(maxIndex - 20, maxIndex);
 
                     if (maxIndex >= locals.venueCount) {
                         locals.hasNext = "no";
@@ -114,7 +112,11 @@ exports = module.exports = function(req, res) {
                     locals.venueCount = 0;
                 }
 
-                locals.venues = venues;
+                locals.venues = venues.map(function(venue) {
+                    if (venue.distance) {
+                        venue.distance = venue.distance.toFixed(2);
+                    }                        
+                });
                 
                 next(err);
             });
