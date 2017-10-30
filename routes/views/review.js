@@ -37,7 +37,8 @@ exports = module.exports = function(req, res) {
             'ipAddress',
             'venueId',
             'venueSlug',
-            'addedOn'
+            'addedOn',
+	    'user.agreement'
         ].join(', '),
         errorMessage: 'There was a problem submitting your review:'
     }, function(err) {            

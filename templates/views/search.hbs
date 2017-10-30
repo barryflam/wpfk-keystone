@@ -15,14 +15,14 @@
         <aside class="wpfk--search-filters">
             <h1>Refine by</h1>
             <hr/>
-            <section class="wpfk--filter-collapse {{#if filterSearchString}}wpfk--form-collapse--expanded{{/if}}">
+            <section class="wpfk--filter-collapse wpfk--form-collapse--expanded">
                 <h2>Containing phrase</h2>
                 <section class="wpfk--form-collapse--more">
                     <input type="text" class="wpfk--input-location" placeholder="e.g. Knebworth House" name="searchString" value="{{searchString}}" />
                 </section>  
             </section>
             <hr/>
-            <section class="wpfk--filter-collapse  {{#if filterLocation}}wpfk--form-collapse--expanded{{/if}}">
+            <section class="wpfk--filter-collapse wpfk--form-collapse--expanded">
                 <h2>Location</h2>
                 <section class="wpfk--form-collapse--more">
                     <input type="text" class="wpfk--input-location" placeholder="e.g. London, SE4" name="vicinity" value="{{vicinity}}" />
@@ -224,12 +224,9 @@
         });
     }
 
-    function onGeo() {
-        onChangeSubmit(event);
-        onScrollPaginate(event);
-    }
-
     document.addEventListener("DOMContentLoaded", function(event) {
         startLoading();
+	onChangeSubmit(event);
+	onScrollPaginate(event);
     });
 </script>

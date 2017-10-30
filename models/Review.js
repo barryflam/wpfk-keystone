@@ -30,7 +30,10 @@ Review.add({
     ipAddress: { type: String, label: "User's IP address" },
     venueId: { type: Number },
     venueSlug: { type: String },
-    addedOn: { type: Date, default: Date.now }
+    addedOn: { type: Date, default: Date.now },
+    user: {
+        agreement: { type: Boolean, label: "Please tick to get future updates from WPFK" }
+    },
 });
 
 Review.schema.virtual('formattedDate').get(function () {

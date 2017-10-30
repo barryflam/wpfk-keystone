@@ -373,8 +373,8 @@ Venue.schema.virtual('suitableForPremium').get(function() {
     {
         var ageMapper = {
             "to6M": {
-                min: "birth",
-                max: "to 6 months"
+                min: "0-6 months",
+                max: ""
             },
             "from6Mto1Y": {
                 min: "6 months",
@@ -431,7 +431,7 @@ Venue.schema.virtual('suitableForPremium').get(function() {
 
     orderedAges.forEach(function (value) {
         var checked = typeof this[value] === "boolean" && this[value] === true;
-        var minimumChecked = typeof this["from6M"] === "boolean" && this["from6M"] === true;
+        var minimumChecked = typeof this["to6M"] === "boolean" && this["to6M"] === true;
 
         if (checked) {
             if(minimumAge === "to6M" && !minimumChecked)

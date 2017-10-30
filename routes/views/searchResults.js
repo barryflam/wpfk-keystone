@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
     }
 
     var doGeocode = function(address, callback) {
-        https.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=' + googleApiKey, (apiRes) => {
+        https.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&region=uk&key=' + googleApiKey, (apiRes) => {
             // consume response body
             apiRes.setEncoding('utf8');
             var body = "";

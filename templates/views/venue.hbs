@@ -51,8 +51,6 @@
 	    <dt>Website:</dt>
             <dd><a href="{{venue.website}}" target="_blank">{{venue.website}}</a></dd>
         </dl>
-        <div class="wpfk--venue-map"><div id='gmap_canvas' style='height:265px;width:265px;'></div>
-        <script type='text/javascript'>function init_map(){var myOptions = {zoom:13,center:new google.maps.LatLng({{venue.latLng}}),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng({{venue.latLng}})});infowindow = new google.maps.InfoWindow({content:"<h3>{{venue.venueName}}</h3><p>{{venue.inlineAddress}}</p>"});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
     </section>
     <section class="wpfk--venue-section">
         <h1>Facilities</h1>
@@ -131,7 +129,10 @@
         </section>
         <section class="wpfk--form__description">
             <textarea aria-label="Your review" name="description" placeholder="What's brilliant about this place? (also, add hints and tips for other parents)" rows="4">{{formData.description}}</textarea>
-        </section>
+<ul class="wpfk--form__checkbox-container">
+                    <li style="flex: 0 0 80%"><input type="checkbox" name="user.agreement" id="userAgreement" {{#if formData.[user.agreement]}}checked="checked"{{/if}}> <label for="userAgreement">Please tick to receive updates from Wiki Places for Kids.</label></li>
+                </ul>        
+</section>
         <section class="wpfk--form-actions">
             <input type="hidden" name="venueSlug" value="{{venue.slug}}" />
             <input type="hidden" name="venueId" value="{{venue.id}}" />
