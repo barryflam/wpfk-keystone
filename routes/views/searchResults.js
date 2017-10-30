@@ -43,7 +43,8 @@ exports = module.exports = function(req, res) {
     var queryVenues = function (fromLatLng, radius, venueTypes, ageRanges, services, next, sortBy, searchString, page) {
         var locationSearch = fromLatLng !== null && radius !== null,
             andFilterMatcher = [ { _id: { $exists: true } }, { slug: { $exists: true } } ],
-            query = null;
+            query = null,
+            geoNearQuery = false;
 
         venueTypes.forEach(function(type) {
             var emptyObj = {};
@@ -64,6 +65,8 @@ exports = module.exports = function(req, res) {
         });
 
         if (locationSearch) {
+            geoNearQuery = true;
+
             query = Venue.model.aggregate({
                 $geoNear: {
                     near: { type: "Point", coordinates: [fromLatLng.lng, fromLatLng.lat] },
@@ -89,39 +92,40 @@ exports = module.exports = function(req, res) {
         .exec(function(err, venues) {
             if (venues) {
                 if (searchString !== '') {
-                        var regex = new RegExp('\\b' + searchString + '\\b', 'i');
+                    var regex = new RegExp('\\b' + searchString + '\\b', 'i');
 
-                        venues = venues.filter(function (venue) { 
-                            var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
-                            return regex.test(string);
-                        });
-                    }
-
-                    locals.venueCount = venues.length;
-
-                    var maxIndex = (page * 20);
-
-                    venues = venues.slice(maxIndex - 20, maxIndex);
-
-                    if (maxIndex >= locals.venueCount) {
-                        locals.hasNext = "no";
-                    } else {
-                        locals.hasNext = "yes";
-                    }
-                } else {
-                    locals.venueCount = 0;
+                    venues = venues.filter(function (venue) { 
+                        var string = (venue.venueName + ' ' + venue.address + ' ' + venue.description);
+                        return regex.test(string);
+                    });
                 }
 
-                locals.venues = venues.map(function(venue) {
-                    if (venue.distance) {
-                        venue.distance = venue.distance.toFixed(2);
-                    }            
-                             
-                    return venue;   
-                });
-                
-                next(err);
+                locals.venueCount = venues.length;
+
+                var maxIndex = (page * 20);
+
+                venues = venues.slice(maxIndex - 20, maxIndex);
+
+                if (maxIndex >= locals.venueCount) {
+                    locals.hasNext = "no";
+                } else {
+                    locals.hasNext = "yes";
+                }
+            
+            } else {
+                locals.venueCount = 0;
+            }
+
+            locals.venues = venues.map(function(venue) {
+                if (venue.distance) {
+                    venue.distance = venue.distance.toFixed(2);
+                }            
+                            
+                return venue;   
             });
+            
+            next(err);
+        });
     }
 
     view.on('post', function(next) {
