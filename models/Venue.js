@@ -259,11 +259,6 @@ Venue.schema.virtual('inlineAddress').get(function() {
     return inlineAddress;
 });
 
-Venue.schema.virtual('costsMoney').get(function() {
-	return this.prices.isFree === "No";
-//    return this.prices.adult > 0 || this.prices.child > 0 || this.prices.infant > 0;
-});
-
 Venue.schema.virtual('activityType').get(function() {
     return Object.keys(this.venueType).filter(function (value) {
         return typeof this[value] === "boolean";
