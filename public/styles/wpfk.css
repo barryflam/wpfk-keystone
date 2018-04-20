@@ -1299,7 +1299,8 @@ section.wpfk--inline-input select:active {
     padding-left: 0; }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick {
       width: 20%;
-      font-size: 0.875em; }
+      font-size: 0.875em;
+      vertical-align: top; }
     .wpfk--venue-content.wpfk--premium-venue .wpfk--venue-activity-ticks .wpfk--venue-activity-tick:before {
       position: absolute;
       content: " ";

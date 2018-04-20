@@ -44,7 +44,7 @@ $tablet-breakpoint: 800px;
 %flex-container {
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;      
+    display: flex;
 
     @media (max-width: $tablet-breakpoint) {
         display: block;
@@ -1122,7 +1122,7 @@ section.wpfk--inline-input select:active {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             margin: 0.5em 0;
-        }    
+        }
     }
 }
 
@@ -1164,7 +1164,7 @@ section.wpfk--inline-input select:active {
     @extend %flex-container;
 }
 
-.wpfk--search-filters {    
+.wpfk--search-filters {
     @include flex(1 0 25%);
     background: #fff;
     padding: 2%;
@@ -1272,7 +1272,7 @@ section.wpfk--inline-input select:active {
             color: $brand-purple;
             display: block;
         }
-        
+
         &__image {
             display: inline-block;
             vertical-align: top;
@@ -1290,7 +1290,7 @@ section.wpfk--inline-input select:active {
                 object-fit: cover;
             }
 
-            p { 
+            p {
                 background: $brand-turqoise;
                 padding: 20px;
                 color: #fff;
@@ -1403,7 +1403,7 @@ section.wpfk--inline-input select:active {
 
     form {
         background: $brand-orange;
-        padding: 15px;        
+        padding: 15px;
     }
 
     a {
@@ -1418,7 +1418,7 @@ section.wpfk--inline-input select:active {
         }
     }
 
-    a:focus + &-overlay,    
+    a:focus + &-overlay,
     a:hover + &-overlay,
     a:active + &-overlay,
     a + &-overlay:hover,
@@ -1452,7 +1452,7 @@ section.wpfk--inline-input select:active {
 
 .wpfk--venue-header {
     @extend %wide-container;
-    
+
     &.wpfk--premium-venue {
         max-width: none;
     }
@@ -1627,7 +1627,7 @@ section.wpfk--inline-input select:active {
         width: 100%;
         margin: 5% 0 0;
         padding: 5% 0 0;
-        border-top: 1px solid $border-grey; 
+        border-top: 1px solid $border-grey;
 
         h1 {
             font-family: LatoBold, Arial, Helvetica, sans-serif;
@@ -1810,6 +1810,7 @@ section.wpfk--inline-input select:active {
         .wpfk--venue-activity-tick {
             width: 20%;
             font-size: em-calc(14);
+            vertical-align: top;
         }
 
         .wpfk--venue-activity-tick:before {
@@ -2034,7 +2035,7 @@ section.wpfk--inline-input select:active {
 .wpfk--about-content {
     @extend %container;
     text-align: left;
-    
+
     h1 {
         font-weight: bold;
         font-family: LatoBold, Arial, Helvetica, sans-serif;
@@ -2047,10 +2048,10 @@ section.wpfk--inline-input select:active {
         font-weight: bold;
         font-family: LatoBold, Arial, Helvetica, sans-serif;
         font-size: em-calc(20);
-        color: #404040; 
+        color: #404040;
         margin: 8% 0 5% 0;
     }
-    
+
     p {
         line-height: em-calc(32);
         margin: 5% 0;
@@ -2125,7 +2126,7 @@ section.wpfk--inline-input select:active {
                 text-align: right;
                 width: 100%;
             }
-            
+
             a {
                 color: $brand-purple;
             }
